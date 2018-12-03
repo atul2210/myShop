@@ -1,0 +1,90 @@
+
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm" >
+<div class="col-md-12 col-md-offset-3" style="position:relative;top:50px;"
+ [ngClass]="{'has-error':(loginForm.get('username').touched || loginForm.get('username').dirty)}">
+  
+
+ 
+ <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" formControlName="username" class="form-control" placeholder="Type here">
+      <span class="help-block" *ngIf="(loginForm.get('username').touched ||
+                                       loginForm.get('username').dirty) &&
+                                       loginForm.get('username').errors">
+              <span class="alert-danger" *ngIf="loginForm.get('username').errors.required">Please enter email id</span>                        
+      </span>
+  
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" formControlName="password"  class="form-control">
+      <span class="help-block" *ngIf="(loginForm.get('password').touched ||
+      loginForm.get('password').dirty) &&
+      loginForm.get('password').errors">
+<span class="alert-danger" *ngIf="loginForm.get('password').errors.required">Please enter password</span>                        
+</span>
+    
+    
+    </div>
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        <input formControlName="rememberme" class="form-check-input" type="checkbox"> Remember me
+      </label>
+    </div>
+
+   
+    <div class="box-footer">
+        <button class="btn btn-primary" style="position:inherit;top:30px;margin-left:0px;text-transform:initial" type="submit" [disabled]="!loginForm.valid"  >Submit</button>
+        
+        <button class="btn btn-info pull-right" style="text-transform:none"  (click)= "openModalDialog()" >Not a Member</button>
+       
+      </div>
+</div>
+
+
+<!-- <div class="backdrop" [ngStyle]="{'display':display}"></div> -->
+
+<!-- modal -->
+<div class="modal form-group " tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+      <!-- modal-header -->
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Continue" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
+        <!-- <h4 class="modal-title">Login</h4> -->
+      </div>
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        
+            <div>
+                <input type="text" class="textbox" name="mobile" #mobileNum placeholder="Mobile Number" >
+                <!-- <span class="help-block" *ngIf="(loginForm.get('mobileNumber').touched ||
+                loginForm.get('mobileNumber').dirty) &&
+                loginForm.get('mobileNumber').errors">
+                <span class="alert-danger" *ngIf="loginForm.get('mobileNumber').errors.required">Please Enter Valid Mobile Number</span>                        
+                </span> -->
+            
+              </div>
+                        <div>
+              Once you click on continue button, you will receive OTP in your mobile.   
+            </div>  
+      </div>
+
+      <!-- modal-footer -->
+      <div *ngIf="isOk">
+        <div    >Something bad has happened. Please retry :(.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" style="text-transform:none" (click)="closeModalDialog()" >Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</form>
+

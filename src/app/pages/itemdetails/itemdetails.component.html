@@ -1,0 +1,80 @@
+
+<div class="container" *ngFor="let item of itemDetail;">
+     
+    <div class="row">
+      <div class="col-sm-6  ">
+        
+            
+        <!-- <div *ngFor= "let colors of colorDetail;let i = index;">
+          <input type="radio" name="colors" [attr.value]=colors (click)="getColor(colors)">{{colors}} </div> -->
+        
+          <!-- <img [src]= item.imaggeUrl class="items" height="300" width="300" style="position:absolute;top:5px;left:72px" /> -->
+          <!-- <img [zoomable]='zoomOptions' [zoomableSrc]='img1' [src]='img1' class='img1'>
+        -->
+        <ngx-image-zoom
+        [thumbImage]=item.imaggeUrl
+        
+        [fullImage]=item.imaggeUrl
+       
+        [enableLens] = true
+        [zoomMode] =hover
+        [enableScrollZoom] =true
+        [enableLens]=true
+        [magnification] =2
+        [circularLens] = true	
+        
+    ></ngx-image-zoom>
+
+
+
+
+
+      </div>
+
+
+      <div class="col-sm-6; bg-gradient-dark" >
+                    <div class = "text-info" style= "font-size: 16" >  Category {{item.categoryName}}
+                          {{item.itemDescription}} &nbsp;&nbsp; Size  {{item.sizeName}}
+                    </div>
+                      <div style= "-webkit-text-fill-color:crimson "  >Available Quantity : {{item.availableQty}}</div>
+                      <div><s>Total Price ₹ {{item.price}}</s>
+                        <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()">
+                      </div>
+                      <div id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
+                          <ul style="-webkit-text-fill-color: indigo"  >
+                            <li  >
+                              Color: {{item.color}}
+                            </li>
+                            <li >
+                              Brand: {{item.brand}}
+                            </li>
+                            <li >
+                            Delivery Charges : ₹ {{item.deliveryCharges}}
+                            </li>
+                            
+                          </ul>
+                      </div>  
+                    <div>Offer Price  ₹ {{item.offerPrice}} </div>
+            <div>Delivery: By Courier </div>  
+                <div>Fabric: Pure Cotton </div> 
+      </div>
+        
+</div>    
+</div> 
+
+
+<div style="position:fixed;top:570px">
+    <button class="btn btn-danger" width="100px" (click)="addToCart();">
+        Add to Cart 
+   </button>
+
+   <!-- <button class="btn btn-success" width="100px" (click)="purchase()">
+      Purchase 
+ </button> -->
+  
+</div>
+<script>
+    
+    $('#74').ezPlus();
+    
+</script>

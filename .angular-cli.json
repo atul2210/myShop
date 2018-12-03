@@ -19,15 +19,34 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        
+       
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "css.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/admin-lte/dist/css/adminlte.css",
+        "../node_modules/ez-plus/css/jquery.ez-plus.css"
+        
       ],
-      "scripts": [],
+
+      "scripts": ["../node_modules/jquery/dist/jquery.min.js",
+      "../node_modules/jquery/dist/jquery.livequery.js",
+      "../node_modules/tether/dist/js/tether.js",
+      "../node_modules/popper.js/dist/umd/popper.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/admin-lte/dist/js/adminlte.js",
+        "../node_modules/ez-plus/src/jquery.ez-plus.js"
+      ],
+        
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
+        
+    
   ],
   "e2e": {
     "protractor": {
