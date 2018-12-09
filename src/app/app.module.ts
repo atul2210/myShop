@@ -26,6 +26,7 @@ import { SafePipe } from './safe.pipe';
 import { CartItemServiceService } from './service/cart-item-service.service';
 import { itemNotify } from './pages/itemdetails/item-notify';
 import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
+import { SearchResultComponent } from './pages/search-result/search-result.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
     CheckinComponent,
     UserRegistrationComponent,
     SafePipe,
+    SearchResultComponent,
     
    
   ],
@@ -59,6 +61,7 @@ import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
 
       {path:'checkin',component:CheckinComponent},
       {path:'registration/:mobile',component:UserRegistrationComponent},
+      {path:'search/:item',component:SearchResultComponent},
       {path:'**',component:PageNotFoundComponentComponent}
   
       ]),
@@ -67,7 +70,7 @@ import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
     NgbModule,
     NgxImageZoomModule.forRoot(),
     InfiniteScrollModule,
-    
+    FormsModule
     
   ],
   providers: [ShoppingApiService,Globals,
@@ -86,7 +89,7 @@ import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
       multi:true
   
     },
-    authguard,responseData, CartItemServiceService,itemNotify ],
+    authguard,responseData, CartItemServiceService,itemNotify,SearchResultComponent ],
   
   bootstrap: [HomepageComponent]
 })

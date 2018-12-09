@@ -4,14 +4,20 @@ import {ShoppingApiService} from '../../service/shopping-api.service'
 import { CartItemServiceService } from '../../service/cart-item-service.service';
 import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
 import { ISubscription } from "rxjs/Subscription";
+import {SearchResultComponent} from '../../../app/pages/search-result/search-result.component'
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit,OnDestroy {
+  itemname:string;
+  constructor(private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify) 
+  
+  { 
+    
 
-  constructor(private globals: Globals,private ShoppingApiService:ShoppingApiService,private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify) { }
+  }
   private subscription: ISubscription;
   itemReceivedAddToCard :any[];
   count:number;
@@ -52,7 +58,11 @@ ngOnDestroy()
 
   }
 
+searchResult()
+{
+this.search.getSearchResult(this.itemname);
 
+}
 
 
  
