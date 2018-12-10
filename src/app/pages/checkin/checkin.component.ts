@@ -3,6 +3,7 @@ import {ShoppingApiService} from '../../service/shopping-api.service';
 import { itemNotify } from '../itemdetails/item-notify';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
+import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service'
 @Component({
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
@@ -11,7 +12,14 @@ import { DOCUMENT } from '@angular/platform-browser';
 @Injectable()
 export class CheckinComponent implements OnInit {
   cartItems:any;
-  constructor(@Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,private route:Router ) { 
+  loading:boolean=false;
+  constructor(@Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,
+  private route:Router,private loadingIndicatorService: LoadingIndicatorServiceService ) { 
+
+    loadingIndicatorService
+    .onLoadingChanged
+    .subscribe(isLoading => this.loading = isLoading);
+
 
   }
 

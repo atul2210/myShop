@@ -27,7 +27,7 @@ import { CartItemServiceService } from './service/cart-item-service.service';
 import { itemNotify } from './pages/itemdetails/item-notify';
 import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
-
+import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../src/app/service/loading-indicator-service.service'
 
 @NgModule({
   declarations: [
@@ -88,6 +88,13 @@ import { SearchResultComponent } from './pages/search-result/search-result.compo
      
       multi:true
   
+    },
+    LoadingIndicatorServiceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useFactory: (service: LoadingIndicatorServiceService) => new LoadingIndicatorInterceptor(service),
+      multi: true,
+      deps: [LoadingIndicatorServiceService]
     },
     authguard,responseData, CartItemServiceService,itemNotify,SearchResultComponent ],
   
