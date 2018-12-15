@@ -45,6 +45,10 @@
 <!-- <div class="backdrop" [ngStyle]="{'display':display}"></div> -->
 
 <!-- modal -->
+
+
+
+</form>
 <div class="modal form-group " tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
   
   <div class="modal-dialog" role="document">
@@ -60,7 +64,7 @@
       <div class="modal-body">
         
             <div>
-                <input type="text" class="textbox" name="mobile" #mobileNum placeholder="Mobile Number" >
+                <input type="text" class="textbox" [(ngModel)]="mobile" placeholder="Mobile Number" >
                 <!-- <span class="help-block" *ngIf="(loginForm.get('mobileNumber').touched ||
                 loginForm.get('mobileNumber').dirty) &&
                 loginForm.get('mobileNumber').errors">
@@ -83,8 +87,4 @@
     </div>
   </div>
 </div>
-
-
-
-</form>
 

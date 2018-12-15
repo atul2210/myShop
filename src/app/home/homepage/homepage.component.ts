@@ -5,6 +5,8 @@ import { CartItemServiceService } from '../../service/cart-item-service.service'
 import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
 import { ISubscription } from "rxjs/Subscription";
 import {SearchResultComponent} from '../../../app/pages/search-result/search-result.component'
+import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -12,9 +14,15 @@ import {SearchResultComponent} from '../../../app/pages/search-result/search-res
 })
 export class HomepageComponent implements OnInit,OnDestroy {
   itemname:string;
-  constructor(private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify) 
+
+  loading:boolean=false;
+  constructor(private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
+  private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService) 
   
   { 
+    loadingIndicatorService
+    .onLoadingChanged
+    .subscribe(isLoading => this.loading = isLoading);
     
 
   }

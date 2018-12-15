@@ -23,12 +23,11 @@ export class LoginComponent implements OnInit {
 
   display='none'; //default Variable
   isOk=false;
-  // mobile:string = '676767';
- ///// @Input() mobileNum:number;
+  mobile:string="";
 
   constructor( private route: ActivatedRoute,
             private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder) { }
- 
+   
   ngOnInit():void {
   this.loginForm=this.fb.group({
 
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
         
         password:['',[Validators.required]],
         rememberme:{value:true,disabled:false}, //default value
-        // mobileNumber:['',[Validators.required]]
+        //mobileNumber:['',[Validators.required]]
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -73,17 +72,19 @@ openModalDialog()
 closeModel()
 {
   this.display='none';
-  this.loginForm.controls["mobileNumber"].patchValue('');
+  this.mobile="";
+ // this.loginForm.controls["mobileNumber"].patchValue('');
 
 }
 
 
 async closeModalDialog()
+
 {
   let resp;
 //  let mobile:string= this.loginForm.controls["mobileNumber"].value;
- let mobile = this.loginForm.controls["mobileNumber"].value;
-  let res = await this.http.getOTP(mobile)
+ //this.loginForm.controls[" "].value;
+  let res = await this.http.getOTP(this.mobile)
 
   .then((res:Response)=>{                 
     resp = res;
@@ -92,7 +93,7 @@ async closeModalDialog()
       this.isOk=false;
       this.display='none'; //set none css after close dialog
 
-      this.router.navigateByUrl("/registration/"+mobile);
+      this.router.navigateByUrl("/registration/"+this.mobile);
     }
     else
     {
