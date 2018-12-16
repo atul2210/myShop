@@ -6,7 +6,7 @@ import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
 import { ISubscription } from "rxjs/Subscription";
 import {SearchResultComponent} from '../../../app/pages/search-result/search-result.component'
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service';
-
+import {MenuServiceService} from '../../service/menu/menu-service.service';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -14,10 +14,10 @@ import {LoadingIndicatorServiceService} from '../../service/loading-indicator-se
 })
 export class HomepageComponent implements OnInit,OnDestroy {
   itemname:string;
-
+  menuitems:string[];
   loading:boolean=false;
   constructor(private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
-  private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService) 
+  private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private service:MenuServiceService ) 
   
   { 
     loadingIndicatorService
@@ -27,6 +27,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
 
   }
   private subscription: ISubscription;
+  private subs: ISubscription;
   itemReceivedAddToCard :any[];
   count:number;
 
@@ -36,6 +37,8 @@ export class HomepageComponent implements OnInit,OnDestroy {
 
   ngOnInit() 
   {
+    this.GetMenuItems();
+
    this.subscription= this.ShoppingApiService.getItem()
     .subscribe( 
         ttlItems=>
@@ -43,13 +46,28 @@ export class HomepageComponent implements OnInit,OnDestroy {
           this.totalItem = ttlItems; 
           
         });
+
+
         
+  }
+  public GetMenuItems()
+  {
+    this.subs = this.service.menuitems()
+    .subscribe((res)=>
+    {
+      this.menuitems = res.body;
+      console.log(res);
+  
+    });
   }
 
 ngOnDestroy()
 {
   this.subscription.unsubscribe();
+  this.subs.unsubscribe();
 }
+
+
 
 
   public getCheckedInItems():any

@@ -28,6 +28,9 @@ import { itemNotify } from './pages/itemdetails/item-notify';
 import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../src/app/service/loading-indicator-service.service'
+import {MenuServiceService} from './service/menu/menu-service.service';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../
     CheckinComponent,
     UserRegistrationComponent,
     SafePipe,
-    SearchResultComponent,
+    SearchResultComponent
+   
+    
     
    
   ],
@@ -96,6 +101,7 @@ import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../
       multi: true,
       deps: [LoadingIndicatorServiceService]
     },
+    MenuServiceService,
     authguard,responseData, CartItemServiceService,itemNotify,SearchResultComponent ],
   
   bootstrap: [HomepageComponent]

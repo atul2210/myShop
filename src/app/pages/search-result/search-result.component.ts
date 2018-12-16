@@ -17,7 +17,7 @@ export class SearchResultComponent implements OnInit {
 public getSearchResult(itemName:string)
   {
 
-    alert(itemName);
+   
     this.router.navigateByUrl('/search/'+itemName);
   }
 }
