@@ -30,7 +30,13 @@ import { SearchResultComponent } from './pages/search-result/search-result.compo
 import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../src/app/service/loading-indicator-service.service'
 import {MenuServiceService} from './service/menu/menu-service.service';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule } from '@angular/material';
+import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +50,8 @@ import {MenuServiceService} from './service/menu/menu-service.service';
     CheckinComponent,
     UserRegistrationComponent,
     SafePipe,
-    SearchResultComponent
+    SearchResultComponent,
+    DynamicMenuComponent
    
     
     
@@ -75,7 +82,15 @@ import {MenuServiceService} from './service/menu/menu-service.service';
     NgbModule,
     NgxImageZoomModule.forRoot(),
     InfiniteScrollModule,
-    FormsModule
+    FormsModule,
+  
+   ///// BrowserAnimationsModule,
+    MatMenuModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule,
+        BrowserAnimationsModule
     
   ],
   providers: [ShoppingApiService,Globals,
