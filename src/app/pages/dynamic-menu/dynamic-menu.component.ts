@@ -1,6 +1,7 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import {MenuServiceService} from '../../service/menu/menu-service.service'
 import { ISubscription } from 'rxjs/Subscription';
+import { SearchResultComponent } from '../search-result/search-result.component';
 //import {MatButton,MatMenu,MatMenuTrigger} from '@angular/material';
 
 @Component({
@@ -20,13 +21,20 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
     return new DOMParser().parseFromString(input, "text/html").documentElement.textContent;
 }
 
-  constructor(private service:MenuServiceService) { }
+  constructor(private service:MenuServiceService,private search : SearchResultComponent) { }
 
   ngOnInit() {
 ///    this.GetMenuItems();
   this.GetBootStrapMenuItems()
   
   }
+
+  searchResult()
+  {
+    this.search.getSearchResult(this.itemname);
+
+  }
+
 
   public GetBootStrapMenuItems()
   {

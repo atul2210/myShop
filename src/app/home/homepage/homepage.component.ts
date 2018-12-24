@@ -84,11 +84,6 @@ ngOnDestroy()
 
   }
 
-searchResult()
-{
-this.search.getSearchResult(this.itemname);
-
-}
 
 
  

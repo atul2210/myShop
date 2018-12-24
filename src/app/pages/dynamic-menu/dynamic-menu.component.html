@@ -12,23 +12,24 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
       
           <ul class="navbar-nav"  >
-            <div *ngFor="let item of menuitems;">
+            
       
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{item.menuName}}
-                </a>
+                <li class="nav-item dropdown" *ngFor="let item of menuitems;">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{item.menuName}}
                 
-                       <ul class="navbar-nav" > 
-                           <li class="nav-item dropdown" *ngFor="let subitems of item.children; " >
-                        <a class="dropdown-item" [routerLink]=[subitems.routerLink]>{{subitems.menuName}}</a>
-                    </li>   
-                    </ul> 
-                
-              
-            </li>
+                    </a>
+                 
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       
+                         <ul >
+                           <li *ngFor="let subitems of item.children; " >
+                                <a class="dropdown-item" [routerLink]=[subitems.routerLink]>{{subitems.menuName}}</a>
+                            </li> 
+                          </ul>
+                        </div>
+                      </li>
       
-            </div>
 
 
             <li class="nav-item">
