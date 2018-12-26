@@ -66,7 +66,9 @@ body {
 
 body {
     padding-top: 105px;
+    background-color: rgb(123, 72, 136)
 }
+
 
 
 /* .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {

@@ -33,6 +33,12 @@ price:number;
 offerprice:number;
 deliverycharges:number;
 img1:any;
+coloId:number;
+sizeName:string;
+category:string;
+brand:string;
+availableQty:number;
+breakpoint: number;
 
 
   constructor( public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
@@ -47,19 +53,28 @@ img1:any;
     //const img2 = require('./assets/thumbnail2.jpg');
     
     //$('#74').ezPlus();
+
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+
     
     
     this.itemid = this.route.snapshot.params["itemid"];
     this.restProvider.itemDetails(this.itemid)
     .subscribe(
       data => { 
-      this.itemDetail= Array.of(data.body); 
-      this.colorDetail =data.body.availableColor.split(";");
-      this.colorname=this.colorDetail[0]; 
-      this.price = data.body.price; 
-      this.offerprice = data.body.offerPrice; 
-      this.deliverycharges = data.body.deliveryCharges;
-     // this.img1 = data.body.imaggeUrl;
+      this.itemDetail= Array.of(data.body)
+      console.log(this.itemDetail)
+      this.colorDetail =data.body.availableColor.split(";")
+      this.colorname=this.colorDetail[0]
+      this.price = data.body.price
+      this.offerprice = data.body.offerPrice
+      this.deliverycharges = data.body.deliveryCharge
+      this.coloId = data.body.colorId
+      this.sizeName = data.body.sizeName
+      this.category = data.body.categoryName
+      this.brand = data.body.brand
+      this.availableQty = data.body.availableQty
+
      
       
     }
@@ -84,7 +99,7 @@ img1:any;
   {
       let sessionToken:string;
       sessionToken=localStorage.getItem("sessionToken");        
-      this.restProvider.addToCart(this.itemid,'1',this.colorname,this.price,this.offerprice,this.deliverycharges)
+      this.restProvider.addToCart(this.itemid,'1',this.colorname,this.price,this.offerprice,this.deliverycharges,this.coloId)
       
       .subscribe(
         data => 
@@ -126,6 +141,8 @@ private notifyTotalItem(totalItem:Inotify)
   this.restProvider.changeSelectedItem(totalItem);
 }
 
-
+onResize(event) {
+  this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
+}
 
 }

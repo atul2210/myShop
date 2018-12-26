@@ -1,16 +1,10 @@
 
-<div class="container" *ngFor="let item of itemDetail;">
+<!-- <div class="container" *ngFor="let item of itemDetail;"> -->
+    <mat-grid-list  [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
      
-    <div class="row">
-      <div class="col-sm-6  ">
-        
-            
-        <!-- <div *ngFor= "let colors of colorDetail;let i = index;">
-          <input type="radio" name="colors" [attr.value]=colors (click)="getColor(colors)">{{colors}} </div> -->
-        
-          <!-- <img [src]= item.imaggeUrl class="items" height="300" width="300" style="position:absolute;top:5px;left:72px" /> -->
-          <!-- <img [zoomable]='zoomOptions' [zoomableSrc]='img1' [src]='img1' class='img1'>
-        -->
+        <mat-grid-tile  [style.backgroundColor]="'#D72568'">
+            <!-- <mat-card-subtitle>My Cart -->
+        <mat-card>
         <ngx-image-zoom
         [thumbImage]=item.imaggeUrl
         
@@ -24,26 +18,25 @@
         [circularLens] = true	
         
     ></ngx-image-zoom>
-
-
-
-
-
-      </div>
-
-
-      <div class="col-sm-6; bg-gradient-dark" >
-                    <div class = "text-info" style= "font-size: 16" >  Category {{item.categoryName}}
+  </mat-card>
+  <!-- </mat-card-subtitle> -->
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <mat-card>
+                
+                     <mat-list>
+                        <mat-list-item>
+                        Category {{item.categoryName}}
                           {{item.itemDescription}} &nbsp;&nbsp; Size  {{item.sizeName}}
-                    </div>
-                      <div style= "-webkit-text-fill-color:crimson "  >Available Quantity : {{item.availableQty}}</div>
-                      <div><s>Total Price ₹ {{item.price}}</s>
+                        </mat-list-item>
+                      <mat-list-item style= "-webkit-text-fill-color:crimson "  >Available Quantity : {{item.availableQty}}</mat-list-item>
+                      <mat-list-item><s>Total Price: &#8377; {{item.price}}</s>
                         <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()">
-                      </div>
-                      <div id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
+                      </mat-list-item>
+                      <mat-list-item id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
                           <ul style="-webkit-text-fill-color: indigo"  >
                             <li  >
-                              Color: {{item.color}}
+                              Color: {{item.color}} <span><img border="0" alt="Information" src="../../../assets/emoji/wealthy-emoticon.gif" width="60" height="60"></span>
                             </li>
                             <li >
                               Brand: {{item.brand}}
@@ -53,14 +46,24 @@
                             </li>
                             
                           </ul>
-                      </div>  
-                    <div>Offer Price  ₹ {{item.offerPrice}} </div>
-            <div>Delivery: By Courier </div>  
-                <div>Fabric: Pure Cotton </div> 
-      </div>
-        
-</div>    
-</div> 
+                      </mat-list-item>  
+                    <mat-list-item>Offer Price:  &#8377; {{item.offerPrice}} </mat-list-item>
+                    <mat-list-item>Size: {{item.sizeName}} </mat-list-item>
+                    <mat-list-item>Category {{item.categoryName}} </mat-list-item>
+                    <mat-list-item>Brand {{item.brand}} </mat-list-item>
+      
+
+
+            <mat-list-item>Delivery: By Courier </mat-list-item>  
+                <mat-list-item>Fabric: Pure Cotton </mat-list-item> 
+            
+         </mat-list>
+      
+     </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- </div> -->
 
 
 <div style="position:fixed;top:570px">
