@@ -35,7 +35,9 @@ import {MatMenuModule,
         MatButtonModule,
         MatToolbarModule,
         MatIconModule,
-        MatCardModule,MatGridListModule,MatDividerModule, MatListModule  } from '@angular/material';
+        MatCardModule,MatGridListModule,
+        MatDividerModule, 
+        MatListModule  } from '@angular/material';
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
 
 @NgModule({

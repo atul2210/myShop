@@ -1,6 +1,6 @@
 
 <!-- <div class="container" *ngFor="let item of itemDetail;"> -->
-    <mat-grid-list  [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
+    <mat-grid-list rowHeight="500px" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
      
         <mat-grid-tile  [style.backgroundColor]="'#D72568'">
             <!-- <mat-card-subtitle>My Cart -->
@@ -18,7 +18,17 @@
         [circularLens] = true	
         
     ></ngx-image-zoom>
+  
+   
+      <button mat-raised-button color="warn" (click)="addToCart();" style="float:right;text-transform: none;"  >
+        <mat-icon>shopping_cart</mat-icon> 
+        Add to Cart 
+     </button >
+   
+   
   </mat-card>
+  
+
   <!-- </mat-card-subtitle> -->
   </mat-grid-tile>
   <mat-grid-tile>
@@ -33,7 +43,7 @@
                       <mat-list-item><s>Total Price: &#8377; {{item.price}}</s>
                         <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()">
                       </mat-list-item>
-                      <mat-list-item id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
+                      <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
                           <ul style="-webkit-text-fill-color: indigo"  >
                             <li  >
                               Color: {{item.color}} <span><img border="0" alt="Information" src="../../../assets/emoji/wealthy-emoticon.gif" width="60" height="60"></span>
@@ -63,19 +73,9 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<!-- </div> -->
 
 
-<div style="position:fixed;top:570px">
-    <button class="btn btn-danger" width="100px" (click)="addToCart();">
-        Add to Cart 
-   </button>
 
-   <!-- <button class="btn btn-success" width="100px" (click)="purchase()">
-      Purchase 
- </button> -->
-  
-</div>
 <script>
     
     $('#74').ezPlus();
