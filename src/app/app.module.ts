@@ -37,7 +37,7 @@ import {MatMenuModule,
         MatIconModule,
         MatCardModule,MatGridListModule,
         MatDividerModule, 
-        MatListModule  } from '@angular/material';
+        MatListModule,MatFormFieldModule,MatInputModule  } from '@angular/material';
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
 
 @NgModule({
@@ -92,7 +92,7 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
         MatToolbarModule,
         MatIconModule,
         MatCardModule,
-        MatGridListModule ,MatDividerModule,MatListModule,
+        MatGridListModule ,MatDividerModule,MatListModule,MatFormFieldModule,MatInputModule,
         BrowserAnimationsModule
     
   ],

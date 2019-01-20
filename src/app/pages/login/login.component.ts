@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         
         password:['',[Validators.required]],
         rememberme:{value:true,disabled:false}, //default value
-        //mobileNumber:['',[Validators.required]]
+        mobileNumber:['na',[Validators.required]]
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 openModalDialog()
 {
   this.display='block'; //Set block css
-  
+  this.loginForm.controls["mobileNumber"].patchValue('');
   this.isOk=false;
   return false;
 }
@@ -72,39 +72,34 @@ openModalDialog()
 closeModel()
 {
   this.display='none';
-  this.mobile="";
- // this.loginForm.controls["mobileNumber"].patchValue('');
+  //this.mobile="";
+  this.loginForm.controls["mobileNumber"].patchValue('na');
 
 }
-
 
 async closeModalDialog()
-
 {
-  let resp;
-//  let mobile:string= this.loginForm.controls["mobileNumber"].value;
- //this.loginForm.controls[" "].value;
-  let res = await this.http.getOTP(this.mobile)
-
-  .then((res:Response)=>{                 
-    resp = res;
-    if(resp.body.status==5) //need to change
+    let resp;
+    this.mobile= this.loginForm.controls["mobileNumber"].value;
+    if(this.mobile.trim()!="")
     {
-      this.isOk=false;
-      this.display='none'; //set none css after close dialog
-
-      this.router.navigateByUrl("/registration/"+this.mobile);
+      let res = await this.http.getOTP(this.mobile)
+          .then((res:Response)=>{                 
+            resp = res;
+            if(resp.body.status==5) //need to change
+            {
+              this.isOk=false;
+              this.display='none'; //set none css after close dialog
+              this.router.navigateByUrl("/registration/"+this.mobile);
+            }
+            else
+            {
+              this.isOk =true;
+            }
+          });
     }
     else
-    {
-      alert(resp.body.status);
-      this.isOk =true;
+      return false;
     }
-  });
-  
-}
-
-
-
 }
 

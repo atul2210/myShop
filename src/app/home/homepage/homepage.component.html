@@ -2,7 +2,7 @@
 <div *ngIf="loading" >  
   <img src ="../assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
 </div>
-<div class="container">
+
 
   <app-dynamic-menu></app-dynamic-menu>
 <!--trt
@@ -242,11 +242,11 @@
       </ul>
     
     </div>
-    <div  ></div>
+   
    
   </nav>
  
 </header>
-
-<router-outlet>  </router-outlet>
-  
+<div style="position: relative;top:10px;" >
+  <router-outlet></router-outlet>
+</div>
