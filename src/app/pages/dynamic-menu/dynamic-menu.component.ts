@@ -1,7 +1,9 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit,OnDestroy,Input } from '@angular/core';
 import {MenuServiceService} from '../../service/menu/menu-service.service'
 import { ISubscription } from 'rxjs/Subscription';
 import { SearchResultComponent } from '../search-result/search-result.component';
+import { SearchServiceService } from '../../service/search-service.service';
+import { Router } from '@angular/router';
 //import {MatButton,MatMenu,MatMenuTrigger} from '@angular/material';
 
 @Component({
@@ -16,12 +18,14 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
   menuitems:string[];
   loading:boolean=false;
   menuHtml:string="";  private subscription: ISubscription;
-  
+  pageindex:number=0;
+  pagesize:number=0;
+  @Input() items:any;
   toHTML(input) : any {
     return new DOMParser().parseFromString(input, "text/html").documentElement.textContent;
 }
 
-  constructor(private service:MenuServiceService,private search : SearchResultComponent) { }
+  constructor(private router:Router,private http:SearchServiceService,private service:MenuServiceService,private search : SearchResultComponent) { }
 
   ngOnInit() {
 ///    this.GetMenuItems();
@@ -31,7 +35,16 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
 
   searchResult()
   {
-    this.search.getSearchResult(this.itemname);
+    this.router.navigateByUrl('/search/'+this.itemname);
+    // this.pageindex = this.pageindex+1; //alert(this.pageindex);
+    // this.pagesize=15;
+    //   this.http.SearchResult(this.itemname,this.pageindex.toString(),this.pagesize.toString())
+    //   .subscribe((res:Response)=>
+    //   {
+    //       this.items = res.body  
+    //       console.log(this.items)
+    //   });
+   //this.search.getSearchResult(this.itemname);
 
   }
 

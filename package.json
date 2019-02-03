@@ -17,6 +17,7 @@
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
+    "@angular/flex-layout": "^5.0.0-beta.14",
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
     "@angular/material": "^5.2.5",
@@ -38,8 +39,10 @@
     "ngx-image-zoom": "^0.3.2",
     "ngx-infinite-scroll": "^0.8.4",
     "ngx-slider": "0.0.5",
+    "npm": "^6.7.0",
     "popper.js": "^1.14.3",
     "rxjs": "^5.5.6",
+    "start": "^5.1.0",
     "tether": "^1.4.4",
     "zone.js": "^0.8.19"
   },

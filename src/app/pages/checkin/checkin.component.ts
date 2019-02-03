@@ -34,7 +34,7 @@ export class CheckinComponent implements OnInit {
        //console.log(this.cartItems)
         return this.cartItems;
       });
-    console.log(this.cartItems);
+   
   } 
  public RemoveItems(itemid:string,quantity:string,checkinid:string)
   {

@@ -29,7 +29,7 @@ import {HttpXsrfInterceptor} from './service/httpXsrfIntercepter';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../src/app/service/loading-indicator-service.service'
 import {MenuServiceService} from './service/menu/menu-service.service';
-
+import {SearchServiceService} from "./service/search-service.service"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule,
         MatButtonModule,
@@ -39,7 +39,7 @@ import {MatMenuModule,
         MatDividerModule, 
         MatListModule,MatFormFieldModule,MatInputModule  } from '@angular/material';
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
-
+ import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +60,7 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
    
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,HttpClientModule,RouterModule,
+    BrowserModule,FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,
     RouterModule.forRoot([
        {path:'',redirectTo:'HomeComponent',pathMatch:'full'},
       {path:'login',component:LoginComponent},
@@ -120,7 +120,18 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
       deps: [LoadingIndicatorServiceService]
     },
     MenuServiceService,
-    authguard,responseData, CartItemServiceService,itemNotify,SearchResultComponent ],
+    authguard,responseData, CartItemServiceService,itemNotify,SearchResultComponent,
+    SearchServiceService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:serviceintercepter,
+      multi:true
+  
+    },
+    
+  
+  ],
+    
   
   bootstrap: [HomepageComponent]
 })
