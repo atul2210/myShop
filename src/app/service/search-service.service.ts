@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/observable';
 import { Ipagedata } from '../model/pagedata';
-
+import { tap, skipWhile } from 'rxjs/operators';
 
 @Injectable()
 export class SearchServiceService {
@@ -14,7 +14,9 @@ export class SearchServiceService {
   {
 
   }
-
+  public httpReqestInProgress: boolean = false;
+  private currentPage = 1;
+  public news: Array<any> = [];
 public SearchResult(searchItem:string,pageindex:string,pagesize:string): Observable<any> 
 {
     let querystring:string;
@@ -41,4 +43,28 @@ private handleError(error: HttpErrorResponse) {
   return new ErrorObservable(
     'Something bad happened; please try again later.');
   };
+
+  public SearchItems(page: number = 1, pagesize:number,searchItem:string, saveResultsCallback: (news) => void) {
+   
+    let querystring:string;
+    this.uri="/api/items/";
+    querystring = "?Page="+this.currentPage+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true&itemSearch=" +searchItem ;
+   
+    return this.http.get(
+    this.uri+"SearchItem/"+querystring).pipe(
+    skipWhile(() => this.httpReqestInProgress),
+    tap(() => { this.httpReqestInProgress = true; }))
+    .subscribe((news: any[]) => {
+      this.currentPage++;
+      saveResultsCallback(news);
+      this.httpReqestInProgress = false;
+    })
+    
+  }
+ 
+ 
 }
+
+
+
+

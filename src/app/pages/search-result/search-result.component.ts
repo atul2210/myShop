@@ -9,31 +9,40 @@ import { Ipagedata,responseData } from '../../model/pagedata';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  pageindex:number=0;
-  pagesize:number=0;
-  constructor(private router:Router,private route: ActivatedRoute,private http:SearchServiceService) { }
+  pageindex:number=1;
+  pagesize:number=5;
+  data:string;  
+  imageItems:any[];
+  pageArray:any[];
+  count:number;
+  dynamicHtml:string;
+  searchItem:any[];
+  search: string
+
+  constructor(private responseData:responseData,private router:Router,private route: ActivatedRoute,private service:SearchServiceService) 
+  {
+    
+
+   }
 
   ngOnInit() {
-    const search: string = this.route.snapshot.params.item;
-    
-    this.getSearchResult(search);
-
+     this.search = this.route.snapshot.params.item;
+    this.onScrollDown(this.search);
   }
-items:any[];
-public async getSearchResult(itemName:string)
+  public items: Array<any> = [];
+  
+  public onScrollDown(searchitem:string): void {
+  this.service.SearchItems(this.pageindex,this.pagesize,searchitem,(items)=>
   {
-    // this.router.navigateByUrl('/search/'+itemName);
-    this.pageindex = this.pageindex+1; //alert(this.pageindex);
-  this.pagesize=15;
-   await this.http.SearchResult(itemName,this.pageindex.toString(),this.pagesize.toString())
-    .subscribe((res)=>
-    {
-      this.items = res.body.results
-      console.log(this.items);
-      return this.items;
-     
-      
-    });
-  //  console.log(this.items[0].image);
-  }
+      this.items = this.items.concat(items.results);
+            console.log( this.items);
+  });
 }
+ 
+
+}
+
+
+
+
+

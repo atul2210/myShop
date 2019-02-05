@@ -1,15 +1,26 @@
-<div fxLayout="row" fxFlex.md="100" fxLayoutWrap class="card-deck-container mat-elevation-z4">
-    <div *ngFor="let item of items" >
+<!-- <div 
+      infiniteScroll
+      [infiniteScrollDistance]="15"
+      [infiniteScrollUpDistance]="1.5"
+      [infiniteScrollThrottle]="5"
+      (scrolled)="getSearchResult()"
+      [scrollWindow]="true" >
+</div> -->
+<div 
+      infiniteScroll
+      (scrolled)="onScrollDown(search)" 
+      [scrollWindow]="true" >
+</div>
+<div class="container">
+  <div fxLayout="row" fxFlex.md="100" fxLayoutWrap class="card-deck-container mat-elevation-z4">
+    <div *ngFor="let item of items;let i=index" >
         <a  target='_blank' [routerLink]="['/itemDetail/',item.itemid]">
-    <mat-card fxFlex class="card-item">
+    <mat-card fxFlex class="card-item mat-card" >
        
         <mat-card-header>
             <mat-card-title class="mat-card-title">{{item.itemDescription}}</mat-card-title>
           </mat-card-header>
-    
-          
                 <img mat-card-md-image [src]=item.image>
-         
         <mat-card-content>
             <div class="card-text-content">
               {{item.itemName}}
@@ -19,13 +30,23 @@
 
     </mat-card>
   </a>
+    
+
+
+
 </div>
+
+</div>
+</div>
+
+
+
    <!-- <div class="paginator mat-elevation-z4" *ngIf="productsDisplayed.length !== 0">
      <md-paginator
        [length]="paginatorSize"
        [pageSize]="numberOfProductsDisplayedInPage"
        [pageSizeOptions]="[12, 24]"
        (page)="updateProductsDisplayedInPage($event)">
-     </md-paginator> -->
-   <!-- </div> -->
-</div> 
+     </md-paginator> 
+   </div>
+</div>  -->
