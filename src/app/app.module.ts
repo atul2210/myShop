@@ -40,7 +40,9 @@ import {MatMenuModule,
         MatListModule,MatFormFieldModule,MatInputModule  } from '@angular/material';
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
  import { FlexLayoutModule } from "@angular/flex-layout";
-@NgModule({
+import {SlidersComponent} from './pages/sliders/sliders.component';
+
+ @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
@@ -53,7 +55,8 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
     UserRegistrationComponent,
     SafePipe,
     SearchResultComponent,
-    DynamicMenuComponent
+    DynamicMenuComponent,
+    SlidersComponent
    
     
     
