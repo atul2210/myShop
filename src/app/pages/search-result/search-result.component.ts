@@ -10,7 +10,7 @@ import { Ipagedata,responseData } from '../../model/pagedata';
 })
 export class SearchResultComponent implements OnInit {
   pageindex:number=1;
-  pagesize:number=5;
+  pagesize:number=20;
   data:string;  
   imageItems:any[];
   pageArray:any[];
