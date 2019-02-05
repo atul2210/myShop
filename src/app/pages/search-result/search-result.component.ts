@@ -21,13 +21,14 @@ export class SearchResultComponent implements OnInit {
 
   constructor(private responseData:responseData,private router:Router,private route: ActivatedRoute,private service:SearchServiceService) 
   {
+    this.search = this.route.snapshot.params.item;
+    this.onScrollDown(this.search);
     
 
    }
 
   ngOnInit() {
-     this.search = this.route.snapshot.params.item;
-    this.onScrollDown(this.search);
+    
   }
   public items: Array<any> = [];
   
@@ -35,7 +36,7 @@ export class SearchResultComponent implements OnInit {
   this.service.SearchItems(this.pageindex,this.pagesize,searchitem,(items)=>
   {
       this.items = this.items.concat(items.results);
-            console.log( this.items);
+          
   });
 }
  
