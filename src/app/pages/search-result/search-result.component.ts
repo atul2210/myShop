@@ -35,7 +35,11 @@ export class SearchResultComponent implements OnInit {
   public onScrollDown(searchitem:string): void {
   this.service.SearchItems(this.pageindex,this.pagesize,searchitem,(items)=>
   {
+    this.count = items.count;
+    if(items.results.length<=this.count)
+    {
       this.items = this.items.concat(items.results);
+    }
           
   });
 }

@@ -15,8 +15,13 @@ export class SearchServiceService {
 
   }
   public httpReqestInProgress: boolean = false;
+  public httpItemReqestInProgress: boolean = false;
   private currentPage = 1;
   public news: Array<any> = [];
+
+  private ItemcurrentPage = 1;
+  public ItemArray: Array<any> = [];
+
 public SearchResult(searchItem:string,pageindex:string,pagesize:string): Observable<any> 
 {
     let querystring:string;
@@ -42,7 +47,7 @@ private handleError(error: HttpErrorResponse) {
   // return an ErrorObservable with a user-facing error message
   return new ErrorObservable(
     'Something bad happened; please try again later.');
-  };
+  }
 
   public SearchItems(page: number = 1, pagesize:number,searchItem:string, saveResultsCallback: (news) => void) {
    
@@ -61,7 +66,23 @@ private handleError(error: HttpErrorResponse) {
     })
     
   }
- 
+  public GetItems(page: number = 1, pagesize:number,saveItemResultsCallback: (ItemArray) => void) {
+   
+    let querystring:string;
+    this.uri="/api/items/";
+    querystring = "?Page="+this.ItemcurrentPage+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
+   
+    return this.http.get(
+    this.uri+"AllItemsOnPaging"+querystring).pipe(
+    skipWhile(() => this.httpItemReqestInProgress),
+    tap(() => { this.httpItemReqestInProgress = true; }))
+    .subscribe((ItemArray: any[]) => {
+      this.ItemcurrentPage++;
+      saveItemResultsCallback(ItemArray);
+      this.httpItemReqestInProgress = false;
+    })
+    
+  }
  
 }
 

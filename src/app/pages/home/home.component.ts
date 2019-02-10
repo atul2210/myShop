@@ -3,7 +3,7 @@ import {SlidersComponent} from '../../pages/sliders/sliders.component';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import {responseData} from '../../model/pagedata'
 import {BrowserModule, DomSanitizer, SafeHtml} from '@angular/platform-browser'
-
+import {SearchServiceService} from '../../service/search-service.service';
 
 
 @Component({
@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit  {
   data:string;  
 
   pageindex:number=0;
-  pagesize:number=0;
+  pagesize:number=50;
   pageArray:any[];
   count:number;
   dynamicHtml:string;
-  constructor(private responseData:responseData,private ShoppingApiService:ShoppingApiService) {
+  constructor(private responseData:responseData,private ShoppingApiService:ShoppingApiService,private service:SearchServiceService) {
 
 
   }
@@ -29,25 +29,25 @@ export class HomeComponent implements OnInit  {
 
   ngOnInit() {
   
- 
-  this.GetPageResult();
+    this.onScrollDown();
+  //this.GetPageResult();
   }
 
-public GetPageResult()
-{
-  this.pageindex = this.pageindex+1; 
-  this.pagesize=15;  
-  this.ShoppingApiService.GetHomePageItems(this.pagesize.toString(),this.pageindex.toString())
-  .subscribe((res)=>
-  {
+// public GetPageResult()
+// {
+//   this.pageindex = this.pageindex+1; 
+//   this.pagesize=15;  
+//   this.ShoppingApiService.GetHomePageItems(this.pagesize.toString(),this.pageindex.toString())
+//   .subscribe((res)=>
+//   {
     
-      this.responseData.Results = res.body.results
-      this.responseData.Count= res.body.count
-      this.dynamicHtml = this.GetDynamicDiv(this.responseData.Results);
-    this.count= this.responseData.Count
+//       this.responseData.Results = res.body.results
+//       this.responseData.Count= res.body.count
+//       this.dynamicHtml = this.GetDynamicDiv(this.responseData.Results);
+//     this.count= this.responseData.Count
    
-  })
-}
+//   })
+// }
 
 
 private  GetDynamicDiv(arr:any[])
@@ -78,25 +78,19 @@ toHTML(input) : any {
   return new DOMParser().parseFromString(input, "text/html").documentElement.textContent;
 }
 
-
-
-
-
-// private  putinArray(picarray:any[])
-// {
-//   let arr:any[];
-//   for(let item of picarray)
-//   {
-//     arr.push[item];
-    
-//   }
-
-//   return arr;
-
-
-//   }
-
-
+public itemsarr: Array<any> = [];
+ 
+  public onScrollDown(): void {
+  this.service.GetItems(this.pageindex,this.pagesize,(itemsarr)=>
+  {
+      this.count = itemsarr.count;
+       if(itemsarr.results.length<=this.count)
+       {
+         this.itemsarr = this.itemsarr.concat(itemsarr.results);
+         console.log(this.itemsarr);
+      }    
+  });
+}
 }
 
 

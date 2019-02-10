@@ -1,20 +1,76 @@
 <div  class = "container">
       <app-sliders></app-sliders>
-</div>
+</div>  
+
+  <!-- <div infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" class="search-results"  
+  
+  fxLayout="row" fxFlex.md="100" fxLayoutWrap class="card-deck-container mat-elevation-z4">
+<div *ngFor="let item of itemsarr;let i=index" >
+  <a  target='_blank' [routerLink]="['/itemDetail/',item.itemid]">
+<mat-card fxFlex class="card-item mat-card" >
+ 
+  <mat-card-header>
+      <mat-card-title class="mat-card-title">{{item.itemDescription}}</mat-card-title>
+    </mat-card-header>
+          <img mat-card-sm-image [src]=item.image>
+  <mat-card-content>
+      <div class="card-text-content">
+        {{item.itemName}}
+      </div>
+    </mat-card-content>
   
 
-  <div id="wrap" [innerHTML] = "dynamicHtml |safe:'html'" >
-      <div class="search-results"
-      infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollUpDistance]="1.5"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="GetPageResult()"
-      [scrollWindow]="true" >
-      
-  </div>
-  </div>
+</mat-card>
+</a>
 
 
 
 
+</div>
+
+</div> -->
+
+
+
+
+<div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" >
+
+    <div class = "ui four cards"  >
+  <div *ngFor="let item of itemsarr;let i=index" style= "padding-top: 20px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  padding-left: 25px;">
+ 
+
+    <a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
+
+      <div class="image">
+        <img style="width:200px;height:200px;" [src]=item.image>
+      </div>
+      <div class="">
+        <a class="header">{{item.itemName}}</a>
+        <div class="meta">
+          <span class="date">Color : {{item.color}}</span>
+        </div>
+        <div class="description">
+         {{item.itemDescription}}
+        </div>
+      </div>
+      <div >
+        
+          <i class="user icon"></i>
+          Brand : {{item.brand}}
+       
+      </div>
+
+
+</a>
+
+
+
+
+<!-- </div> -->
+
+</div>
+</div>
+</div>

@@ -10,7 +10,7 @@
       (scrolled)="getSearchResult()"
       [scrollWindow]="true" >
 </div> -->
-
+<!-- 
 
   <div infiniteScroll (scrolled)="onScrollDown(search)" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" class="search-results"  
   
@@ -38,7 +38,51 @@
 
 </div>
 
+</div> -->
+
+<div  infiniteScroll (scrolled)="onScrollDown(search)" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" >
+
+        <div class = "ui four cards"  >
+      <div *ngFor="let item of items;let i=index" style= "padding-top: 20px;
+      padding-right: 25px;
+      padding-bottom: 25px;
+      padding-left: 25px;">
+     
+   
+        <a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
+    
+          <div class="image">
+            <img style="width:200px;height:200px;" [src]=item.image>
+          </div>
+          <div class="">
+            <a class="header">{{item.itemName}}</a>
+            <div class="meta">
+              <span class="date">Color : {{item.color}}</span>
+            </div>
+            <div class="description">
+             {{item.itemDescription}}
+            </div>
+          </div>
+          <div >
+            
+              <i class="user icon"></i>
+              Brand : {{item.brand}}
+           
+          </div>
+
+
+  </a>
+    
+
+
+
+<!-- </div> -->
+
 </div>
+</div>
+</div>
+
+
 
 
 
