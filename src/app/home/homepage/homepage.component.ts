@@ -20,10 +20,6 @@ export class HomepageComponent implements OnInit,OnDestroy {
   private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private service:MenuServiceService ) 
   
   { 
-    loadingIndicatorService
-    .onLoadingChanged
-    .subscribe(isLoading => this.loading = isLoading);
-    
 
   }
   private subscription: ISubscription;
@@ -37,7 +33,11 @@ export class HomepageComponent implements OnInit,OnDestroy {
 
   ngOnInit() 
   {
+    
     this.GetMenuItems();
+    this.loadingIndicatorService
+    .onLoadingChanged
+    .subscribe(isLoading => this.loading = isLoading);
 
    this.subscription= this.ShoppingApiService.getItem()
     .subscribe( 
@@ -72,7 +72,7 @@ ngOnDestroy()
 
   public getCheckedInItems():any
   {
-    // this.count = this.getAddedItemTotal();alert(this.count);
+  
     let userSessionid:string;  
     userSessionid = localStorage.getItem("sessionToken");
     this.ShoppingApiService.getCheckedInItem(userSessionid)

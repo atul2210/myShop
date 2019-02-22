@@ -1,64 +1,44 @@
-<!-- <script type="text/javascript" src="jquery-1.3.2.js"></script>
-<script type="text/javascript" src="jquery.livequery.js"></script> -->
+<div *ngIf="loading" >  
+  <img src ="../assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
+</div>
 
-<div align="left" class="form-control">
+<div  class = "container">
+	<app-sliders></app-sliders>
+</div> 
+	<div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" >
+
+		<div class = "ui four cards"  >
+	  <div *ngFor="let item of categoryItemArray;let i=index" style= "padding-top: 20px;
+			padding-right: 15px;
+			padding-bottom: 15px;
+			padding-left: 15px;">
+	 
 	
+		<a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
 	
-	
-	<div id="wrap" align="center">
-		
-		<!-- <a id="show_cart" href="javascript:void(0)">View Cart</a> -->
-		
-		<ul *ngFor="let item of items; let i=index">
-
-				<li attr.id = {{item.rowNum}}  >
-
-
-					<a  target="_blank" [routerLink]="['/itemDetail/',item.itemid]">
-						<img [src]= item.imaggeUrl class="items" height="100"  />
-					</a>
-
-						<br clear="all" />
-						<div>{{item.itemName}}</div>
-
-				</li>
-		</ul>					
-					
-	</div>
-	</div>
-
-	
-	<!-- <div class="detail-view"   attr.id = detail-{{item.rowNum}}>
+		  <div class="image">
+			<img style="width:200px;height:200px;" [src]=item.image>
+		  </div>
+		  <div class="">
+			<a class="header">{{item.itemName}}</a>
+			<div class="meta">
+			  <span class="date">Color : {{item.color}}</span>
+			</div>
+			<div class="description">
+			 {{item.itemDescription}}
+			</div>
+		  </div>
+		  <div >
 			
-		<div class="close" align="right">
-			<a href="javascript:void(0)">x</a>
-			
+			  <i class="user icon"></i>
+			  Brand : {{item.brand}}
+		   
+		  </div>
+	
+	
+	</a>
+	
+			</div>
 		</div>
-		
-		<img [src]= item.imaggeUrl class="detail_images" width="340" height="310" alt="" />
-		
-		<div class="detail_info">
-			
-			<label class='item_name'>{{item.itemName}}</label>
-			<br clear="all" />
-			
-			<p>
-				{{item.itemDescription}}
-			
-				<br clear="all" /><br clear="all" />
-				Rs.<span class="price">{{item.price}}</span>
-				
-			</p>
-			
-			<br clear="all" />
-			
-			<button  class="add-to-cart-button">Add to Cart</button>
-			
-		</div>
-	</div>			 -->
-<!-- <div class="footer">
-		
-</div> -->
-
-
+	</div>
 

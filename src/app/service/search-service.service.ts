@@ -21,7 +21,10 @@ export class SearchServiceService {
 
   private ItemcurrentPage = 1;
   public ItemArray: Array<any> = [];
-
+  
+  public CategoryCurrentPage=1;
+  public categoryItemArray:Array<any>=[];
+  public categoryhttpItemReqestInProgress:boolean=false;
 public SearchResult(searchItem:string,pageindex:string,pagesize:string): Observable<any> 
 {
     let querystring:string;
@@ -83,6 +86,27 @@ private handleError(error: HttpErrorResponse) {
     })
     
   }
+
+
+    public AllItems(category:number,CategoryPageIndex: number , pagesize:number,saveCategoryItemResultsCallback: (categoryItemArray) => void) {
+     
+    
+      let querystring:string;
+      this.uri="/api/items/";
+      querystring = "?categoryId="+category+"&Page="+CategoryPageIndex.toString()+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
+      return this.http.get(
+  
+      this.uri+"AllItems"+querystring).pipe(
+      skipWhile(() => this.categoryhttpItemReqestInProgress),
+      tap(() => { this.categoryhttpItemReqestInProgress = true; }))
+      .subscribe((categoryItemArray: any[]) => {
+        this.CategoryCurrentPage;
+        saveCategoryItemResultsCallback(categoryItemArray);
+        this.categoryhttpItemReqestInProgress = false;
+      })
+     
+  }
+
  
 }
 

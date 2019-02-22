@@ -3,7 +3,8 @@ import { Component, OnInit,OnChanges } from '@angular/core';
 import {ShoppingApiService} from '../../src/app/service/shopping-api.service'
 import {allItems} from '../app/model/allitems'
 import {ActivatedRoute} from '@angular/router'
-
+import { SearchServiceService } from './service/search-service.service';
+import {LoadingIndicatorServiceService} from './service/loading-indicator-service.service';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -14,19 +15,45 @@ declare var $ :any;
 export class AppComponent implements OnInit {
   title = 'app';
   items:any[];
+  public categoryItemArray: Array<any> = [];
+  private pageindex:number;
+  private pagesize:number=5;
+  public categoryId:number;
+  public totalcount;
+  loading:boolean=false;
+constructor(private loadingIndicatorService: LoadingIndicatorServiceService,public restProvider:SearchServiceService,private route:ActivatedRoute){
+  loadingIndicatorService
+  .onLoadingChanged
+  .subscribe(isLoading => this.loading = isLoading);
   
-constructor(public restProvider:ShoppingApiService,private route:ActivatedRoute){}
-  public ngOnInit()
+
+
+}
+public ngOnInit()
   {
     
-    let categoryId = this.route.snapshot.params["category"];
-    let pageIndex = this.route.snapshot.params["pageindex"];
-   this.restProvider.AllItems(categoryId,pageIndex)
-    .subscribe(
-    data => { 
-      this.items = data.body.allItems;
-  },
+    this.categoryId = this.route.snapshot.params["category"];
+    this.pageindex = 0;
   
-);
+   this.onScrollDown();
+ 
   }
+
+
+  public onScrollDown(): void {
+    
+    this.pageindex=this.pageindex+1;
+    this.restProvider.AllItems( this.categoryId,this.pageindex,this.pagesize,(categoryItemArray)=>
+    {
+    this.totalcount = categoryItemArray.count;
+        
+      //  if(categoryItemArray.results.length<=this.totalcount)
+      //   {
+           this.categoryItemArray = this.categoryItemArray.concat(categoryItemArray.results);
+           
+      // }    
+    });
+  }
+
+
 }
