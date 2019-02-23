@@ -52,11 +52,11 @@ private handleError(error: HttpErrorResponse) {
     'Something bad happened; please try again later.');
   }
 
-  public SearchItems(page: number = 1, pagesize:number,searchItem:string, saveResultsCallback: (news) => void) {
+  public SearchItems(page: number, pagesize:number,searchItem:string, saveResultsCallback: (news) => void) {
    
     let querystring:string;
     this.uri="/api/items/";
-    querystring = "?Page="+this.currentPage+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true&itemSearch=" +searchItem ;
+    querystring = "?Page="+page+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true&itemSearch=" +searchItem ;
    
     return this.http.get(
     this.uri+"SearchItem/"+querystring).pipe(

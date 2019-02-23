@@ -64,7 +64,7 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
   ],
   imports: [
     BrowserModule,FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,
-    RouterModule.forRoot([
+    RouterModule.forRoot(    [
        {path:'',redirectTo:'HomeComponent',pathMatch:'full'},
       {path:'login',component:LoginComponent},
       {path:'welcome',component:WelcomeComponent},
@@ -81,11 +81,11 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
       // {path:'itemDetail/:itemid',component:ItemdetailsComponent,canActivate:[authguard]},
 
       {path:'checkin',component:CheckinComponent},
-      {path:'registration/:mobile',component:UserRegistrationComponent},
-      {path:'search/:item',component:SearchResultComponent},
+      {path:'registration/:mobile',component:UserRegistrationComponent },
+      {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
       {path:'**',component:PageNotFoundComponentComponent}
   
-      ]),
+      ],{onSameUrlNavigation: 'reload'} ),
       SliderModule,
 
     NgbModule,

@@ -3,7 +3,7 @@ import {MenuServiceService} from '../../service/menu/menu-service.service'
 import { ISubscription } from 'rxjs/Subscription';
 import { SearchResultComponent } from '../search-result/search-result.component';
 import { SearchServiceService } from '../../service/search-service.service';
-import { Router } from '@angular/router';
+import { Router,NavigationEnd } from '@angular/router';
 //import {MatButton,MatMenu,MatMenuTrigger} from '@angular/material';
 
 @Component({
@@ -35,7 +35,12 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
 
   searchResult()
   {
-    this.router.navigateByUrl('/search/'+this.itemname);
+    
+   // this.router.onSameUrlNavigation = 'reload';
+   this.router.navigateByUrl('/search/'+this.itemname);
+  
+// this.search.onScrollDown(this.itemname);
+//.router.navigate('/search/'+this.itemname)
     // this.pageindex = this.pageindex+1; //alert(this.pageindex);
     // this.pagesize=15;
     //   this.http.SearchResult(this.itemname,this.pageindex.toString(),this.pagesize.toString())
@@ -93,8 +98,7 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
         //MatMenu.apply(this.menuHtml);
         isMainMenu=true;
       } 
-      console.log(this.menuHtml);
-      console.log(res.body);
+
    
   
     });

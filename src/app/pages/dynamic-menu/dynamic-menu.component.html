@@ -40,9 +40,10 @@
             
             <li>
               <div class="input-group">
-                  <input type="text" placeholder="search" name="search" [(ngModel)]="itemname" >
+                  <input type="text" placeholder="search"  name="search" [(ngModel)]="itemname" >
                   <span class="input-group-btn">
                     <button type="button" (click)="searchResult()" style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button>
+                    <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
                   </span>
                   
               </div>
