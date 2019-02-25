@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import {SearchServiceService} from '../../service/search-service.service';
 import { Router, ActivatedRoute,NavigationEnd } from '@angular/router';
 import { Ipagedata,responseData } from '../../model/pagedata';
@@ -18,7 +18,8 @@ export class SearchResultComponent implements OnInit {
   count:number;
   dynamicHtml:string;
   searchItem:any[];
-  search: string
+  search: string;
+  // @Input() hero: string;
 
   private subscription: ISubscription;
   private subs: ISubscription;
@@ -27,20 +28,23 @@ export class SearchResultComponent implements OnInit {
   constructor(private responseData:responseData,private router:Router,private route: ActivatedRoute,private service:SearchServiceService,
     private MenuServiceService:MenuServiceService) 
   {
+    /*
    this.navigationSubscription = this.router.events.subscribe((e: any) => {
     // If it is a NavigationEnd event re-initalise the component
     if (e instanceof NavigationEnd) {
       this.initialiseInvites();
     }
   });
+  */ //temporarily commented - 25 Feb 2019
 
 
 
    }
-
+/*
    initialiseInvites() {
     // Set default values and re-fetch any data you need.
-  }
+    
+  }*/
 
   ngOnInit() {
 //if seach request is coming first time from dynamic munu component
@@ -49,7 +53,7 @@ export class SearchResultComponent implements OnInit {
     this.onScrollDown(this.search);
 // first reuuest ends here    
 
-this.onScrollDown(this.search);
+/*this.onScrollDown(this.search);
     this.subscription= this.MenuServiceService.getItem()
     .subscribe( 
         searchString=>
@@ -58,7 +62,7 @@ this.onScrollDown(this.search);
           this.pageindex=0;
           this.onScrollDown(this.searchString);
         });
-
+*/  //temporarily commented 25 Feb 2019
   }
   
   ngOnDestroy(): void {
@@ -69,6 +73,9 @@ this.onScrollDown(this.search);
     this.navigationSubscription.unsubscribe();
  }
   }
+
+
+
   public items: Array<any> = [];
   
   public onScrollDown(searchitem:string): void { 

@@ -41,6 +41,7 @@ import {MatMenuModule,
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
  import { FlexLayoutModule } from "@angular/flex-layout";
 import {SlidersComponent} from './pages/sliders/sliders.component';
+import { TempRouteComponent } from './pages/temp-route/temp-route.component';
 
  @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
     SafePipe,
     SearchResultComponent,
     DynamicMenuComponent,
-    SlidersComponent
+    SlidersComponent,
+    TempRouteComponent
    
     
     
@@ -79,7 +81,7 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
       {path:'home',component:HomepageComponent},
       {path:'itemDetail/:itemid',component:ItemdetailsComponent},
       // {path:'itemDetail/:itemid',component:ItemdetailsComponent,canActivate:[authguard]},
-
+      {path:'TempRouteSearch/:tempsearch',component:TempRouteComponent},
       {path:'checkin',component:CheckinComponent},
       {path:'registration/:mobile',component:UserRegistrationComponent },
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
