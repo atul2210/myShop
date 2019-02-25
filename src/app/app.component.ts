@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   private pageindex:number;
   private pagesize:number=5;
   public categoryId:number;
+  public subcategory:number;
   public totalcount;
   loading:boolean=false;
 constructor(private loadingIndicatorService: LoadingIndicatorServiceService,public restProvider:SearchServiceService,private route:ActivatedRoute){
@@ -32,7 +33,9 @@ constructor(private loadingIndicatorService: LoadingIndicatorServiceService,publ
 public ngOnInit()
   {
     
-    this.categoryId = this.route.snapshot.params["category"];
+    
+    this.subcategory= this.route.snapshot.params["subcategory"];
+   
     this.pageindex = 0;
   
    this.onScrollDown();
@@ -43,7 +46,7 @@ public ngOnInit()
   public onScrollDown(): void {
     
     this.pageindex=this.pageindex+1;
-    this.restProvider.AllItems( this.categoryId,this.pageindex,this.pagesize,(categoryItemArray)=>
+    this.restProvider.AllItems(this.subcategory, this.pageindex,this.pagesize,(categoryItemArray)=>
     {
     this.totalcount = categoryItemArray.count;
         

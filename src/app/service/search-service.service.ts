@@ -88,12 +88,12 @@ private handleError(error: HttpErrorResponse) {
   }
 
 
-    public AllItems(category:number,CategoryPageIndex: number , pagesize:number,saveCategoryItemResultsCallback: (categoryItemArray) => void) {
+    public AllItems(ChildMenuId:number, CategoryPageIndex: number , pagesize:number,saveCategoryItemResultsCallback: (categoryItemArray) => void) {
      
     
       let querystring:string;
       this.uri="/api/items/";
-      querystring = "?categoryId="+category+"&Page="+CategoryPageIndex.toString()+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
+      querystring = "?ChildMenuId="+ChildMenuId.toString() + "&Page="+CategoryPageIndex.toString()+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
       return this.http.get(
   
       this.uri+"AllItems"+querystring).pipe(

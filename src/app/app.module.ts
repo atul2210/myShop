@@ -71,6 +71,7 @@ import { TempRouteComponent } from './pages/temp-route/temp-route.component';
       {path:'login',component:LoginComponent},
       {path:'welcome',component:WelcomeComponent},
       {path:'HomeComponent',component:HomeComponent},
+      {path:'menu/:subcategory',component:AppComponent},
       {path:'women/:category/:pageindex',component:AppComponent},
       {path:'men/:category/:pageindex',component:AppComponent},
       {path:'kids/:category/:pageindex',component:AppComponent},
