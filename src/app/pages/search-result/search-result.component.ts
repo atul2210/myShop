@@ -1,15 +1,16 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import {SearchServiceService} from '../../service/search-service.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,NavigationEnd } from '@angular/router';
 import { Ipagedata,responseData } from '../../model/pagedata';
-
+import {MenuServiceService} from '../../service/menu/menu-service.service';
+import { ISubscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  pageindex:number;
+  pageindex:number=0;
   pagesize:number=20;
   data:string;  
   imageItems:any[];
@@ -19,24 +20,54 @@ export class SearchResultComponent implements OnInit {
   searchItem:any[];
   search: string
 
-  constructor(private responseData:responseData,private router:Router,private route: ActivatedRoute,private service:SearchServiceService) 
+  private subscription: ISubscription;
+  private subs: ISubscription;
+  searchString:string;
+  navigationSubscription;
+  constructor(private responseData:responseData,private router:Router,private route: ActivatedRoute,private service:SearchServiceService,
+    private MenuServiceService:MenuServiceService) 
   {
-  
-      this.route.params.subscribe(params => {
-      this.search = this.route.snapshot.params.item;
-      this.pageindex=0;
-     // this.router.onSameUrlNavigation='reload';
-      this.onScrollDown(this.search);
+   this.navigationSubscription = this.router.events.subscribe((e: any) => {
+    // If it is a NavigationEnd event re-initalise the component
+    if (e instanceof NavigationEnd) {
+      this.initialiseInvites();
+    }
   });
+
 
 
    }
 
-  ngOnInit() {
-    // this.search = this.route.snapshot.params.item;
-    // this.onScrollDown(this.search);
-  
+   initialiseInvites() {
+    // Set default values and re-fetch any data you need.
+  }
 
+  ngOnInit() {
+//if seach request is coming first time from dynamic munu component
+
+    this.search = this.route.snapshot.params.item;
+    this.onScrollDown(this.search);
+// first reuuest ends here    
+
+this.onScrollDown(this.search);
+    this.subscription= this.MenuServiceService.getItem()
+    .subscribe( 
+        searchString=>
+        {
+          this.searchString = searchString; 
+          this.pageindex=0;
+          this.onScrollDown(this.searchString);
+        });
+
+  }
+  
+  ngOnDestroy(): void {
+//this.subscription.unsubscribe();
+  //  this.subs.unsubscribe();
+
+  if (this.navigationSubscription) {  
+    this.navigationSubscription.unsubscribe();
+ }
   }
   public items: Array<any> = [];
   
@@ -44,16 +75,19 @@ export class SearchResultComponent implements OnInit {
     this.pageindex=this.pageindex+1;
   this.service.SearchItems(this.pageindex,this.pagesize,searchitem,(items)=>
   {
-  alert(searchitem);
+
     this.count = items.count;
     if(items.results.length<=this.count)
     {
       this.items = this.items.concat(items.results);
+     // this.router.navigateByUrl('/search/'+searchitem, {skipLocationChange: true});
     }
           
   });
 }
  
+
+
 
 }
 

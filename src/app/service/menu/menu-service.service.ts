@@ -14,6 +14,7 @@ import { responseData } from '../../model/pagedata';
 @Injectable()
 export class MenuServiceService {
   uri:string;
+  private subject = new Subject<string|null>()
   constructor(private http: HttpClient,private responseData:responseData)
   { 
 
@@ -28,7 +29,17 @@ export class MenuServiceService {
      .catch(this.handleError.bind(this) );
   }
 
-  
+public changeSelectedItem(totalItem:string|null)
+{
+  this.subject.next(totalItem);
+}
+
+
+getItem():Observable<any>
+{
+  return this.subject.asObservable();
+
+}
 
 
 
@@ -51,4 +62,10 @@ export class MenuServiceService {
 
 
 
+}
+
+
+export class SearchItem
+{
+  SearchString:string;
 }

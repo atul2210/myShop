@@ -82,7 +82,7 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
 
       {path:'checkin',component:CheckinComponent},
       {path:'registration/:mobile',component:UserRegistrationComponent },
-      {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+      {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),

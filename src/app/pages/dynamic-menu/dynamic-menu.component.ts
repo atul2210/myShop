@@ -35,22 +35,11 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
 
   searchResult()
   {
+    this.service.changeSelectedItem(this.itemname);
+    this.router.navigateByUrl('/search/'+this.itemname);
     
-   // this.router.onSameUrlNavigation = 'reload';
-   this.router.navigateByUrl('/search/'+this.itemname);
   
-// this.search.onScrollDown(this.itemname);
-//.router.navigate('/search/'+this.itemname)
-    // this.pageindex = this.pageindex+1; //alert(this.pageindex);
-    // this.pagesize=15;
-    //   this.http.SearchResult(this.itemname,this.pageindex.toString(),this.pagesize.toString())
-    //   .subscribe((res:Response)=>
-    //   {
-    //       this.items = res.body  
-    //       console.log(this.items)
-    //   });
-   //this.search.getSearchResult(this.itemname);
-
+  
   }
 
 
