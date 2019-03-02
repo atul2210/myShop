@@ -40,7 +40,7 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
    ////temporirly commented end here
    
    
-   this.router.navigateByUrl('/TempRouteSearch/'+this.itemname);
+   this.router.navigateByUrl('/TempRouteSearch/'+this.itemname+'/search');
    
   
   

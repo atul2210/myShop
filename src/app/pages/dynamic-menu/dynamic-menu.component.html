@@ -23,7 +23,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                          <ul >
                            <li *ngFor="let subitems of item.children; " >
-                                <a class="dropdown-item" [routerLink]="['/menu/',subitems.id]">{{subitems.menuName}}</a>
+                                <a class="dropdown-item" [routerLink]="['/TempRouteSearch/',subitems.id,'menuid']">{{subitems.menuName}}</a>
                             </li> 
                           </ul>
                         </div>
