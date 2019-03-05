@@ -39,7 +39,7 @@ category:string;
 brand:string;
 availableQty:number;
 breakpoint: number;
-
+displayError:boolean=true;
 
   constructor( public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
     private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify){
@@ -74,8 +74,15 @@ breakpoint: number;
       this.category = data.body.categoryName
       this.brand = data.body.brand
       this.availableQty = data.body.availableQty
-
-     
+      
+        if(this.availableQty==0) 
+        {
+         
+          this.displayError=true;
+        }
+        else 
+          this.displayError=false;
+         // alert(this.availableQty)
       
     }
     
