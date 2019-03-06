@@ -63,12 +63,11 @@ displayError:boolean=true;
     .subscribe(
       data => { 
       this.itemDetail= Array.of(data.body)
-      console.log(this.itemDetail)
       this.colorDetail =data.body.availableColor.split(";")
       this.colorname=this.colorDetail[0]
       this.price = data.body.price
       this.offerprice = data.body.offerPrice
-      this.deliverycharges = data.body.deliveryCharge
+      this.deliverycharges = data.body.deliveryCharges
       this.coloId = data.body.colorId
       this.sizeName = data.body.sizeName
       this.category = data.body.categoryName
