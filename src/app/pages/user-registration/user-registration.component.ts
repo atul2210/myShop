@@ -103,15 +103,15 @@ export class UserRegistrationComponent implements OnInit {
         data.pin = this.myform.controls["pin"].value;
         data.otp = +this.myform.controls["otp"].value;
         let otpSent = localStorage.getItem('OTP');
-        alert(otpSent);
+
         if(+otpSent==data.otp) 
         {
-          alert('Ok');
+          
           this.isOtpOK=false;
           this.ShoppingApiService.addUser(data)
           .subscribe((m:Response)=>
           {
-              console.log(m);
+              localStorage.setItem("email",data.myemail);
           });
         }
         else

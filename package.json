@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@swimlane/ngx-datatable": "^14.0.0",
     "admin-lte": "^2.4.8",
     "angular-admin-lte": "^1.2.7",
     "angular-jwt": "^0.1.10",

@@ -55,7 +55,7 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
     {
        this.menuitems = res.body;
        
-       console.log(this.menuitems);
+     
     });
   }
 

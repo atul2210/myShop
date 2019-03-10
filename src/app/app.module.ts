@@ -42,7 +42,7 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
  import { FlexLayoutModule } from "@angular/flex-layout";
 import {SlidersComponent} from './pages/sliders/sliders.component';
 import { TempRouteComponent } from './pages/temp-route/temp-route.component';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
  @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +65,7 @@ import { TempRouteComponent } from './pages/temp-route/temp-route.component';
    
   ],
   imports: [
-    BrowserModule,FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,
+    BrowserModule,FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,NgxDatatableModule,
     RouterModule.forRoot(    [
        {path:'',redirectTo:'HomeComponent',pathMatch:'full'},
       {path:'login',component:LoginComponent},

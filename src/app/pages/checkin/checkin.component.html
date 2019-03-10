@@ -1,31 +1,139 @@
-<div *ngIf="loading" >  
-    <img src ="../assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
-</div>
-<div class="container">
-    
-<table class="table table-striped table-border">
-  <tbody>
-      <tr>
-        <th>Item</th>
-        <th>Color</th>
-        <th>Quantity</th>
-        <th >Offer Price</th>
-        <th>&nbsp;</th>
-      </tr>
-       
-      <tr *ngFor="let item of cartItems; let i = index" [attr.id] =item.itemId >
-        <td>{{item.itemname}}</td>
-        <td>{{item.colorname}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.offerprice}}</td>
-        <td><input type = button class ="btn btn-success" (click)="RemoveItems(item.itemId,item.quantity,item.id)" value = "Remove" ></td>
-        </tr>
-       
-</tbody>
-</table>
-<div class ="row pull-right" >
-  <div class = col-md-6>
-  <input type = button class ="btn btn-info pull-right" (click)= "placeOrder();"value = "Place Order" >
-</div>
-</div>
-</div>
+<div>
+        <h3>
+          Row Detail Demo
+          <small>
+            <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/basic/row-detail.component.ts" target="_blank">
+              Source
+            </a>
+          </small>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+          </small>
+        </h3>
+        <ngx-datatable style="height:400px;width:800px;margin:50px"
+          #myTable
+          class='material expandable'
+          [columnMode]="'force'"
+          [headerHeight]="30"
+          [footerHeight]="50"
+          [rowHeight]="50"
+          [scrollbarV]="true"
+          [rows]='rows'
+          [limit]="3"
+          (page)="onPage($event)">
+        
+          <!-- Row Detail Template -->
+          <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+              <div style="padding-left:35px;">
+              
+                <div>Delivery Charges : {{row.deliveryCharges}}</div>
+                <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-row-detail>
+  
+          <!-- Column Templates -->
+           <ngx-datatable-column
+            [width]="50"
+            [resizeable]="false"
+            [sortable]="false"
+            [draggable]="false"
+            [canAutoResize]="false">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <a
+                href="javascript:void(0)"
+                [class.datatable-icon-right]="!expanded"
+                [class.datatable-icon-down]="expanded"
+                title="Expand/Collapse Row"
+                (click)="toggleExpandRow(row)">
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <!-- <ngx-datatable-column name="Index" width="80">
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+              <strong>{{rowIndex}}</strong>
+            </ng-template>
+          </ngx-datatable-column> -->
+          <!-- <ngx-datatable-column name="Expanded" width="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <strong>{{expanded === 1}}</strong>
+            </ng-template>
+          </ngx-datatable-column> -->
+          <ngx-datatable-column width="150">
+                <ng-template ngx-datatable-header-template>
+                        <span>Item Name</span>
+                 </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <i [innerHTML]="row['itemname']"></i>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column width="50">
+            <ng-template ngx-datatable-header-template>
+                    
+             </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+          <ngx-datatable-column width="80">
+            <ng-template ngx-datatable-header-template>
+                    <span>Price</span>
+             </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <i [innerHTML]="row['price']"></i>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column width="80">
+        <ng-template ngx-datatable-header-template>
+                <span>Offer Price</span>
+         </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <i [innerHTML]="row['offerprice']"></i>
+    </ng-template>
+  </ngx-datatable-column>
+
+
+      
+          <ngx-datatable-column width="50">
+                <ng-template ngx-datatable-header-template>
+                        <span>Color</span>
+                 </ng-template>
+            
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <i [innerHTML]="row['colorname']"></i> 
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column width="30" >
+                <ng-template ngx-datatable-header-template>
+                        <span>Quantity</span>
+                 </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <i [innerHTML]="row['quantity']"></i>
+                </ng-template>
+
+
+          </ngx-datatable-column>
+        <ngx-datatable-column>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <input type = button class ="btn btn-success" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" value = "Remove" >
+              </ng-template>
+
+
+          </ngx-datatable-column>
+
+
+
+
+        </ngx-datatable>
+        <div style="margin-left: 750px;"  >
+            
+            <input type = button class ="btn btn-info" (click)= "placeOrder();"value = "Place Order" >
+          
+          </div>
+      </div>
