@@ -209,7 +209,10 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
               headers:headers
           }
 
-      )
+      ).do((res) =>
+      {
+        localStorage.setItem("email",user.myemail);
+      });
 
 
      }
@@ -250,9 +253,18 @@ private setOTP(resp) {
       {
         localStorage.removeItem('OTP');
       }
-  }  
+  } 
+  
+  private paymentreceive(EmailId:string)
+  {
+      
+
+  }
 
 }
+
+
+
 
 export class optResponse
 {

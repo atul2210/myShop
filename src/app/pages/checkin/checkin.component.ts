@@ -19,7 +19,8 @@ export class CheckinComponent implements OnInit {
   rows: any[] = [];
   expanded: any = {};
   timeout: any;
-
+  OfferPriceSum:number=0;
+  saveSum:number=0;
   constructor(@Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,
   private route:Router,private loadingIndicatorService: LoadingIndicatorServiceService ) { 
 
@@ -50,13 +51,28 @@ GetCheckedInItems()
      //console.log(this.cartItems)
      
      this.rows =this.cartItems;
-     console.log(this.cartItems);
+    
+     this.getSum(this.rows);
+     debugger;
       return this.rows;
     });
 
 }
 
+public getSum(sum:any[]) {
+  this.OfferPriceSum=0;
+  this.saveSum=0;
+  for(var i = 0; i < sum.length; i++){
+    this.OfferPriceSum =this.OfferPriceSum+sum[i].offerprice;
+    this.saveSum = this.saveSum + ((sum[i].price) - (sum[i].offerprice));
+   
+  }
+  
+}
 
+public myFunction(item) {
+document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
+}
  public RemoveItems(itemid:string,quantity:string,checkinid:string)
   {
    
@@ -67,8 +83,6 @@ GetCheckedInItems()
           {
             
             this.GetCheckedInItems();
-    
-
       });
       this.ShoppingApiService.changeSelectedItem(this.itemnotify);
 
@@ -85,6 +99,7 @@ private notify():void
 private placeOrder()
 {
   let localstorage:string = localStorage.getItem("id_token");
+  let EmailId:string = localStorage.getItem("email");
   if(localstorage==null )
   {
     this.route.navigateByUrl('/login');
@@ -92,9 +107,11 @@ private placeOrder()
     else
     {
         alert("go to payment gateway");
-
-      //  ShoppingApiService.paymentreceive()
-
+        debugger;
+        if(EmailId!=='undefined')
+        {
+          ShoppingApiService.paymentreceive(EmailId);
+        }
     }
 
 
@@ -130,7 +147,16 @@ fetch(cb) {
 }
 
 
+export class payementreceived
+{
+  public itemId:number;
+  public PaymentId:number;
+  public sessionid:string;
+  public TotalPaymentAmount:number;
+  public TotalOfferAmount:number;
+  public ReceivedFormEmailId:string;
 
+}
 
 
 

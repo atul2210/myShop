@@ -111,7 +111,7 @@ export class UserRegistrationComponent implements OnInit {
           this.ShoppingApiService.addUser(data)
           .subscribe((m:Response)=>
           {
-              localStorage.setItem("email",data.myemail);
+             
           });
         }
         else

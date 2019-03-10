@@ -1,4 +1,7 @@
-<div>
+<div class="container">
+    <div class="row row-centered pos">
+    <div class="col-xs-12">
+      
         <h3>
           Row Detail Demo
           <small>
@@ -11,7 +14,7 @@
             <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
           </small>
         </h3>
-        <ngx-datatable style="height:400px;width:800px;margin:50px"
+        <ngx-datatable style="height:350px;width:800px;margin:50px"
           #myTable
           class='material expandable'
           [columnMode]="'force'"
@@ -98,6 +101,15 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column width="80">
+    <ng-template ngx-datatable-header-template>
+            <span>Saved</span>
+     </ng-template>
+<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i>
+</ng-template>
+</ngx-datatable-column>
+
 
       
           <ngx-datatable-column width="50">
@@ -127,13 +139,17 @@
 
           </ngx-datatable-column>
 
-
-
-
         </ngx-datatable>
-        <div style="margin-left: 750px;"  >
-            
+        <p style="margin-left: 350px;marghin:top 1px">You saved Rs : {{saveSum}}</p>
+        <p style="margin-left: 350px;">Paid Amount  Rs : {{OfferPriceSum}}</p>
+       </div>
+       </div>
+      
+       <div class="row pull-right"   >
+          <div class="col-xs-12">
             <input type = button class ="btn btn-info" (click)= "placeOrder();"value = "Place Order" >
           
           </div>
+          </div>
+         
       </div>
