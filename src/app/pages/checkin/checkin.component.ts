@@ -110,7 +110,7 @@ private placeOrder()
         debugger;
         if(EmailId!=='undefined')
         {
-          ShoppingApiService.paymentreceive(EmailId);
+         // ShoppingApiService.paymentreceive(EmailId);
         }
     }
 
