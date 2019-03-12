@@ -4,6 +4,7 @@ import { itemNotify } from '../itemdetails/item-notify';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service'
+import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
 @Component({
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
@@ -46,9 +47,11 @@ GetCheckedInItems()
   userSessionid = localStorage.getItem("sessionToken");
   this.ShoppingApiService.getCheckedInItem(userSessionid)
   .subscribe(
-    (data:Response) => { 
+    (data:checkedInItemsArray) => { 
+     
      this.cartItems= data.body;
-     //console.log(this.cartItems)
+     debugger;
+    
      
      this.rows =this.cartItems;
     
@@ -100,6 +103,8 @@ private placeOrder()
 {
   let localstorage:string = localStorage.getItem("id_token");
   let EmailId:string = localStorage.getItem("email");
+  alert(EmailId);
+  let userSessionid = localStorage.getItem("sessionToken");
   if(localstorage==null )
   {
     this.route.navigateByUrl('/login');
@@ -107,10 +112,13 @@ private placeOrder()
     else
     {
         alert("go to payment gateway");
-        debugger;
+        
         if(EmailId!=='undefined')
         {
-         // ShoppingApiService.paymentreceive(EmailId);
+          this.ShoppingApiService.paymentreceive(EmailId,userSessionid,this.rows)
+          .subscribe((res:Response) =>
+          {
+          });
         }
     }
 
@@ -147,16 +155,7 @@ fetch(cb) {
 }
 
 
-export class payementreceived
-{
-  public itemId:number;
-  public PaymentId:number;
-  public sessionid:string;
-  public TotalPaymentAmount:number;
-  public TotalOfferAmount:number;
-  public ReceivedFormEmailId:string;
 
-}
 
 
 

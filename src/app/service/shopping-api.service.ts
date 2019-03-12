@@ -13,7 +13,7 @@ import {responseData,Ipagedata} from '../model/pagedata';
 import {registration} from '../model/registration'
 import { Inotify,itemNotify } from '../pages/itemdetails/item-notify';
 import * as moment from "moment";
-
+import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
 @Injectable()
 export class ShoppingApiService {
 uri:string;
@@ -56,7 +56,7 @@ addToCart(itemid:string,quantity:string,color:string,price:number,offerprice:num
   let sessionToken:string;
 
   sessionToken=localStorage.getItem("sessionToken");
-  alert(colorId);
+ 
   querystring = "?itemid=" + itemid+ "&quantity="+quantity+"&color=" +color + "&sessionId=" + sessionToken + "&price=" + price  + "&offerprice=" + offerprice  + "&deliverycharges=" + deliverycharges   + "&colorId=" + colorId;
   this.uri="/api/items/";
 
@@ -66,7 +66,7 @@ addToCart(itemid:string,quantity:string,color:string,price:number,offerprice:num
 
 }
 
-getCheckedInItem(sessionId:string):Observable<any>
+getCheckedInItem(sessionId:string)//:Observable<any>
 {
   let querystring:string;
   let sessionToken:string
@@ -74,8 +74,9 @@ getCheckedInItem(sessionId:string):Observable<any>
   this.uri="/api/items/";
 
   const params = new HttpParams().set('userSession', sessionId);
-  return this.http.get(
+  return this.http.get<checkedInItemsArray[]>(
   this.uri+"getcheckedinItem/", { observe: 'response', params})
+  
   
   .catch(this.handleError.bind(this) );
 
@@ -121,6 +122,7 @@ public Login(userId:string,password:string):Observable<any>
   
    return this.http.get(this.uri,{headers:headers})
    .do((res) =>{
+    localStorage.setItem("email",userId);
     this.setSession(res); 
    }) 
    .shareReplay();
@@ -211,6 +213,7 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
 
       ).do((res) =>
       {
+        debugger
         localStorage.setItem("email",user.myemail);
       });
 
@@ -255,9 +258,17 @@ private setOTP(resp) {
       }
   } 
   
-  private paymentreceive(EmailId:string)
+  public paymentreceive(EmailId:string,session:string,rows: checkedInItemsArray[])
   {
-      
+    debugger;
+      this.uri="/api/items/CheckoutPaymentReceived?emailId="+EmailId+"&UserSession="+session;
+      var headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/form-data');
+      return this.http.post(this.uri,rows ,
+          {
+              headers:headers
+          });
+        
 
   }
 
