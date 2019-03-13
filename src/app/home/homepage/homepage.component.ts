@@ -7,6 +7,10 @@ import { ISubscription } from "rxjs/Subscription";
 import {SearchResultComponent} from '../../../app/pages/search-result/search-result.component'
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service';
 import {MenuServiceService} from '../../service/menu/menu-service.service';
+import { Router } from '@angular/router';
+import { checkedInItemsArray } from '../../model/checkedInItems';
+
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -16,7 +20,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
   itemname:string;
   menuitems:string[];
   loading:boolean=false;
-  constructor(private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
+  constructor(private router:Router, private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
   private CartItemServiceService:CartItemServiceService,private totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private service:MenuServiceService ) 
   
   { 
@@ -39,12 +43,14 @@ export class HomepageComponent implements OnInit,OnDestroy {
     .onLoadingChanged
     .subscribe(isLoading => this.loading = isLoading);
 
+    this.getcheck();
+
    this.subscription= this.ShoppingApiService.getItem()
     .subscribe( 
         ttlItems=>
         {
-          this.totalItem = ttlItems; 
-          
+         this.totalItem = ttlItems; 
+         
         });
 
 
@@ -72,13 +78,21 @@ ngOnDestroy()
 
   public getCheckedInItems():any
   {
-  
+    this.router.navigateByUrl('/checkin');
+  this.getcheck();
+
+  }
+
+  public getcheck()
+  {
+
     let userSessionid:string;  
     userSessionid = localStorage.getItem("sessionToken");
     this.ShoppingApiService.getCheckedInItem(userSessionid)
     .subscribe(
-      (data:Response) => { 
+      (data:checkedInItemsArray) => { 
        this.cartItems= data.body;
+       this.totalItem.totalCartItem = data.body.length;
         return this.cartItems;
       });
 

@@ -50,14 +50,10 @@ GetCheckedInItems()
     (data:checkedInItemsArray) => { 
      
      this.cartItems= data.body;
-     debugger;
-    
-     
      this.rows =this.cartItems;
-    
+     this.itemnotify.totalCartItem = this.rows.length;
      this.getSum(this.rows);
-     debugger;
-      return this.rows;
+     return this.rows;
     });
 
 }
@@ -86,7 +82,9 @@ document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
           {
             
             this.GetCheckedInItems();
+            
       });
+      
       this.ShoppingApiService.changeSelectedItem(this.itemnotify);
 
   }

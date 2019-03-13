@@ -30,7 +30,7 @@
           <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
               <div style="padding-left:35px;">
-              
+                <div>Item Id : {{row.itemId}}</div>
                 <div>Delivery Charges : {{row.deliveryCharges}}</div>
                 <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
               </div>

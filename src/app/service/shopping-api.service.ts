@@ -88,7 +88,7 @@ public RemoveItem(itemid:string,quantity:string,sessionId:string,checkinid:strin
 {
   let querystring:string; 
   let sessionToken:string;
-  querystring = "?itemid=" + itemid+ "&quantity="+quantity + "&sessionId="+sessionId + "&checkedinId="+checkinid ;
+  querystring = "?itemid=" + itemid+ "&returnedItemQty="+quantity + "&sessionId="+sessionId + "&checkedinId="+checkinid ;
   this.uri="/api/items/";
   return this.http.post(
   this.uri+"RemoveItems"+querystring,{ observe: 'response'})
