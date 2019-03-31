@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { stringify } from '@angular/core/src/render3/util';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +25,16 @@ export class LoginComponent implements OnInit {
   display='none'; //default Variable
   isOk=false;
   mobile:string="";
+  loading:boolean=false;
+  constructor( private route: ActivatedRoute,private loadingIndicatorService: LoadingIndicatorServiceService,
+            private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder) 
+    
+   {
+    loadingIndicatorService
+    .onLoadingChanged
+    .subscribe(isLoading => this.loading = isLoading);
 
-  constructor( private route: ActivatedRoute,
-            private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder) { }
+   }
    
   ngOnInit():void {
   this.loginForm=this.fb.group({
@@ -86,7 +94,8 @@ async closeModalDialog()
       let res = await this.http.getOTP(this.mobile)
           .then((res:Response)=>{                 
             resp = res;
-            if(resp.body.status==5) //need to change
+            debugger;
+            if(resp.body.status==5) 
             {
               this.isOk=false;
               this.display='none'; //set none css after close dialog

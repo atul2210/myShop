@@ -247,7 +247,7 @@ public async getOTP(mobile:string) //:Observable<optResponse>
 };
 
 private setOTP(resp) {
-    
+    debugger;
     if(resp.body.status==5){  //need to change to 5
     
     localStorage.setItem('OTP', resp.body.result);

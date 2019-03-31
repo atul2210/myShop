@@ -1,17 +1,43 @@
 
   <app-dynamic-menu></app-dynamic-menu>
+<div class="container">
+<div class="row">
+  <div class = "col-md-12">
+    <div class = "pull-left">
+        <button [routerLink]="['']" class ="btn btn-outline-info" style="width:50px;" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
+    </div>
+<div class="pull-right" style="display: inline-block;" >
+    <button class= "btn btn-outline-info" style="width:60px;height:30px;border-radius: 25px"  (click)="getCheckedInItems()" >Cart</button>
+    <span>
+        <a href="#" class="" data-toggle="dropdown">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="label label-success"> {{totalItem.totalCartItem}}</span>
+          </a>
+    </span>
+</div>
+</div>
 
- 
- <header class = "main-header">
+</div>
+</div>
+
+
+ <!-- <header class = "main-header">
   <nav class="navbar-expand-sm bg-light navbar-light ">
     <div class="navbar-custom-menu" >
-      <ul class="nav navbar-nav" (click)="getCheckedInItems()"   >
+      
+         
+      
+       <ul class="nav navbar-nav" (click)="getCheckedInItems()"   >
+        
        <li class="dropdown messages-menu"  > 
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-shopping-cart"></i>
             <span class="label label-success"> {{totalItem.totalCartItem}}</span>
           </a>
-          <ul class="dropdown-menu" (click)="getCheckedInItems()" style="width:500px">
+          </li>
+          </ul>
+
+                <ul class="dropdown-menu" (click)="getCheckedInItems()" style="width:500px">
             <li class="header">You have {{totalItem.totalCartItem}}  items in cart. </li>
             <li>
               <ul class="menu" (click)="getCheckedInItems()">
@@ -48,15 +74,51 @@
           </ul>
         </li>
         
-      </ul>
-    
+      </ul> 
+  
     </div>
    
    
   </nav>
  
-</header>
+</header> -->
+
 <!-- <app-search-result></app-search-result> -->
 <div style="position: relative;top:10px;" >
   <router-outlet></router-outlet>
 </div>
+<footer class="footer fixed-bottom" style ="margin-top:50px">
+<div class ="container">
+  <div class ="row" style="background-color: blueviolet" >
+    <div class = "col-md-3">
+    <!-- <span class="text-muted"><a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);"> -->
+      <span class="text-muted"><a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+      <span class="fa fa-facebook"></span>Facebook
+    </a>
+
+  </span>
+</div>
+<div class = "col-md-3">
+  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+    <span class="fa fa-whatsapp"></span>Whatsapp
+  </a>
+
+</span>
+</div>
+<div class = "col-md-3">
+  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+    <span class="fa fa-about"></span>About
+  </a>
+
+</span>
+</div>
+<div class = "col-md-3">
+  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+    <span class="fa fa-about"></span>Contact Us
+  </a>
+
+</span>
+</div>
+</div>
+</div>
+</footer>

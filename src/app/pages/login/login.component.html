@@ -1,5 +1,6 @@
 
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm" >
+<!-- <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" > -->
+    <form [formGroup]="loginForm" >
 
     <div class="small-box bg-red">
         <div class="inner">
@@ -11,7 +12,9 @@
         <p class="small-box-footer">Proceed with Login<i class="fa fa-arrow-circle-right"></i></p>
       </div>
 
-
+      <div *ngIf="loading" >  
+        <img src ="../assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
+      </div>
 
   <div box box-primary>
 <div class="col-md-12 col-md-offset-3 box-header with-border" style="position:relative;top:50px;"
@@ -48,7 +51,7 @@
 
    
     <div class="box-footer">
-        <button class="btn btn-success" style="position:inherit;top:30px;margin-left:0px;text-transform:initial" type="submit" [disabled]="!loginForm.valid"  >Submit</button>
+        <button class="btn btn-success" style="position:inherit;top:30px;margin-left:0px;text-transform:initial" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
         <button class="btn btn-info pull-right" style="text-transform:none"  (click)= "openModalDialog()" >Not a Member</button>
        
       </div>
@@ -93,7 +96,7 @@
 
       <!-- modal-footer -->
       <div *ngIf="isOk">
-        <div >Something bad has happened. Please retry :(.</div>
+        <div >Something bad has happened. Please retry :</div>
       </div>
       <div class="modal-footer" style="background-color:rgb(137, 202, 73)" >
         <button type="button" class="btn btn-default" style="text-transform:none" (click)="closeModalDialog()" >Continue</button>
