@@ -12,7 +12,7 @@ import {LoginComponent} from '../login/login.component'
   styleUrls: ['./user-registration.component.css'],
 })
 export class UserRegistrationComponent implements OnInit {
-  isOtpOK:boolean=false;
+  isOtpOK:boolean=true;
   states: string[] = [
     'Uttar Pradesh',
     'Delhi',
@@ -83,6 +83,7 @@ export class UserRegistrationComponent implements OnInit {
      //}),
       });
     }
+
     save() 
     { 
       if(this.myform.valid)
@@ -111,7 +112,7 @@ export class UserRegistrationComponent implements OnInit {
           this.ShoppingApiService.addUser(data)
           .subscribe((m:Response)=>
           {
-             this.router.navigate(['/home']);
+             this.router.navigate(['/checkin']);
           });
         }
         else
@@ -123,6 +124,24 @@ export class UserRegistrationComponent implements OnInit {
 
         
     }
+    }
+
+    public validateOTP()
+    {
+     
+      let otp = this.myform.controls["otp"].value;
+      let otpent = localStorage.getItem("OTP");
+     debugger;
+      if(+otpent==+otp) 
+      {
+        this.isOtpOK=true;
+
+      }
+      else 
+      {
+        this.isOtpOK=false;
+      }
+
     }
    
     

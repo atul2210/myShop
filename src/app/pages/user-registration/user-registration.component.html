@@ -31,16 +31,22 @@ role="form"  >
 'has-success': otp.valid && (otp.dirty || otp.touched)
 }">
 <label>OTP</label>
-<input type="text" class="form-control form-control-sm" formControlName="otp"  value=[otp]  required>
+<input type="text" (change)="validateOTP();" class="form-control form-control-sm" formControlName="otp"  value=[otp]  required>
 <div class="was-validated"
    *ngIf="otp.errors && (otp.dirty || otp.touched ) ">
 <p *ngIf="otp.errors.required">OTP is required</p>
 
 </div>
 
-<div *ngIf="isOtpOK">
-  <div    >Incorrect OTP.</div>
+<!-- <div *ngIf="!isOtpOK";else [innerHTML] = "'' |safe:'script'"
+(change)="validateOTP();"> -->
+<div  *ngIf="!isOtpOK" >
+
+OTP is Invalid. Please re-enter wwwOTP"
+
 </div>
+
+
 </div>
 
 
@@ -211,7 +217,7 @@ role="form"  >
 <!-- </fieldset> -->
   <div class="box-footer">
       <button type="submit" class="btn btn-default">Cancel</button>
-      <button type="submit" class="btn btn-primary mb-2 pull-right" (click)="save()"  [disabled]="!myform.valid" >Submit</button>
+      <button type="submit" class="btn btn-primary mb-2 pull-right" (click)="save()"   >Submit</button>
     </div>
 
  
