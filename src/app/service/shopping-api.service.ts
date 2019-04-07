@@ -241,7 +241,7 @@ public async getOTP(mobile:string) //:Observable<optResponse>
    .do((res) =>{
     this.setOTP(res)
    }) 
-   .shareReplay()
+  // .shareReplay()
    .catch(this.handleError.bind(this) )
    .toPromise()
 };
