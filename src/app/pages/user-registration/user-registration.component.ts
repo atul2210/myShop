@@ -12,7 +12,7 @@ import {LoginComponent} from '../login/login.component'
   styleUrls: ['./user-registration.component.css'],
 })
 export class UserRegistrationComponent implements OnInit {
-  isOtpOK:boolean=true;
+//////  isOtpOK:boolean=true;
   states: string[] = [
     'Uttar Pradesh',
     'Delhi',
@@ -86,6 +86,7 @@ export class UserRegistrationComponent implements OnInit {
 
     save() 
     { 
+      
       if(this.myform.valid)
       {
 
@@ -103,47 +104,23 @@ export class UserRegistrationComponent implements OnInit {
         data.mystate = this.myform.controls["mystate"].value;
         data.pin = this.myform.controls["pin"].value;
         data.otp = +this.myform.controls["otp"].value;
-        let otpSent = localStorage.getItem('OTP');
+        //let otpSent = localStorage.getItem('OTP');
 
-        if(+otpSent==data.otp) 
-        {
+        // if(+otpSent==data.otp) 
+        // {
           
-          this.isOtpOK=false;
+       ///////   this.isOtpOK=false;
           this.ShoppingApiService.addUser(data)
-          .subscribe((m:Response)=>
+          .subscribe((m)=>
           {
-             this.router.navigate(['/checkin']);
+               this.router.navigate(['/checkin']);
+          },
+          (err) => 
+          {
+            this.router.navigateByUrl("/Error/"+err.error.Message +"/regis/"+data.mobile )
           });
-        }
-        else
-        {
-          localStorage.removeItem('OTP');
-          this.isOtpOK=true;
-        }
-
-
-        
     }
-    }
-
-    public validateOTP()
-    {
-     
-      let otp = this.myform.controls["otp"].value;
-      let otpent = localStorage.getItem("OTP");
-     debugger;
-      if(+otpent==+otp) 
-      {
-        this.isOtpOK=true;
-
-      }
-      else 
-      {
-        this.isOtpOK=false;
-      }
-
-    }
-   
+  }
     
   }
 

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   returnUrl:string;
 
   display='none'; //default Variable
+  err:string;
   isOk=false;
   mobile:string="";
   loading:boolean=false;
@@ -105,6 +106,14 @@ async closeModalDialog()
             {
               this.isOk =true;
             }
+          })
+          .catch(err=>
+          {
+            console.log(err);
+            this.isOk =true;
+            this.err=err;
+            //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
+          
           });
     }
     else

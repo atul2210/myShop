@@ -31,7 +31,7 @@ role="form"  >
 'has-success': otp.valid && (otp.dirty || otp.touched)
 }">
 <label>OTP</label>
-<input type="text" (change)="validateOTP();" class="form-control form-control-sm" formControlName="otp"  value=[otp]  required>
+<input type="text" class="form-control form-control-sm" formControlName="otp"  value=[otp]  required>
 <div class="was-validated"
    *ngIf="otp.errors && (otp.dirty || otp.touched ) ">
 <p *ngIf="otp.errors.required">OTP is required</p>

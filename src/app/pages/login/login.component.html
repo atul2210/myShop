@@ -96,7 +96,7 @@
 
       <!-- modal-footer -->
       <div *ngIf="isOk">
-        <div >Something bad has happened. Please retry :</div>
+        <div style = "margin-left :140px "class="text-danger" >{{err}}}</div>
       </div>
       <div class="modal-footer" style="background-color:rgb(137, 202, 73)" >
         <button type="button" class="btn btn-default" style="text-transform:none" (click)="closeModalDialog()" >Continue</button>

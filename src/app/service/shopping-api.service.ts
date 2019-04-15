@@ -107,8 +107,8 @@ private handleError(error: HttpErrorResponse) {
         `body was: ${error.error}`);
     }
     // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(
-      'Something bad happened; please try again later.');
+    return new ErrorObservable(error.error
+      );
   };
 
 
@@ -205,13 +205,16 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
             "lastName": user.lastName,
             "mobile": user.mobile,
             "ulternateMobile": user.ulternateMobile,
-            "pin":user.pin
+            "pin":user.pin,
+            "enterOPT":user.otp
           },
           {
               headers:headers
           }
 
-      ).do((res) =>
+      )
+      .catch(this.handError)
+      .do((res) =>
       {
         debugger
         localStorage.setItem("email",user.myemail);
@@ -220,6 +223,20 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
 
      }
      
+
+private handError(errorResponse:HttpErrorResponse)
+{
+  if(errorResponse.error instanceof ErrorEvent)
+  {
+    console.log("client side error",errorResponse.error.message);
+  }
+  else
+  {
+    console.log("server side error",errorResponse);
+  }
+  return new ErrorObservable(errorResponse);
+}
+
 public changeSelectedItem(totalItem:itemNotify|null)
 {
   this.subject.next(totalItem);
@@ -239,24 +256,24 @@ public async getOTP(mobile:string) //:Observable<optResponse>
   this.uri="/api/sms/Otpsender?mobileNumber="+mobile;
    return await this.http.get<optResponse>(this.uri, { observe: 'response'})
    .do((res) =>{
-    this.setOTP(res)
+   // this.setOTP(res)
    }) 
   // .shareReplay()
    .catch(this.handleError.bind(this) )
    .toPromise()
 };
 
-private setOTP(resp) {
-    debugger;
-    if(resp.body.status==5){  //need to change to 5
+// private setOTP(resp) {
+//     debugger;
+//     if(resp.body.status==5){  //need to change to 5
     
-    localStorage.setItem('OTP', resp.body.result);
-    }
-      else
-      {
-        localStorage.removeItem('OTP');
-      }
-  } 
+//     localStorage.setItem('OTP', resp.body.result);
+//     }
+//       else
+//       {
+//         localStorage.removeItem('OTP');
+//       }
+//   } 
   
   public paymentreceive(EmailId:string,session:string,rows: checkedInItemsArray[])
   {

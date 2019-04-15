@@ -43,6 +43,8 @@ import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.componen
 import {SlidersComponent} from './pages/sliders/sliders.component';
 import { TempRouteComponent } from './pages/temp-route/temp-route.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ForegetPasswordComponent } from './pages/foreget-password/foreget-password.component';
+import { ErrorComponent } from './pages/error/error.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SearchResultComponent,
     DynamicMenuComponent,
     SlidersComponent,
-    TempRouteComponent
+    TempRouteComponent,
+    ForegetPasswordComponent,
+    ErrorComponent
    
     
     
@@ -87,6 +91,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       {path:'checkin',component:CheckinComponent},
       {path:'registration/:mobile',component:UserRegistrationComponent },
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
+     
+      {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),
