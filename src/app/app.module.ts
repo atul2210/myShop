@@ -91,7 +91,7 @@ import { ErrorComponent } from './pages/error/error.component';
       {path:'checkin',component:CheckinComponent},
       {path:'registration/:mobile',component:UserRegistrationComponent },
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
-     
+      {path:'forgetpassword',component:ForegetPasswordComponent},
       {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
       {path:'**',component:PageNotFoundComponentComponent}
   

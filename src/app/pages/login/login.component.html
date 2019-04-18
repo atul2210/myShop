@@ -43,14 +43,16 @@
     
     
     </div>
-    <div class="form-group form-check">
-      <label class="form-check-label">
-        <input formControlName="rememberme" class="form-check-input" type="checkbox"> Remember me
-      </label>
+    <!-- <div class="form-group form-check"> -->
+      <div>
+      <!-- <label class="form-check-label"> -->
+        <!-- <input formControlName="rememberme" class="form-check-input" type="checkbox"> Remember me -->
+        <button class="btn btn-success pull-right" style="text-transform:none" (click)="forgetpassword()" >Forget Password</button>
+      <!-- </label> -->
     </div>
 
    
-    <div class="box-footer">
+    <div class="">
         <button class="btn btn-success" style="position:inherit;top:30px;margin-left:0px;text-transform:initial" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
         <button class="btn btn-info pull-right" style="text-transform:none"  (click)= "openModalDialog()" >Not a Member</button>
        
@@ -96,7 +98,7 @@
 
       <!-- modal-footer -->
       <div *ngIf="isOk">
-        <div style = "margin-left :140px "class="text-danger" >{{err}}}</div>
+        <div style = "margin-left :40px;" class="text-danger font-weight-bold" >{{err}}}</div>
       </div>
       <div class="modal-footer" style="background-color:rgb(137, 202, 73)" >
         <button type="button" class="btn btn-default" style="text-transform:none" (click)="closeModalDialog()" >Continue</button>

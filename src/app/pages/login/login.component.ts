@@ -85,6 +85,11 @@ closeModel()
   this.loginForm.controls["mobileNumber"].patchValue('na');
 
 }
+public forgetpassword()
+{
+ 
+  this.router.navigateByUrl('forgetpassword');
+}
 
 async closeModalDialog()
 {

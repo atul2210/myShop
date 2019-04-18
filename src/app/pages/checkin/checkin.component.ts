@@ -101,7 +101,7 @@ private placeOrder()
 {
   let localstorage:string = localStorage.getItem("id_token");
   let EmailId:string = localStorage.getItem("email");
-  alert(EmailId);
+
   let userSessionid = localStorage.getItem("sessionToken");
   if(localstorage==null )
   {

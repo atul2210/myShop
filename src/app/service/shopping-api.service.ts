@@ -14,6 +14,7 @@ import {registration} from '../model/registration'
 import { Inotify,itemNotify } from '../pages/itemdetails/item-notify';
 import * as moment from "moment";
 import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
+import { rsetpassword } from '../model/resetpassword';
 @Injectable()
 export class ShoppingApiService {
 uri:string;
@@ -262,6 +263,22 @@ public async getOTP(mobile:string) //:Observable<optResponse>
    .catch(this.handleError.bind(this) )
    .toPromise()
 };
+
+
+
+public async ResetPassword(email:string)
+{
+  
+  this.uri="/api/sms/ResetPassword?email="+email;
+   return await this.http.get<rsetpassword>(this.uri, { observe: 'response'})
+   .do((res) =>{
+   // this.setOTP(res)
+   }) 
+  // .shareReplay()
+   .catch(this.handleError.bind(this) )
+   .toPromise()
+};
+
 
 // private setOTP(resp) {
 //     debugger;
