@@ -90,7 +90,11 @@ public forgetpassword()
  
   this.router.navigateByUrl('forgetpassword');
 }
-
+public changepassword()
+{
+ 
+  this.router.navigateByUrl('changepassword');
+}
 async closeModalDialog()
 {
     let resp;

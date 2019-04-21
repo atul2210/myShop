@@ -294,7 +294,7 @@ public async ResetPassword(email:string)
   
   public paymentreceive(EmailId:string,session:string,rows: checkedInItemsArray[])
   {
-    debugger;
+    
       this.uri="/api/items/CheckoutPaymentReceived?emailId="+EmailId+"&UserSession="+session;
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
@@ -305,6 +305,16 @@ public async ResetPassword(email:string)
         
 
   }
+
+public  changepassword(email:string,password:string,confirmpassword:string)
+{
+  this.uri="/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword;
+  return  this.http.get(this.uri, { observe: 'response'})
+  .catch(this.handleError.bind(this) );
+
+}
+
+
 
 }
 

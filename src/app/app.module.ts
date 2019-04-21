@@ -45,6 +45,7 @@ import { TempRouteComponent } from './pages/temp-route/temp-route.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ForegetPasswordComponent } from './pages/foreget-password/foreget-password.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { ChangepasswordComponent } from './pages/changepassword/changepassword.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { ErrorComponent } from './pages/error/error.component';
     SlidersComponent,
     TempRouteComponent,
     ForegetPasswordComponent,
-    ErrorComponent
+    ErrorComponent,
+    ChangepasswordComponent
    
     
     
@@ -92,6 +94,8 @@ import { ErrorComponent } from './pages/error/error.component';
       {path:'registration/:mobile',component:UserRegistrationComponent },
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
       {path:'forgetpassword',component:ForegetPasswordComponent},
+      
+      {path:'changepassword',component:ChangepasswordComponent},
       {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
       {path:'**',component:PageNotFoundComponentComponent}
   
