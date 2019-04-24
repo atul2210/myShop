@@ -8,7 +8,7 @@
     border:0;
 }
 .dropdown-menu{
-    background: #6895bd;
+    background:#6895bd;
     border:0;
     top:80%;
     border-radius:0px 0px 5px 5px;
@@ -28,3 +28,34 @@
     color:red !important;
     
 }
+
+nav a {
+    display:inline;
+
+  }
+
+  .lisetting
+  {
+    width:300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    vertical-align: bottom; 
+    
+
+    /* float: left;
+    width: 550px;
+    height: 500px;
+    margin: 0 4px 12px 0;
+    color: transparent;
+    background: rgba(0, 0, 0, .2);
+    border: 3px solid #0059dd;
+    box-sizing: border-box; */
+
+
+  }
+  /* #wrap > .container {
+    padding: 60px 15px 0;
+   
+  }
+  */
