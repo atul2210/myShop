@@ -8,7 +8,7 @@
     border:0;
 }
 .dropdown-menu{
-    background:#6895bd;
+    background:#5350f1;
     border:0;
     top:80%;
     border-radius:0px 0px 5px 5px;
@@ -36,12 +36,16 @@ nav a {
 
   .lisetting
   {
-    width:300px;
+    
     margin: auto;
     display: grid;
-    grid-template-columns: 30% 30% 40%;
-    vertical-align: bottom; 
+     grid-template-columns: 30% 30% 40%;
     
+    justify-items: stretch;
+    align-items: stretch;
+    box-shadow: 3px 5px blue;
+    
+    padding: 10px;
 
     /* float: left;
     width: 550px;
