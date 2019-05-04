@@ -313,7 +313,14 @@ public  changepassword(email:string,password:string,confirmpassword:string)
   .catch(this.handleError.bind(this) );
 
 }
+public getimages()
+{
+  this.uri="/api/File/images";
+  return  this.http.get(this.uri, { observe: 'response'})
+ 
+  .catch(this.handleError.bind(this) );
 
+}
 
 
 }

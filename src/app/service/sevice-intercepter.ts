@@ -20,11 +20,11 @@ export class serviceintercepter implements HttpInterceptor
            
         headers:request.headers.set("Authorization","Bearer "+ idToken)
             });
-            console.log("intercepted");   
+           
             return next.handle(clone);
         }
         else {
-            console.log("Not intercepted");   
+            
             return next.handle(request);
         }
        

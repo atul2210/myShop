@@ -9,7 +9,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "src/web.config"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -27,8 +28,8 @@
         "../node_modules/font-awesome/css/font-awesome.css",
         "../node_modules/admin-lte/dist/css/adminlte.css",
         "../node_modules/ez-plus/css/jquery.ez-plus.css",
-        "../node_modules/semantic-ui/dist/semantic.min.css",
-        "../src/assets/mycss.css"
+        "../node_modules/semantic-ui/dist/semantic.min.css"
+       
       ],
 
       "scripts": ["../node_modules/jquery/dist/jquery.min.js",

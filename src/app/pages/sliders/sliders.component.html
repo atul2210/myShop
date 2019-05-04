@@ -5,14 +5,18 @@
   <ngb-carousel >
     <ng-container *ngFor = "let item of imageItems;let i = index;">
   <ng-template   ngbSlide [id]=i >
-      <img [src]=item height="200" width="450" />
+    
+    <!-- <img [src]=item.fileName |safe:'html' height="200" width="450" />-->
+    <!-- <div  [innerHTML] = "menuHtml |safe:'script'" ></div> -->
+    <img [src]="item|safe:'url'" height="300" width="300" /> 
+ 
   </ng-template>
   </ng-container>
   </ngb-carousel>
 </div>
 
 <div class = "col-md-6">
-    <div style="height: 200px;">
+    <div style="height: 300px;">
       <ngx-slider [init]="slider"></ngx-slider>
     </div> 
 </div>

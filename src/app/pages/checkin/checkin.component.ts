@@ -97,7 +97,7 @@ private notify():void
 }
 
 
-private placeOrder()
+ placeOrder()
 {
   let localstorage:string = localStorage.getItem("id_token");
   let EmailId:string = localStorage.getItem("email");

@@ -14,7 +14,7 @@
             <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
           </small>
         </h3>
-        <ngx-datatable style="height:350px;width:800px;margin:50px"
+        <ngx-datatable style="height:350px;width:880px;"
           #myTable
           class='material expandable'
           [columnMode]="'force'"
@@ -131,16 +131,18 @@
 
 
           </ngx-datatable-column>
-        <ngx-datatable-column>
+        <ngx-datatable-column width="30">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <input type = button class ="btn btn-success" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" value = "Remove" >
+                <button class ="btn btn-success pull-right fa fa-delete" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
+                    Delete<i class="fa fa-thrash"> </i>
+                </button>
               </ng-template>
 
 
           </ngx-datatable-column>
 
         </ngx-datatable>
-        <p style="margin-left: 350px;marghin:top 1px">You saved Rs : {{saveSum}}</p>
+        <p style="margin-left: 350px;margin:top 1px">You saved Rs : {{saveSum}}</p>
         <p style="margin-left: 350px;">Paid Amount  Rs : {{OfferPriceSum}}</p>
         <div class="row pull-right"   >
           <div class="col-xs-12">

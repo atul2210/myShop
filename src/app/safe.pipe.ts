@@ -16,9 +16,13 @@ export class SafePipe implements PipeTransform {
           case 'script' : return this.sanitizer.bypassSecurityTrustScript(value);
           case 'url' :return this.sanitizer.bypassSecurityTrustUrl(value);
           case 'resourceurl' : return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+        //  case 'url': return this.sanitizer.bypassSecurityTrustUrl(value);
+        
           default: throw new Error ('Invalid safe type speicified : ${type}' );
 
       }
+
+
 
 
 
@@ -26,6 +30,9 @@ export class SafePipe implements PipeTransform {
   }
 
 
+  public getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+}
 
 
 }
