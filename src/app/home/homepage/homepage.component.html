@@ -7,11 +7,11 @@
         <button [routerLink]="['']" class ="btn btn-info" style="width:50px;" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
     </div>
 <div class="pull-right" style="display: inline-block;" >
-    <button class= "btn btn-info" style="width:60px;height:30px;border-radius: 25px"  (click)="getCheckedInItems()" >Cart</button>
+    <button class= "btn btn-info" style="width:50px;"   (click)="getCheckedInItems()" >Cart</button>
     <span>
         <a href="#" class="" data-toggle="dropdown">
             <i class="fa fa-shopping-cart"></i>
-            <span class="label label-success"> {{totalItem.totalCartItem}}</span>
+            <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
           </a>
     </span>
 </div>

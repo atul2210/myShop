@@ -4,9 +4,12 @@
 <div *ngIf="!displayError;">
   <mat-grid-list  rowHeight="500px" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
      
-        <mat-grid-tile  [style.backgroundColor]="'#D72568'">
+        <!-- <mat-grid-tile  [style.backgroundColor]="'#D72568'"> -->
+          <div class="container" >
+          <div class="row"> 
+           <div class="col-md-6"> 
             <!-- <mat-card-subtitle>My Cart -->
-        <mat-card>
+      <div class="card ">
         <ngx-image-zoom
         [thumbImage]=item.imaggeUrl
         
@@ -20,58 +23,71 @@
         [circularLens] = true	
         
     ></ngx-image-zoom>
-  
-  
-      <button  mat-raised-button color="warn" (click)="addToCart();" style="float:right;text-transform: none;"  >
-        <mat-icon>shopping_cart</mat-icon> 
-        Add to Cart 
-     </button >
-  
-   
-  </mat-card>
-  
+
+  </div>
+  <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right"  >
+    <mat-icon>shopping_cart</mat-icon> 
+    Add to Cart 
+ </button >
+ 
+  </div>
   <!-- </mat-card-subtitle> -->
-  </mat-grid-tile>
-  <mat-grid-tile>
-      <mat-card>
-                
-                     <mat-list>
-                        <mat-list-item>
-                        Category {{item.categoryName}}
-                          {{item.itemDescription}} &nbsp;&nbsp; Size  {{item.sizeName}}
-                        </mat-list-item>
-                      <mat-list-item style= "-webkit-text-fill-color:crimson "  >Available Quantity : {{item.availableQty}}</mat-list-item>
-                      <mat-list-item><s>Total Price: &#8377; {{item.price}}</s>
-                        <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()">
-                      </mat-list-item>
-                      <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" >
-                          <ul style="-webkit-text-fill-color: indigo"  >
-                            <li  >
-                              Color: {{item.color}} <span><img border="0" alt="Information" src="../../../assets/emoji/wealthy-emoticon.gif" width="60" height="60"></span>
-                            </li>
-                            <li >
-                              Brand: {{item.brand}}
-                            </li>
-                            <li >
-                            Delivery Charges : ₹ {{item.deliveryCharges}}
-                            </li>
-                            
-                          </ul>
-                      </mat-list-item>  
-                    <mat-list-item>Offer Price:  &#8377; {{item.offerPrice}} </mat-list-item>
-                    <mat-list-item>Size: {{item.sizeName}} </mat-list-item>
-                    <mat-list-item>Category {{item.categoryName}} </mat-list-item>
-                    <mat-list-item>Brand {{item.brand}} </mat-list-item>
-      
 
+  <div class="col-md-6"> 
+     
+        <ul >
+                    
+            <li style="background-color: blueviolet" class="list-group-item" >
+               <h2 style="color: white" >{{item.itemDescription}}</h2>  
+            </li  >
+             <li class="list-group-item item-fore-color">
+             Size:&nbsp; {{item.sizeName}}
+             </li>
+             <li class="list-group-item" style= "-webkit-text-fill-color:crimson "  >
+               <h4>Available Quantity: &nbsp;{{item.availableQty}}</h4>
+             </li >
+             <li class="list-group-item item-fore-color">
+               <s><h4>Total Price: &nbsp;{{item.price}}</h4>
+               </s>
+                        <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
+             </li>
+                      <!-- <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" > -->
+             <li class="list-group-item"> 
+               <ul style="-webkit-text-fill-color: indigo"  >
+                   <li item-fore-color style="" >
+                       <b> Color:&nbsp; {{item.color}}</b> 
+                    </li>
+                    <li >
+                      <b> Brand:&nbsp; {{item.brand}}</b> 
+                     </li>
+                   <li item-fore-color> 
+                    <b>    Delivery Charges:&nbsp; ₹ {{item.deliveryCharges}}</b>
+                      </li>
+               </ul>
+             </li>  
+             <li class="list-group-item item-fore-color">
+                     <h4> Offer Price:&nbsp; ₹ {{item.offerPrice}}</h4> 
+             </li>
+             <li class="list-group-item">
+                      Size:&nbsp; {{item.sizeName}} 
+              </li>
+           <li class="list-group-item item-fore-color">
+                      Brand:&nbsp; {{item.brand}} 
 
-            <mat-list-item>Delivery: By Courier </mat-list-item>  
-                <mat-list-item>Fabric: Pure Cotton </mat-list-item> 
+           </li>
+           <li class="list-group-item">
+            <b>  Delivery:&nbsp; By Courier</b> 
+           </li>  
+          <li class="list-group-item item-fore-color">
+          <b>  Fabric:&nbsp; Pure Cotton </b>
+          </li> 
             
-         </mat-list>
-      
-     </mat-card>
-  </mat-grid-tile>
+       
+        </ul>
+        </div>
+    
+      </div>
+      </div>
 </mat-grid-list>
 </div>
 <div *ngIf="displayError;"><h1>Oops Item sold. No quantity available now</h1></div>
