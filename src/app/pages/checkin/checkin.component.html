@@ -75,10 +75,10 @@
 
           <ngx-datatable-column width="50">
             <ng-template ngx-datatable-header-template>
-                    
+              <span>&nbsp;</span>    
              </ng-template>
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
+         <img [src]="row['imageUrl']" height="50" width="50" > 
         </ng-template>
       </ngx-datatable-column>
 
@@ -133,8 +133,8 @@
           </ngx-datatable-column>
         <ngx-datatable-column width="30">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <button class ="btn btn-success pull-right fa fa-delete" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
-                    Delete<i class="fa fa-thrash"> </i>
+                <button class ="btn btn-success" style="width:80px" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
+                  <i class="fa fa-trash">  Delete</i> 
                 </button>
               </ng-template>
 
