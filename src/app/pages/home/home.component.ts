@@ -87,7 +87,7 @@ public itemsarr: Array<any> = [];
        if(itemsarr.results.length<=this.count)
        {
          this.itemsarr = this.itemsarr.concat(itemsarr.results);
-         console.log(this.itemsarr);
+         
       }    
   });
 }

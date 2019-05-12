@@ -15,9 +15,11 @@ import { Inotify,itemNotify } from '../pages/itemdetails/item-notify';
 import * as moment from "moment";
 import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
 import { rsetpassword } from '../model/resetpassword';
+import { environment } from '../../environments/environment';
 @Injectable()
 export class ShoppingApiService {
 uri:string;
+baseUrl = environment.baseUrl;
 public addToCardResponse :any[];
 private loggedIn = false;
 private json: any;
@@ -30,7 +32,7 @@ private subject = new Subject<itemNotify|null>()
   public redirectUrl: string;
   AllItems(category:string,index:string): Observable<any> 
   {
-    this.uri="/api/items/";
+    this.uri=this.baseUrl+"/api/items/";
     const params = new HttpParams().set('categoryId', category).set("pageIndex",index);
      return this.http.get(
      this.uri+"AllItems/", { observe: 'response', params})
@@ -43,7 +45,7 @@ private subject = new Subject<itemNotify|null>()
 
   itemDetails(itemId:string): Observable<any> 
   {
-    this.uri="/api/items/";
+    this.uri=this.baseUrl+"/api/items/";
     const params = new HttpParams().set('itemId', itemId);
      return this.http.get(
      this.uri+"itemDetail/", { observe: 'response', params})
@@ -59,7 +61,7 @@ addToCart(itemid:string,quantity:string,color:string,price:number,offerprice:num
   sessionToken=localStorage.getItem("sessionToken");
  
   querystring = "?itemid=" + itemid+ "&quantity="+quantity+"&color=" +color + "&sessionId=" + sessionToken + "&price=" + price  + "&offerprice=" + offerprice  + "&deliverycharges=" + deliverycharges   + "&colorId=" + colorId;
-  this.uri="/api/items/";
+  this.uri=this.baseUrl+"/api/items/";
 
   return this.http.post(
   this.uri+"addCart"+querystring,{ observe: 'response'})
@@ -72,7 +74,7 @@ getCheckedInItem(sessionId:string)//:Observable<any>
   let querystring:string;
   let sessionToken:string
  
-  this.uri="/api/items/";
+  this.uri=this.baseUrl+"/api/items/";
 
   const params = new HttpParams().set('userSession', sessionId);
   return this.http.get<checkedInItemsArray[]>(
@@ -90,7 +92,7 @@ public RemoveItem(itemid:string,quantity:string,sessionId:string,checkinid:strin
   let querystring:string; 
   let sessionToken:string;
   querystring = "?itemid=" + itemid+ "&returnedItemQty="+quantity + "&sessionId="+sessionId + "&checkedinId="+checkinid ;
-  this.uri="/api/items/";
+  this.uri=this.baseUrl+"/api/items/";
   return this.http.post(
   this.uri+"RemoveItems"+querystring,{ observe: 'response'})
    .catch(this.handleError.bind(this) );
@@ -117,7 +119,7 @@ private handleError(error: HttpErrorResponse) {
 public Login(userId:string,password:string):Observable<any>
 {
   let encodedval = btoa(userId+":"+password);
-  this.uri="/api/token/";
+  this.uri=this.baseUrl+"/api/token/";
   let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                .set('authorization', encodedval);
   
@@ -183,7 +185,7 @@ public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
 {
   let querystring:string;
 
-this.uri="/api/items/"; 
+this.uri=this.baseUrl+"/api/items/"; 
 querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
      return this.http.get<Ipagedata>(
      this.uri+"AllItemsOnPaging/"+querystring, { observe: 'response'})
@@ -194,7 +196,7 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
 
      public addUser(user:registration):Observable<any>
      {
-      this.uri="/api/user/NewUser/";
+      this.uri=this.baseUrl+"/api/user/NewUser/";
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
       return this.http.post<registration>(this.uri,
@@ -254,7 +256,7 @@ getItem():Observable<any>
 public async getOTP(mobile:string) //:Observable<optResponse>
 {
   
-  this.uri="/api/sms/Otpsender?mobileNumber="+mobile;
+  this.uri=this.baseUrl+"/api/sms/Otpsender?mobileNumber="+mobile;
    return await this.http.get<optResponse>(this.uri, { observe: 'response'})
    .do((res) =>{
    // this.setOTP(res)
@@ -269,7 +271,7 @@ public async getOTP(mobile:string) //:Observable<optResponse>
 public async ResetPassword(email:string)
 {
   
-  this.uri="/api/sms/ResetPassword?email="+email;
+  this.uri=this.baseUrl+"/api/sms/ResetPassword?email="+email;
    return await this.http.get<rsetpassword>(this.uri, { observe: 'response'})
    .do((res) =>{
    // this.setOTP(res)
@@ -295,7 +297,7 @@ public async ResetPassword(email:string)
   public paymentreceive(EmailId:string,session:string,rows: checkedInItemsArray[])
   {
     
-      this.uri="/api/items/CheckoutPaymentReceived?emailId="+EmailId+"&UserSession="+session;
+      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?emailId="+EmailId+"&UserSession="+session;
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
       return this.http.post(this.uri,rows ,
@@ -308,14 +310,14 @@ public async ResetPassword(email:string)
 
 public  changepassword(email:string,password:string,confirmpassword:string)
 {
-  this.uri="/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword;
+  this.uri=this.baseUrl+"/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword;
   return  this.http.get(this.uri, { observe: 'response'})
   .catch(this.handleError.bind(this) );
 
 }
 public getimages()
 {
-  this.uri="/api/File/images";
+  this.uri=this.baseUrl+"/api/File/images";
   return  this.http.get(this.uri, { observe: 'response'})
  
   .catch(this.handleError.bind(this) );

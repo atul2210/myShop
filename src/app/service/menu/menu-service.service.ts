@@ -9,11 +9,13 @@ import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 import { BehaviorSubject, Subject } from 'rxjs/Rx';
 import * as moment from "moment";
 import { responseData } from '../../model/pagedata';
-
+import { environment } from '../../../environments/environment';
+ 
 
 @Injectable()
 export class MenuServiceService {
   uri:string;
+  baseUrl = environment.baseUrl;
   private subject = new Subject<string|null>()
   constructor(private http: HttpClient,private responseData:responseData)
   { 
@@ -22,8 +24,8 @@ export class MenuServiceService {
 
   public menuitems(): Observable<any> 
   {
-    this.uri="/api/menu/menuitems/";
-    
+    this.uri=this.baseUrl+"/api/menu/menuitems/";
+   
      return this.http.get(
      this.uri, { observe: 'response'})
      .catch(this.handleError.bind(this) );

@@ -6,10 +6,12 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs/observable';
 import { Ipagedata } from '../model/pagedata';
 import { tap, skipWhile } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SearchServiceService {
   uri:string;
+  baseUrl = environment.baseUrl;
   constructor(private http:HttpClient) 
   {
 
@@ -28,7 +30,7 @@ export class SearchServiceService {
 public SearchResult(searchItem:string,pageindex:string,pagesize:string): Observable<any> 
 {
     let querystring:string;
-    this.uri="/api/items/";
+    this.uri=this.baseUrl+"/api/items/";
     querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true&itemSearch=" +searchItem ;
     return this.http.get<Ipagedata>(
     this.uri+"SearchItem/"+querystring, { observe: 'response'})
@@ -55,7 +57,7 @@ private handleError(error: HttpErrorResponse) {
   public SearchItems(page: number, pagesize:number,searchItem:string, saveResultsCallback: (news) => void) {
    
     let querystring:string;
-    this.uri="/api/items/";
+    this.uri=this.baseUrl+"/api/items/";
     querystring = "?Page="+page+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true&itemSearch=" +searchItem ;
    
     return this.http.get(
@@ -72,7 +74,7 @@ private handleError(error: HttpErrorResponse) {
   public GetItems(page: number = 1, pagesize:number,saveItemResultsCallback: (ItemArray) => void) {
    
     let querystring:string;
-    this.uri="/api/items/";
+    this.uri=this.baseUrl+"/api/items/";
     querystring = "?Page="+this.ItemcurrentPage+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
    
     return this.http.get(
@@ -92,7 +94,7 @@ private handleError(error: HttpErrorResponse) {
      
     
       let querystring:string;
-      this.uri="/api/items/";
+      this.uri=this.baseUrl+"/api/items/";
       querystring = "?ChildMenuId="+ChildMenuId.toString() + "&Page="+CategoryPageIndex.toString()+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
       return this.http.get(
   
