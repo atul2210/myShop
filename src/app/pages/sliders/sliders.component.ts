@@ -65,10 +65,10 @@ config.keyboard = false;
 this.slider.config.loop = true;
     this.slider.config.showPreview = false;
     this.slider.config.transitionDuration = 3;
-this.imageItems = ['/assets/Pics/pic4.jpg',
-'/assets/Pics/pic1.jpg',
-'/assets/Pics/pic2.jpg',
-'/assets/Pics/pic3.jpg'
+this.imageItems = ['assets/Pics/pic4.jpg',
+'assets/Pics/pic1.jpg',
+'assets/Pics/pic2.jpg',
+'assets/Pics/pic3.jpg'
 
 ];
 
@@ -78,10 +78,10 @@ this.imageItems = ['/assets/Pics/pic4.jpg',
   ngOnInit() {
 
     const slideItems = [
-      { src: "/assets/Pics/pic4.jpg", title: 'Title 1' },
-      { src: '/assets/Pics/pic1.jpg', title: 'Title 2' },
-      { src: '/assets/Pics/pic2.jpg', title: 'Title 3' },
-      { src: '/assets/Pics/pic3.jpg', title: 'Title 4' }
+      { src: "assets/Pics/pic4.jpg", title: 'Title 1' },
+      { src: 'assets/Pics/pic1.jpg', title: 'Title 2' },
+      { src: 'assets/Pics/pic2.jpg', title: 'Title 3' },
+      { src: 'assets/Pics/pic3.jpg', title: 'Title 4' }
   
     ];
     
