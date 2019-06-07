@@ -11,12 +11,16 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headerName = 'X-XSRF-TOKEN';
+ 
     let token = this.tokenExtractor.getToken() as string;
     let requestToForward = req;
-   // alert(token);
-  
-      if (token !== null ) {
-      req = req.clone({ headers: req.headers.set(headerName, token) });
+      if (token === null ) {
+        req = req.clone({ withCredentials: true,
+          });
+    }
+    else{
+        req = req.clone({ withCredentials: true,
+          headers: req.headers.set(headerName, token) });
     }
     return next.handle(req);
     

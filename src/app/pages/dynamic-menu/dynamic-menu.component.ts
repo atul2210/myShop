@@ -53,50 +53,15 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
     this.subs = this.service.menuitems()
     .subscribe((res)=>
     {
-       this.menuitems = res.body;
-       
+       this.menuitems = res.body
+       console.log('menu', res);
      
     });
   }
 
 
 
-  public GetMenuItems()
-  {
-    let isMainMenu:boolean=true;
-    this.subs = this.service.menuitems()
-    .subscribe((res)=>
-    {
-      // this.menuitems = res.body;
-    
-      for (let item of res.body) {
-        this.menuHtml= this.menuHtml + "<td style='width: 5%'> " 
-        
-        for (let subItem of item.children)
-        {
-           if(isMainMenu)
-           { 
-              this.menuHtml= this.menuHtml + "<button [matMenuTriggerFor]=" +item.mainMenuName+">"+item.menuName +"</button>";
-              this.menuHtml= this.menuHtml + "<mat-menu "+item.mainTrigger+"='matMenu'>";
-              this.menuHtml= this.menuHtml + " <button mat-menu-item [routerLink]='["+ subItem.routerLink +"]'>"+subItem.subMenuName+"</button>";
-              isMainMenu = false;
-           }
-           else
-           {
-              this.menuHtml= this.menuHtml + "<button mat-menu-item [routerLink]='["+ subItem.routerLink +"]'>"+subItem.subMenuName+"</button>";
-            }
-        }
-        this.menuHtml= this.menuHtml + "</mat-menu>" ;
-        this.menuHtml = this.menuHtml +"</td>";
-        //MatMenu.apply(this.menuHtml);
-        isMainMenu=true;
-      } 
-
-   
   
-    });
-  }
-
 ngOnDestroy()
 {
   this.subscription.unsubscribe();
