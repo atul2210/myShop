@@ -13,16 +13,17 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
     const headerName = 'X-XSRF-TOKEN';
  
     let token = this.tokenExtractor.getToken() as string;
+    
     let requestToForward = req;
       if (token === null ) {
-        req = req.clone({ withCredentials: true,
+        requestToForward = req.clone({ withCredentials: true,
           });
     }
     else{
-        req = req.clone({ withCredentials: true,
+      requestToForward = req.clone({ withCredentials: true,
           headers: req.headers.set(headerName, token) });
     }
-    return next.handle(req);
+    return next.handle(requestToForward);
     
   }
 }
