@@ -15,7 +15,7 @@ import { Router,NavigationEnd } from '@angular/router';
 export class DynamicMenuComponent implements OnInit,OnDestroy {
   private subs: ISubscription;
   itemname:string;
-  menuitems:string[];
+  menuitems;
   loading:boolean=false;
   menuHtml:string="";  private subscription: ISubscription;
   pageindex:number=0;
@@ -51,11 +51,15 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
   {
     let isMainMenu:boolean=true;
     this.subs = this.service.menuitems()
-    .subscribe((res)=>
+    .subscribe((res:Response)=>
     {
        this.menuitems = res.body
-       
-     
+       let xsrf = res.headers.get('XSRF-TOKENlolo');
+      
+      localStorage.setItem("xsrf",xsrf)
+
+
+       //console.log(res.headers.get('XSRF-TOKEN'));
     });
   }
 
