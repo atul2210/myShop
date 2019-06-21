@@ -9,14 +9,14 @@
           [columnMode]="'force'"
           [headerHeight]="30"
           [footerHeight]="50"
-          [rowHeight]="50"
+          [rowHeight]="250"
           [scrollbarV]="true"
           [rows]='rows'
           [limit]="3"
           (page)="onPage($event)">
         
           <!-- Row Detail Template -->
-          <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+          <!-- <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
               <div style="padding-left:35px;">
                 <div>Item Id : {{row.itemId}}</div>
@@ -24,10 +24,10 @@
                 <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
               </div>
             </ng-template>
-          </ngx-datatable-row-detail>
+          </ngx-datatable-row-detail> -->
   
           <!-- Column Templates -->
-           <ngx-datatable-column
+           <!-- <ngx-datatable-column
             [width]="50"
             [resizeable]="false"
             [sortable]="false"
@@ -42,27 +42,64 @@
                 (click)="toggleExpandRow(row)">
               </a>
             </ng-template>
-          </ngx-datatable-column>
-          <!-- <ngx-datatable-column name="Index" width="80">
-            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
-              <strong>{{rowIndex}}</strong>
-            </ng-template>
           </ngx-datatable-column> -->
-          <!-- <ngx-datatable-column name="Expanded" width="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <strong>{{expanded === 1}}</strong>
-            </ng-template>
-          </ngx-datatable-column> -->
-          <ngx-datatable-column width="150">
+         
+          <ngx-datatable-column width="100">
                 <ng-template ngx-datatable-header-template>
-                        <span>Item Name</span>
+                        <span>Cart Items </span>
                  </ng-template>
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <i [innerHTML]="row['itemname']"></i>
+              <div class="container">
+                <div class="row">
+                  <div class ="col-md-12">
+                   <h4> Item Name : 
+                  <i [innerHTML]="row['itemname']"></i> </h4>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">
+                      <img [src]="row['imageUrl']" height="50" width="50" ><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">    
+                     Price : <i [innerHTML]="row['price']"></i>
+                </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">        
+                    Offer Price : <i [innerHTML]="row['offerprice']"></i><br>
+                  </div>
+                </div>  
+                
+                <div class="row">
+                    <div class ="col-md-12">    
+                     Saved : <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col-md-12">
+                          Color : <i [innerHTML]="row['colorname']"></i>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col-md-12">
+                    Quantity : <i [innerHTML]="row['quantity']"></i><br>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class ="col-md-12">
+                           <button class ="btn btn-success" style="width:80px" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
+                              <i class="fa fa-trash">  Delete</i> 
+                           </button>
+                       </div>
+                    </div>
+              </div>     
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column width="50">
+          <!-- <ngx-datatable-column width="50">
             <ng-template ngx-datatable-header-template>
               <span>&nbsp;</span>    
              </ng-template>
@@ -128,7 +165,7 @@
               </ng-template>
 
 
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
 
         </ngx-datatable>
         <p style="margin-left: 350px;margin:top 1px">You saved Rs : {{saveSum}}</p>
