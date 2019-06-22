@@ -52,8 +52,8 @@
               <div class="container">
                 <div class="row">
                   <div class ="col-md-12">
-                   <h4> Item Name : 
-                  <i [innerHTML]="row['itemname']"></i> </h4>
+                   <h4 style ="color:blue"> 
+                      <i [innerHTML]="row['itemname']"></i> </h4>
                   </div>
                 </div>
                 <div class="row">
@@ -63,28 +63,28 @@
                 </div>
                 <div class="row">
                     <div class ="col-md-12">    
-                     Price : <i [innerHTML]="row['price']"></i>
+                        <h4 style ="color:blueviolet">   Price : <i [innerHTML]="row['price']"></i></h4>
                 </div>
                 </div>
                 <div class="row">
                     <div class ="col-md-12">        
-                    Offer Price : <i [innerHTML]="row['offerprice']"></i><br>
+                      <h4 style ="color:blue"> Offer Price : <i [innerHTML]="row['offerprice']"></i></h4>
                   </div>
                 </div>  
                 
                 <div class="row">
                     <div class ="col-md-12">    
-                     Saved : <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i><br>
+                      <h4 style ="color:blueviolet">  Saved : <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i></h4>
                         </div>
                     </div>
                     <div class="row">
                         <div class ="col-md-12">
-                          Color : <i [innerHTML]="row['colorname']"></i>
+                          <h4 style ="color:blue">    Color : <i [innerHTML]="row['colorname']"></i></h4>
                     </div>
                     </div>
                     <div class="row">
                         <div class ="col-md-12">
-                    Quantity : <i [innerHTML]="row['quantity']"></i><br>
+                          <h4 style ="color:blueviolet"> Quantity : <i [innerHTML]="row['quantity']"></i></h4>
                     </div>
                     </div>
 
