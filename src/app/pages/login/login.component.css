@@ -31,7 +31,12 @@
     left: 0;
   }
 
-  
+  .buttonmargin
+  {
+   top:80px;
+   
+
+  }
   
   .ng-hide {
     height: 0;
