@@ -9,7 +9,31 @@ import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
   styleUrls: ['./checkin.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+
+styles: [
+    `
+      @media screen and (max-width: 800px) {
+        .desktop-hidden {
+          display: initial;
+        }
+        .mobile-hidden {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 800px) {
+        .desktop-hidden {
+          display: none;
+        }
+        .mobile-hidden {
+          display: initial;
+        }
+      }
+    `
+  ]
+
+
+
 })
 @Injectable()
 export class CheckinComponent implements OnInit {
@@ -28,10 +52,7 @@ export class CheckinComponent implements OnInit {
     loadingIndicatorService
     .onLoadingChanged
     .subscribe(isLoading => this.loading = isLoading);
-    //ngxdatable
-    // this.fetch((data) => {
-    //   this.rows = data;
-    // });
+   
 
   }
 
