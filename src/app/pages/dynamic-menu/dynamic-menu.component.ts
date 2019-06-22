@@ -54,9 +54,9 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
     .subscribe((res:Response)=>
     {
        this.menuitems = res.body
-       let xsrf = res.headers.get('XSRF-TOKENlolo');
+     //////  let xsrf = res.headers.get('XSRF-TOKENlolo');
       
-      localStorage.setItem("xsrf",xsrf)
+     ////////////// localStorage.setItem("xsrf",xsrf)
 
 
        //console.log(res.headers.get('XSRF-TOKEN'));

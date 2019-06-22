@@ -81,4 +81,8 @@
     
     width:150px;
 }
-
+.makefix
+  {
+    position:fixed;
+    top:400px
+  }

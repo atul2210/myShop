@@ -25,10 +25,7 @@
     ></ngx-image-zoom>
 
   </div>
-  <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right"  >
-    <mat-icon>shopping_cart</mat-icon> 
-    Add to Cart 
- </button >
+ 
  
   </div>
   <!-- </mat-card-subtitle> -->
@@ -84,11 +81,18 @@
             
        
         </ul>
+        <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right"  >
+          <mat-icon>shopping_cart</mat-icon> 
+          Add to Cart 
+        </button >
         </div>
     
       </div>
       </div>
 </mat-grid-list>
+
+
+
 </div>
 <div *ngIf="displayError;"><h1>Oops Item sold. No quantity available now</h1></div>
 

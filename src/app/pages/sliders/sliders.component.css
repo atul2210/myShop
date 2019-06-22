@@ -13,3 +13,13 @@
     background-position: center;
     margin: 0 5px;
 }
+
+.center {
+    display: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height:50%;
+  }
+
+  

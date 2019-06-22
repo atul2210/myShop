@@ -30,6 +30,15 @@
     top: 0;
     left: 0;
   }
+
+  .buttonmargin
+  {
+    position:inherit;
+    top:30px;
+    margin-left:0px;
+    text-transform:initial
+
+  }
   
   .ng-hide {
     height: 0;
