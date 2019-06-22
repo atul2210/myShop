@@ -31,14 +31,7 @@
     left: 0;
   }
 
-  .buttonmargin
-  {
-    position:inherit;
-    top:30px;
-    margin-left:0px;
-    text-transform:initial
-
-  }
+  
   
   .ng-hide {
     height: 0;
@@ -110,11 +103,11 @@ body {
   
   .btn-success {
     font-family: Raleway-SemiBold;
-    font-size: 13px;
+    font-size: 11px;
     color: rgba(104, 103, 192, 0.75);
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     line-height: 15px;
-    border: 2px solid rgba(103, 192, 103, 0.75);
+    border: 1px solid rgba(103, 192, 103, 0.75);
     border-radius: 40px;
     /* background: transparent; */
     background: transparent;
@@ -124,7 +117,7 @@ body {
   .btn-success:hover {
     color: rgb(6, 4, 133);
     background: rgb(103, 192, 103, 0.75);
-    border: 2px solid rgb(103, 192, 103, 0.75);
+    border: 1px solid rgb(103, 192, 103, 0.75);
   }
   
   .btn-info {
@@ -133,7 +126,7 @@ body {
     color: rgba(91, 192, 222, 0.75);
     letter-spacing: 1px;
     line-height: 15px;
-    border: 2px solid rgba(91, 192, 222, 0.75);
+    border: 1px solid rgba(91, 192, 222, 0.75);
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
@@ -151,7 +144,7 @@ body {
     color: rgba(240, 173, 78, 0.75);
     letter-spacing: 1px;
     line-height: 15px;
-    border: 2px solid rgba(240, 173, 78, 0.75);
+    border: 1px solid rgba(240, 173, 78, 0.75);
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
@@ -169,7 +162,7 @@ body {
     color: rgba(217, 83, 78, 0.75);
     letter-spacing: 1px;
     line-height: 15px;
-    border: 2px solid rgba(217, 83, 78, 0.75);
+    border: 1px solid rgba(217, 83, 78, 0.75);
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
@@ -178,7 +171,7 @@ body {
   .btn-danger:hover {
     color: #FFF;
     background: rgba(217, 83, 78, 0.75);
-    border: 2px solid rgba(217, 83, 78, 0.75);
+    border: 1px solid rgba(217, 83, 78, 0.75);
   }
 
   .form-rounded {
