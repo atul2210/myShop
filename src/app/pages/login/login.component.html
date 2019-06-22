@@ -1,14 +1,14 @@
 
 <!-- <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" > -->
-    <div class="container">  
+<div class="container">  
   <form [formGroup]="loginForm" >
 
    
       <div *ngIf="loading" >  
         <img src ="assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
       </div>
+<div class="row">
 
-  <div box box-primary>
 <div class="col-md-12 col-md-offset-3 box-header with-border" style="position:relative;top:50px;"
  [ngClass]="{'has-error':(loginForm.get('username').touched || loginForm.get('username').dirty)}">
   
@@ -35,29 +35,29 @@
     
     
     </div>
-    <!-- <div class="form-group form-check"> -->
-      <div>
-      <!-- <label class="form-check-label"> -->
-        <!-- <input formControlName="rememberme" class="form-check-input" type="checkbox"> Remember me -->
-        
-      <!-- </label> -->
-    </div>
-
+    
+    <div class="row">
    
-    <div class="">
-        <button class="btn btn-success pull-right" (click)="forgetpassword()" >Forget Password</button>
-        <button class="btn btn-success buttonmargin"  type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
-        <button class="btn btn-info pull-right buttonmargin" style="text-transform:none"  (click)= "openModalDialog()" >Not a Member</button>
-        <button class="btn btn-success buttonmargin "  (click)="changepassword()" >Change Password</button>
-      </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <button class="btn btn-success" (click)="forgetpassword()" >Forget Password</button>
+        <button class="btn btn-success pull-right"  type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
+    </div>
+    </div>
+     <div class="row"> 
+    <div class="col-md-12 col-sm-12 col-xs-12">  
+        <button class="btn btn-info" style="text-transform:none"  (click)= "openModalDialog()" >Not a Member</button>
+        <button class="btn btn-success pull-right"  (click)="changepassword()" >Change Password</button>
+   </div>
+   
+   </div>   
 </div>
-</div>
+
 
 
 <!-- <div class="backdrop" [ngStyle]="{'display':display}"></div> -->
 
 <!-- modal -->
-
+</div>
 
 
 
