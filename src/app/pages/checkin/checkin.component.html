@@ -168,10 +168,15 @@
           </ngx-datatable-column> -->
 
         </ngx-datatable>
-        <p style="margin-left: 350px;margin:top 1px">You saved Rs : {{saveSum}}</p>
-        <p style="margin-left: 350px;">Paid Amount  Rs : {{OfferPriceSum}}</p>
+        <div class="row "   >
+          <div class="col-md-12 col-xs-12">
+       
+              <p class="text-center">You saved Rs : {{saveSum}}</p>
+              <p class ="text-center">Paid Amount  Rs : {{OfferPriceSum}}</p>
+          </div>
+        </div>
         <div class="row pull-right"   >
-          <div class="col-xs-12">
+          <div class="col-md-12col-xs-12">
             <input type = button class ="btn btn-info" (click)= "placeOrder();"value = "Place Order" >
           
           </div>
