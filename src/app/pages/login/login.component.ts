@@ -98,15 +98,15 @@ public changepassword()
 async closeModalDialog()
 {
     let resp;
-    this.loginForm.controls["username"].setValue('na');
-  this.loginForm.controls["password"].setValue('na');
+    this.loginForm.controls["username"].setValue('na@na.com');
+    this.loginForm.controls["password"].setValue('nana');
     this.mobile= this.loginForm.controls["mobileNumber"].value;
     if(this.mobile.trim()!="")
     {
       let res = await this.http.getOTP(this.mobile)
           .then((res:Response)=>{                 
             resp = res;
-            debugger;
+            console.log("resppp ",resp);
             if(resp.body.status==5) 
             {
               this.isOk=false;
@@ -120,7 +120,7 @@ async closeModalDialog()
           })
           .catch(err=>
           {
-            console.log(err);
+            
             this.isOk =true;
             this.err=err;
             //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
