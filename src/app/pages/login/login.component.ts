@@ -98,6 +98,8 @@ public changepassword()
 async closeModalDialog()
 {
     let resp;
+    this.loginForm.controls["username"].setValue('na');
+  this.loginForm.controls["password"].setValue('na');
     this.mobile= this.loginForm.controls["mobileNumber"].value;
     if(this.mobile.trim()!="")
     {

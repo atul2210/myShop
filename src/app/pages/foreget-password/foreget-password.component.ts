@@ -48,7 +48,7 @@ async SendMail()
         {  
            this.items = resp.body;
            this.err = this.items.result;
-           alert('cdfdfdsf   '+this.items.result);
+           
        //   this.err = res.statusText;
     
           this.isOk=true;
@@ -65,7 +65,7 @@ async SendMail()
         })
         .catch(err=>
         {
-          console.log(err);
+          
           this.isOk =true;
           this.err=err;
           //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
