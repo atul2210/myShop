@@ -107,16 +107,10 @@ async closeModalDialog()
           .then((res:Response)=>{                 
             resp = res;
             console.log("resppp ",resp);
-            if(resp.body.status==5) 
-            {
               this.isOk=false;
               this.display='none'; //set none css after close dialog
               this.router.navigateByUrl("/registration/"+this.mobile);
-            }
-            else
-            {
-              this.isOk =true;
-            }
+           
           })
           .catch(err=>
           {

@@ -259,7 +259,7 @@ public async getOTP(mobile:string) //:Observable<optResponse>
   this.uri=this.baseUrl+"/api/sms/Otpsender?mobileNumber="+mobile;
    return await this.http.get<optResponse>(this.uri, { observe: 'response'})
    .do((res) =>{
-   // this.setOTP(res)
+    console.log("in getOTPHttp ",res);
    }) 
   // .shareReplay()
    .catch(this.handleError.bind(this) )
