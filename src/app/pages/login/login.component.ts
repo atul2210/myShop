@@ -106,7 +106,7 @@ async closeModalDialog()
       let res = await this.http.getOTP(this.mobile)
           .then((res:Response)=>{                 
             resp = res;
-            console.log("resppp ",resp);
+           
               this.isOk=false;
               this.display='none'; //set none css after close dialog
               this.router.navigateByUrl("/registration/"+this.mobile);

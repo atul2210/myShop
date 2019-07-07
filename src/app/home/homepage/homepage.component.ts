@@ -62,7 +62,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
     .subscribe((res)=>
     {
       this.menuitems = res.body;
-      console.log(res);
+     
   
     });
   }
