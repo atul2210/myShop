@@ -66,8 +66,24 @@ export class LoginComponent implements OnInit {
 
     .subscribe(data=>
           {
-         this.router.navigateByUrl('/HomeComponent');
-  });
+          console.log('data',data)
+          this.router.navigateByUrl('/HomeComponent')
+  })
+    err => 
+    {
+      
+      if(err.status!==200)
+      {
+      
+        console.error('dfdfdfd',err.statusText)
+        localStorage.setItem("id_token",'');
+        
+        this.err=err.statusText;
+      }
+
+    }
+  
+  ;
 }
 
 openModalDialog()

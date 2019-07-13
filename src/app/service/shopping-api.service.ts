@@ -128,8 +128,8 @@ public Login(userId:string,password:string):Observable<any>
     localStorage.setItem("email",userId);
     this.setSession(res); 
    }) 
-   .shareReplay();
-
+   .shareReplay()
+   .catch(this.handleError);
 
 
 };
@@ -147,8 +147,7 @@ private setSession(authResult) {
   localStorage.setItem('id_token', authResult.authToken);
   localStorage.setItem("expires_at",futureMonth.toString()); 
 
-  console.log(currentDate);
-  console.log(futureMonth);
+  
 
 
   
@@ -219,7 +218,7 @@ querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&
       .catch(this.handError)
       .do((res) =>
       {
-        debugger
+       
         localStorage.setItem("email",user.myemail);
       });
 
