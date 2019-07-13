@@ -47,7 +47,7 @@ async SendMail()
         .then((resp:resetpasswordArray) =>
         {  
            this.items = resp.body;
-           this.err = this.items.result;
+           this.err = this.items;
            
           this.isOk=true;
           // if(resp.body.status==5) 
