@@ -1,20 +1,35 @@
 
   <app-dynamic-menu></app-dynamic-menu>
-<div class="container">
+<div class="">
 <div class="row">
   <div class = "col-md-12">
     <div class = "pull-left">
         <button [routerLink]="['']" class ="btn btn-info" style="width:50px;" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
     </div>
-<div class="pull-right" style="display: inline-block;" >
-    <button class= "btn btn-info" style="width:50px;"   (click)="getCheckedInItems()" >Cart</button>
+
+
+<div class="pull-right"  >
+   
+  <div class="input-group">
+    <input type="text" placeholder="Search Here"  name="search" [(ngModel)]="itemname" >
+    <span class="input-group-btn">
+      <button type="button" (click)="searchResult()" style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button>
+      <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
+    </span>
+    
+
+  
+  
+  <button class= "btn btn-info" style="width:50px;"   (click)="getCheckedInItems()" >Cart</button>
     <span>
         <a href="#" class="" data-toggle="dropdown">
             <i class="fa fa-shopping-cart"></i>
             <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
           </a>
     </span>
+  </div>
 </div>
+
 </div>
 
 </div>
