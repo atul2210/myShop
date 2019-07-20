@@ -1,15 +1,15 @@
 
 <!-- <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" > -->
-<div class="container">  
+<div class="container text-center">  
   <form [formGroup]="loginForm" >
 
    
       <div *ngIf="loading" >  
         <img src ="assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
       </div>
-<div class="row">
+<div class="row ">
 
-<div class="col-md-12 col-md-offset-3 box-header with-border" style="position:relative;top:50px;"
+<div class="col-md-8 col-sm-8 col-xs-8  box-header with-border" style="position:relative;top:50px;"
  [ngClass]="{'has-error':(loginForm.get('username').touched || loginForm.get('username').dirty)}">
   
 
@@ -38,13 +38,13 @@
     
     <div class="row">
    
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-8 col-sm-8 col-xs-8">
         <button class="btn btn-success" (click)="forgetpassword()" style="width:95px" >Forget Password</button>
         <button class="btn btn-success pull-right" style="width:93px" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
     </div>
     </div>
      <div class="row" style="margin-top: 25px;"> 
-    <div class="col-md-12 col-sm-12 col-xs-12">  
+    <div class="col-md-8 col-sm-8 col-xs-8">  
         <button class="btn btn-success " style="width:90px"  (click)= "openModalDialog()" >Sign In</button>
         <button class="btn btn-success pull-right" style="width:95px"  (click)="changepassword()" >Change Password</button>
    </div>

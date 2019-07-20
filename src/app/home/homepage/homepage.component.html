@@ -1,8 +1,8 @@
 
   <app-dynamic-menu></app-dynamic-menu>
-<div class="">
+<div class="container mt-3">
 <div class="row bg-light">
-  <div class = "col-md-12">
+  <div class = "col-md-12  border">
     <div class = "pull-left">
         <button [routerLink]="['']" class ="btn text-success" style="width:50px; " > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
     </div>
@@ -10,12 +10,7 @@
 
 <div class="pull-right"  >
    
-  <div class="input-group">
-    <input type="text" placeholder="Search Here" class="input:focus" name="search" [(ngModel)]="itemname" >
-    <span class="input-group-btn">
-      <button type="button" (click)="searchResult()" style = "width:60%"class="btn text-success font-size: x-small;"><i class="fa fa-search"></i></button>
-      <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
-    </span>
+ 
     <button class= "btn text-success" style="width:70px;"   (click)="RedirectToLogin()" >Sign In
     <span>
         <a href="#" class="" data-toggle="dropdown">
@@ -36,10 +31,24 @@
   </button>
   </div>
 </div>
-
+</div>
+<div class="row bg-light " >
+  <div class = "col-md-12 border ">
+      <div class = "pull-right">
+      <div class="input-group ">
+    
+          <input type="text" placeholder="Search Here" class="input:focus" name="search" [(ngModel)]="itemname" >
+          <span class="input-group-btn">
+            <button type="button" (click)="searchResult()" style = "width:40%"class="btn text-success font-size: x-small;"><i class="fa fa-search"></i></button>
+            <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
+          </span>
+      </div>
+</div>
 </div>
 
 </div>
+
+
 </div>
 
 
