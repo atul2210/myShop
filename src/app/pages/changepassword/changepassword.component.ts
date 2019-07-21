@@ -73,14 +73,14 @@ export class ChangepasswordComponent implements OnInit {
       }
     
     )
-
-     
-     
       
     }
-    
-    
-    
   }
+
+  RedirectToLogin()
+  {
+      this.router.navigateByUrl('/login');
+  }    
+
 
 }

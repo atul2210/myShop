@@ -103,13 +103,12 @@ ngOnDestroy()
    // temporarily commented - 25 Feb 2019
    /// this.service.changeSelectedItem(this.itemname);
    ////temporirly commented end here
-   
-   
-   this.router.navigateByUrl('/TempRouteSearch/'+this.itemname+'/search');
-   
-  
-  
+    this.router.navigateByUrl('/TempRouteSearch/'+this.itemname+'/search');
   }
+  RedirectToLogin()
+  {
+    this.router.navigateByUrl('/login')
 
+  }
  
 }

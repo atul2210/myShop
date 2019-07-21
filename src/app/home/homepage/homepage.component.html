@@ -1,32 +1,39 @@
 
   <app-dynamic-menu></app-dynamic-menu>
 <div class="">
-<div class="row bg-dark">
+<div class="row bg-light">
   <div class = "col-md-12">
     <div class = "pull-left">
-        <button [routerLink]="['']" class ="btn btn-info" style="width:50px;" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
+        <button [routerLink]="['']" class ="btn text-success" style="width:50px; " > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
     </div>
 
 
 <div class="pull-right"  >
    
   <div class="input-group">
-    <input type="text" placeholder="Search Here"  name="search" [(ngModel)]="itemname" >
+    <input type="text" placeholder="Search Here" class="input:focus" name="search" [(ngModel)]="itemname" >
     <span class="input-group-btn">
-      <button type="button" (click)="searchResult()" style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button>
+      <button type="button" (click)="searchResult()" style = "width:60%"class="btn text-success font-size: x-small;"><i class="fa fa-search"></i></button>
       <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
     </span>
-    
-
-  
-  
-  <button class= "btn btn-info" style="width:50px;"   (click)="getCheckedInItems()" >Cart</button>
+    <button class= "btn text-success" style="width:70px;"   (click)="RedirectToLogin()" >Sign In
     <span>
         <a href="#" class="" data-toggle="dropdown">
-            <i class="fa fa-shopping-cart"></i>
-            <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
+            <i class="fa fa-sign-in aria-hidden='true'"></i>
+           
           </a>
     </span>
+  </button>
+  
+  
+  <button class= "btn text-success " style="width:70px;"   (click)="getCheckedInItems()" >
+    <span>
+        
+            <i class="fa fa-shopping-cart"></i>
+            <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
+         
+    </span>
+  </button>
   </div>
 </div>
 

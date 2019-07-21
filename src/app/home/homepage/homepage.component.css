@@ -88,4 +88,15 @@ div.inline { float:left; }
   .footer p {
     margin-top: 30px;
   }
+
+  input:focus {
+    background-color: yellow;
+  }
+
+  .bgcolor
+  {
+    background: white;
+    font: green;
+   
+  }
   

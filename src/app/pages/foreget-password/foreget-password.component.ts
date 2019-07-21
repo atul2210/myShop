@@ -74,7 +74,11 @@ async SendMail()
     
   }
 
- 
+  RedirectToLogin()
+  {
+    this.router.navigateByUrl('/login')
+
+  }
 
 }
 
