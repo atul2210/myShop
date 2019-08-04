@@ -24,13 +24,13 @@ item;
   constructor(private config: NgbCarouselConfig, private shopapi:ShoppingApiService) { 
     /*ngx slider8*/
     this.slider.config.loop = true;
-    this.slider.config.showPreview=true;
+    this.slider.config.showPreview=false;
    // this.slider.config.transitionDuration = 1;
    
    // this.slider.config.previewWidth=20;
     this.slider.config.showTitle=false;
 /*ngx sliders end*/
-config.interval = 1000;
+config.interval = 2000;
 config.wrap = true;
 config.keyboard = false;
 
@@ -64,7 +64,8 @@ config.keyboard = false;
 // ];
 this.slider.config.loop = true;
     this.slider.config.showPreview = false;
-    this.slider.config.transitionDuration = 3;
+    this.slider.config.transitionDuration = 2;
+    
 this.imageItems = ['assets/Pics/pic4.jpg',
 'assets/Pics/pic1.jpg',
 'assets/Pics/pic2.jpg',
@@ -76,7 +77,7 @@ this.imageItems = ['assets/Pics/pic4.jpg',
   }
 
   ngOnInit() {
-
+   
     const slideItems = [
       { src: "assets/Pics/pic4.jpg", title: 'Title 1' },
       { src: 'assets/Pics/pic1.jpg', title: 'Title 2' },
