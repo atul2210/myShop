@@ -1,6 +1,6 @@
 
   <app-dynamic-menu></app-dynamic-menu>
-<div class=" mt-3">
+<div class="mt-0">
 <div class="row bg-light">
   <div class = "col-md-12  border">
     <div class = "pull-left">
@@ -9,19 +9,23 @@
 
 
 <div class="pull-right"  >
-   
+  <div class="input-group d-inline">
+    
+    <input type="text" style="line-height:1.8" placeholder="Search" class="input:focus" name="search" [(ngModel)]="itemname" >
+    <span class="input-group-btn">
+      <button type="button" (click)="searchResult()" style = "width:6%; "class="btn btn-success "><i class="fa fa-search"></i></button>
+      <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
+    </span>
+</div>
  
-    <button class= "btn text-success" style="width:70px;"   (click)="RedirectToLogin()" >Sign In
+    <button class= "btn text-success text-right"  (click)="RedirectToLogin()" style=" width: 110px"  >Sign In
     <span>
-        <a href="#" class="" data-toggle="dropdown">
-            <i class="fa fa-sign-in aria-hidden='true'"></i>
-           
-          </a>
+            <i class="fa fa-sign-in"></i>
     </span>
   </button>
+ 
   
-  
-  <button class= "btn text-success " style="width:50px;"   (click)="getCheckedInItems()" >
+  <button class= "btn text-success " style="width:70px;"   (click)="getCheckedInItems()" >
     <span>
         
             <i class="fa fa-shopping-cart"></i>
@@ -29,129 +33,53 @@
          
     </span>
   </button>
+  
+
   </div>
 </div>
 </div>
-<div class="row bg-warning " >
-  <div class = "col-md-12 border ">
-      <div class = "pull-right">
-      <div class="input-group ">
-    
-          <input type="text" placeholder="Search" class="input:focus" name="search" [(ngModel)]="itemname" >
-          <span class="input-group-btn">
-            <button type="button" (click)="searchResult()" style = "width:40%"class="btn text-success font-size: x-small;"><i class="fa fa-search"></i></button>
-            <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
-          </span>
-      </div>
-</div>
-</div>
 
 </div>
 
-
-</div>
-
-
- <!-- <header class = "main-header">
-  <nav class="navbar-expand-sm bg-light navbar-light ">
-    <div class="navbar-custom-menu" >
-      
-         
-      
-       <ul class="nav navbar-nav" (click)="getCheckedInItems()"   >
-        
-       <li class="dropdown messages-menu"  > 
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-shopping-cart"></i>
-            <span class="label label-success"> {{totalItem.totalCartItem}}</span>
-          </a>
-          </li>
-          </ul>
-
-                <ul class="dropdown-menu" (click)="getCheckedInItems()" style="width:500px">
-            <li class="header">You have {{totalItem.totalCartItem}}  items in cart. </li>
-            <li>
-              <ul class="menu" (click)="getCheckedInItems()">
-                <li>
-
-                            <table class="table table-striped table-border">
-                              <tbody>
-                                  <tr>
-                                    <th>Item</th>
-                                    <th>Color</th>
-                                    <th>Quantity</th>
-                                    <th >Offer Price</th>
-                                  </tr>
-                                   
-                                  <tr *ngFor="let item of cartItems;">
-                                    <td>{{item.itemname}}</td>
-                                    <td>{{item.colorname}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>{{item.offerprice}}</td>
-                                    <td></td>
-                                    </tr>
-                                   
-                            </tbody>
-                          </table>
-                     
-                      
-                      
-                    <p>Shop with us. Here is the cheapes.</p>
-                  
-                </li>
-                 
-              </ul>
-            </li>
-          </ul>
-        </li>
-        
-      </ul> 
-  
-    </div>
-   
-   
-  </nav>
- 
-</header> -->
-
-<!-- <app-search-result></app-search-result> -->
-<div style="position: relative;top:10px;width:100%"  >
+<div >
   <router-outlet  ></router-outlet>
-</div>
-<!-- <div style="position:fixed;bottom:0px;width:100% ">
-<footer class="footer fixed-bottom" style ="margin-top:50px">
-<div class ="container">
-  <div class ="row" style="background-color: blueviolet" >
-    <div class = "col-md-3">
-   
-      <span class="text-muted"><a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-      <span class="fa fa-facebook"></span>Facebook
-    </a>
 
-  </span>
 </div>
-<div class = "col-md-3">
-  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-    <span class="fa fa-whatsapp"></span>Whatsapp
-  </a>
 
-</span>
-</div>
-<div class = "col-md-3">
-  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-    <span class="fa fa-about"></span>About
-  </a>
+  
 
-</span>
-</div>
-<div class = "col-md-3">
-  <span class=""><a class="btn btn-block btn-social btn-success" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-    <span class="fa fa-about"></span>Contact Us
-  </a>
 
-</span>
-</div>
-</div>
-</div>
-</footer>
-</div> -->
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+              <a class="btn btn-block btn-social"  [routerLink]="['ContactUs']" >
+                  <span class="fa fa-phone"></span>Contact Us</a>
+        
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-block btn-social "  [routerLink]="['AboutUs']" >
+              <span class="fa fa-info"></span>AboutUs</a>
+        </div>
+ </div>
+
+
+
+
+    <div class="container text-center">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+      <a href="#"><i class="fa fa-google-plus"></i></a>
+      <a href="#"><i class="fa fa-skype"></i></a>
+    </div>
+  </footer>
+
+
+
+
+ 

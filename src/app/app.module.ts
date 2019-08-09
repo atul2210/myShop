@@ -46,6 +46,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ForegetPasswordComponent } from './pages/foreget-password/foreget-password.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { ChangepasswordComponent } from './pages/changepassword/changepassword.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { AboutUsComponent } from './pages/about-us.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +66,9 @@ import { ChangepasswordComponent } from './pages/changepassword/changepassword.c
     TempRouteComponent,
     ForegetPasswordComponent,
     ErrorComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    ContactUsComponent,
+    AboutUsComponent
    
     
     
@@ -97,6 +101,8 @@ import { ChangepasswordComponent } from './pages/changepassword/changepassword.c
       
       {path:'changepassword',component:ChangepasswordComponent},
       {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
+      {path:'ContactUs',component:ContactUsComponent},
+      {path:'AboutUs',component:AboutUsComponent},
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),
