@@ -1,47 +1,28 @@
 
   <app-dynamic-menu></app-dynamic-menu>
 <div class="mt-0">
-<div class="row bg-light">
-  <div class = "col-md-12  col-sm-12 border">
-    <div class = "pull-left">
-        <button [routerLink]="['']" class ="btn text-success" style="width:50px; " > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
-    </div>
 
-
-<div class="pull-right"  >
-  <div class="input-group d-inline">
-    
-    <input type="text" style="line-height:1.8" placeholder="Search" class="input:focus" name="search" [(ngModel)]="itemname" >
-    <span class="input-group-btn">
-      <button type="button" (click)="searchResult()" style = "width:6%; "class="btn btn-success "><i class="fa fa-search"></i></button>
-      <!-- <button type="button" [routerLink]="['/search',itemname]"  style = "width:60%"class="btn btn-info"><i class="fa fa-search"></i></button> -->
-    </span>
-</div>
- 
-    <button class= "btn text-success text-right"  (click)="RedirectToLogin()" style=" width: 110px"  >Sign In
-    <span>
-            <i class="fa fa-sign-in"></i>
-    </span>
-  </button>
- 
-  
-  <button class= "btn text-success " style="width:70px;"   (click)="getCheckedInItems()" >
-    <span>
+    <a [routerLink]="['']" class="ml-3" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></a>
+    <div class="pull-right d-inline">
+          <input type="text" style="line-height:1.5" placeholder="Search" class=" input:focus" name="search" [(ngModel)]="itemname" >
+          <a style="margin-left: -3px;"  class="cur" (click)="searchResult()" ><i class="fa fa-search"></i></a>
+       
+            <a class="ml-3 cur" (click)="RedirectToLogin()" >  Sign In  <i class="fa fa-sign-in"></i></a>
         
-            <i class="fa fa-shopping-cart"></i>
-            <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
-         
-    </span>
-  </button>
-  
-
+        <a class= "text-success cur " style="width:70px;margin-top: -3px"  (click)="getCheckedInItems()" >
+          <span  >
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
+          </span>
+        </a>
   </div>
-</div>
-</div>
 
 </div>
 
-<div >
+
+
+
+<div class="mt-5" >
   <router-outlet  ></router-outlet>
 
 </div>

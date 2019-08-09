@@ -117,4 +117,13 @@ div.inline { float:left; }
      width:130px;   
 
   }
-  
+  .cur
+  {
+    cursor: pointer;
+    border:1px solid black
+  }
+
+  .cur:hover {
+
+    border:1px solid green
+}
