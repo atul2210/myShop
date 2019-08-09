@@ -2,7 +2,7 @@
   <app-dynamic-menu></app-dynamic-menu>
 <div class="mt-0">
 <div class="row bg-light">
-  <div class = "col-md-12  border">
+  <div class = "col-md-12  col-sm-12 border">
     <div class = "pull-left">
         <button [routerLink]="['']" class ="btn text-success" style="width:50px; " > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></button>
     </div>
@@ -53,20 +53,15 @@
 
 
 <!-- Footer -->
-<footer class="footer">
-    
-    <div class="row">
-        <div class="col-md-2 col-sm-2">
-              <a class="btn btn-block btn-social"  [routerLink]="['ContactUs']" >
-                  <span class="fa fa-phone"></span>Contact Us</a>
+<footer class="footer ">
+  <div>
+              <a class="pl-2"  [routerLink]="['ContactUs']" >
+                  <i class="fa fa-phone"></i>Contact Us</a>
+            <a class="pl-2"  [routerLink]="['AboutUs']" >
+              <i class="fa fa-info"></i>AboutUs</a>
         
-        </div>
-        <div class="col-md-2 col-sm-2">
-            <a class="btn btn-block btn-social "  [routerLink]="['AboutUs']" >
-              <span class="fa fa-info"></span>AboutUs</a>
-        </div>
  </div>
-
+ 
 
 
 
