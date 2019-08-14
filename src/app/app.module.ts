@@ -48,6 +48,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { ChangepasswordComponent } from './pages/changepassword/changepassword.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/about-us.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,8 @@ import { AboutUsComponent } from './pages/about-us.component';
     ErrorComponent,
     ChangepasswordComponent,
     ContactUsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PrivacyPolicyComponent
    
     
     
@@ -102,6 +104,7 @@ import { AboutUsComponent } from './pages/about-us.component';
       {path:'changepassword',component:ChangepasswordComponent},
       {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
       {path:'ContactUs',component:ContactUsComponent},
+      {path:'PrivacyPolicy',component:PrivacyPolicyComponent},
       {path:'AboutUs',component:AboutUsComponent},
       {path:'**',component:PageNotFoundComponentComponent}
   

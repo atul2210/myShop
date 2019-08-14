@@ -1,5 +1,6 @@
-
-  <div class="row">
+<section>
+<div class="container">
+ 
 <!--
 <div class = "col-md-12 sticky-top">
   <ngb-carousel >
@@ -13,15 +14,14 @@
   </ngb-carousel>
 </div>
 -->
-<div class = "col-md-4 col-sm-4 sticky-top "  >
-    
-<img class="img-fluid"  src="assets/ICO/logo.jpg"/>
+<table class = "table sticky-top "  >
+ <tr>
+   <td>   
+      <img class="img-fluid"  src="assets/ICO/logo.jpg"/>
+  </td>
 
-</div>
-
- <div class = "col-md-8 col-sm-8 sticky-top" style="height:200px;width:200px " >
       <!-- <ngx-slider [init]="slider"></ngx-slider> -->
-   
+  <td> 
       <ngb-carousel >
           <ng-container *ngFor = "let item of imageItems;let i = index;">
         <ng-template   ngbSlide [id]=i >
@@ -31,6 +31,9 @@
         </ng-template>
         </ng-container>
         </ngb-carousel>
-</div> 
-</div>
+</td>
+</tr>
 
+</table>
+</div>
+</section>
