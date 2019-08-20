@@ -1,8 +1,4 @@
 <div class="container">
-    <div class="row row-centered pos">
-    <div class="col-md-12 col-xs-12">
-      
-        
         <ngx-datatable 
           #myTable
           class="material expandable" style="height:350px"
@@ -168,22 +164,18 @@
           </ngx-datatable-column> -->
 
         </ngx-datatable>
-        <div class="row "   >
-          <div class="col-md-12 col-xs-12">
-       
+        
               <p class="text-center">You saved Rs : {{saveSum}}</p>
               <p class ="text-center">Paid Amount  Rs : {{OfferPriceSum}}</p>
-          </div>
-        </div>
-        <div class="row pull-right"   >
-          <div class="col-md-12col-xs-12">
-            <input type = button class ="btn btn-success" (click)= "placeOrder();"value = "Place Order" >
-          
-          </div>
-          </div> 
+       
+       
       
-      </div>
-       </div>
+            <a class="btn btn-success"  (click)= "placeOrder();" >Place Order</a>
+            <a  class="btn btn-danger pull-right"(click)="cancel()">Back</a>
+        
+     
+    
+      
       
      
          

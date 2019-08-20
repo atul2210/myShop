@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service'
 import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
@@ -47,7 +49,7 @@ export class CheckinComponent implements OnInit {
   OfferPriceSum:number=0;
   saveSum:number=0;
   constructor(@Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,
-  private route:Router,private loadingIndicatorService: LoadingIndicatorServiceService ) { 
+  private route:Router,private loadingIndicatorService: LoadingIndicatorServiceService,private location: Location ) { 
 
     loadingIndicatorService
     .onLoadingChanged
@@ -183,6 +185,11 @@ fetch(cb) {
   onDetailToggle(event) {
     console.log('Detail Toggled', event);
   }
+
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
 
 }

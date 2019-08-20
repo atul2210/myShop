@@ -5,14 +5,14 @@
     <a [routerLink]="['']" class="ml-3" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></a>
     <div class="pull-right d-inline">
           <input type="text" style="line-height:1.5" placeholder="Search" class=" input:focus" name="search" [(ngModel)]="itemname" >
-          <a style="margin-left: -3px;"  class="cur" (click)="searchResult()" ><i class="fa fa-search"></i></a>
+          <a style="width:30px;"  class="cur btn btn-danger" (click)="searchResult()" ><i class="fa fa-search pull-left"></i></a>
        
-            <a class="ml-3 cur" (click)="RedirectToLogin()" >  Sign In  <i class="fa fa-sign-in"></i></a>
+            <a  style="width:80px;font-size:11px;  " class="cur mt-1 ml-1  btn btn-danger" (click)="RedirectToLogin()" >  Sign In  <i class="fa fa-sign-in pull-left"></i></a>
         
-        <a class= "text-success cur " style="width:70px;margin-top: -3px"  (click)="getCheckedInItems()" >
+        <a class= "text-danger cur  " style="width:70px;margin-top: -3px"  (click)="getCheckedInItems()" >
           <span  >
                   <i class="fa fa-shopping-cart"></i>
-                  <span class="label label-success rounded-circle"> {{totalItem.totalCartItem}}</span>
+                  <span class="label label-danger rounded-circle"> {{totalItem.totalCartItem}}</span>
           </span>
         </a>
   </div>
@@ -35,19 +35,36 @@
 
 <!-- Footer -->
 <footer class="footer">
-  
-              <a class="pl-2"  [routerLink]="['ContactUs']" > <i class="fa fa-phone"></i>Contact Us</a>
-              <a class="pl-2"  [routerLink]="['AboutUs']" > <i class="fa fa-info"></i>AboutUs</a>
-              <a class="pl-2"  [routerLink]="['PrivacyPolicy']" > <i class="fa fa-info"></i>Privacy Policy</a>
-              
-              
-    <div class="container text-center">
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
-      <a href="#"><i class="fa fa-google-plus"></i></a>
-      <a href="#"><i class="fa fa-skype"></i></a>
-    </div>
+  <div class="container">
+    <img src ="assets\ICO\logo.jpg"/>
+
+      <div class="text-center">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+          <a href="#"><i class="fa fa-skype"></i></a>
+     </div>
+<h4 class="green" >Shopping Help</h4>
+<div class="col-md-6 col-sm-6 col-xs-12">
+
+    <ul class="links">
+        <li class="first"><a class="pl-2"  [routerLink]="['ContactUs']" > <i class="fa fa-phone"></i>&nbsp;Contact Us</a></li>
+        <li><a class="pl-2"  [routerLink]="['AboutUs']" > <i class="fa fa-info"></i>&nbsp; AboutUs</a></li>
+        <li><a class="pl-2"  [routerLink]="['PrivacyPolicy']" > <i class="fa fa-info"></i>&nbsp;Privacy Policy</a></li>
+        <li><a class="pl-2"  [routerLink]="['PrivacyPolicy']" > <i class="fa fa-info"></i>&nbsp;Payment Policy</a></li>
+        <li><a class="pl-2"  [routerLink]="['PrivacyPolicy']" > <i class="fa fa-info"></i>&nbsp;Shipping Policy</a></li>
+
+    </ul>
+</div>
+
+      <div class="footer-bottom">
+          <div class="col-sm-4 col-xs-12 coppyright">
+            Copyright's <i class="fa fa-copyright"></i> 2013 - 2019 vidhim.com . All rights reserved.</div>
+
+
+      </div>
+      </div>   
   </footer>
 
 
