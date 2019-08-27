@@ -63,14 +63,15 @@ config.keyboard = false;
 //   'https://placeimg.com/600/600/tech'
 // ];
 this.slider.config.loop = true;
-    this.slider.config.showPreview = false;
+    this.slider.config.showPreview = true;
     this.slider.config.transitionDuration = 2;
     
-this.imageItems = ['assets/Pics/pic4.jpg',
-'assets/Pics/pic1.jpg',
-'assets/Pics/pic2.jpg',
-'assets/Pics/pic3.jpg'
-
+this.imageItems = ['assets/Pics/free1.jpg',
+'assets/Pics/free2.jpg',
+'assets/Pics/free3.jpg',
+'assets/Pics/free4.jpg',
+'assets/Pics/free5.jpg',
+'assets/Pics/free6.jpg'
 ];
 
 
@@ -78,15 +79,15 @@ this.imageItems = ['assets/Pics/pic4.jpg',
 
   ngOnInit() {
    
-    const slideItems = [
-      { src: "assets/Pics/pic4.jpg", title: 'Title 1' },
-      { src: 'assets/Pics/pic1.jpg', title: 'Title 2' },
-      { src: 'assets/Pics/pic2.jpg', title: 'Title 3' },
-      { src: 'assets/Pics/pic3.jpg', title: 'Title 4' }
+    // const slideItems = [
+    //   { src: "assets/Pics/pic4.jpg", title: 'Title 1' },
+    //   { src: 'assets/Pics/pic1.jpg', title: 'Title 2' },
+    //   { src: 'assets/Pics/pic2.jpg', title: 'Title 3' },
+    //   { src: 'assets/Pics/pic3.jpg', title: 'Title 4' }
   
-    ];
+    // ];
     
-    this.slider.items = slideItems; //ngx 
+  //  this.slider.items = slideItems; //ngx 
    
 
 
