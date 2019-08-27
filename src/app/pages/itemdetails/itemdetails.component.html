@@ -1,97 +1,94 @@
 
 <!-- <div class="container" *ngFor="let item of itemDetail;"> -->
+<table class="table">
+  <tr>
+<td>
 
 <div *ngIf="!displayError;">
-  <mat-grid-list  rowHeight="500px" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
+
+  <mat-grid-list  rowHeight="2:0.5" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
+      <table class="table">
+          <tr>
+            <td style="width:50%">
      
-        <!-- <mat-grid-tile  [style.backgroundColor]="'#D72568'"> -->
-          <div class="container" >
-          <div class="row"> 
-           <div class="col-md-6"> 
-            <!-- <mat-card-subtitle>My Cart -->
-      <div class="card ">
-        <ngx-image-zoom
-        [thumbImage]=item.imaggeUrl
-        
-        [fullImage]=item.imaggeUrl
-       
-        [enableLens] = true
-        [zoomMode] =hover
-        [enableScrollZoom] =true
-        [enableLens]=true
-        [magnification] =2
-        [circularLens] = true	
-        
-    ></ngx-image-zoom>
+              <div class="card ">
+                <ngx-image-zoom
+                [thumbImage]=item.imaggeUrl
+              
+                [enableLens] = true
+                [zoomMode] =hover
+                [enableScrollZoom] =true
+                [enableLens]=true
+                [magnification] =2
+                [circularLens] = true	
+                
+            ></ngx-image-zoom>
 
-  </div>
- 
- 
-  </div>
-  <!-- </mat-card-subtitle> -->
+          </div>
+        </td>
+        <td>
+            <div class="card ">
+                <li style="background-color: blueviolet" class="list-group-item" >
+                  <h2 style="color: white" >{{item.itemDescription}}</h2>  
+                </li  >
+                <li class="item-fore-color">
+                Size:&nbsp; {{item.sizeName}}
+                </li>
+                <li class="" style= "-webkit-text-fill-color:crimson "  >
+                  <h4>Available Quantity: &nbsp;{{item.availableQty}}</h4>
+                </li >
+                <li class=" item-fore-color">
+                  <s><h4>Total Price: &nbsp;{{item.price}}</h4>
+                  </s>
+                            <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
+                </li>
+                          <!-- <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" > -->
+                <li> 
+                  <ul style="-webkit-text-fill-color: indigo"  >
+                      <li item-fore-color style="" >
+                          <b> Color:&nbsp; {{item.color}}</b> 
+                        </li>
+                        <li >
+                          <b> Brand:&nbsp; {{item.brand}}</b> 
+                        </li>
+                      <li item-fore-color> 
+                        <b>    Delivery Charges:&nbsp; ₹ {{item.deliveryCharges}}</b>
+                          </li>
+                  </ul>
+                </li>  
+                <li class="item-fore-color">
+                        <h4> Offer Price:&nbsp; ₹ {{item.offerPrice}}</h4> 
+                </li>
+                
+              <li class="item-fore-color">
+                          Brand:&nbsp; {{item.brand}} 
 
-  <div class="col-md-6"> 
-     
-        <ul >
-                    
-            <li style="background-color: blueviolet" class="list-group-item" >
-               <h2 style="color: white" >{{item.itemDescription}}</h2>  
-            </li  >
-             <li class="list-group-item item-fore-color">
-             Size:&nbsp; {{item.sizeName}}
-             </li>
-             <li class="list-group-item" style= "-webkit-text-fill-color:crimson "  >
-               <h4>Available Quantity: &nbsp;{{item.availableQty}}</h4>
-             </li >
-             <li class="list-group-item item-fore-color">
-               <s><h4>Total Price: &nbsp;{{item.price}}</h4>
-               </s>
-                        <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
-             </li>
-                      <!-- <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" > -->
-             <li class="list-group-item"> 
-               <ul style="-webkit-text-fill-color: indigo"  >
-                   <li item-fore-color style="" >
-                       <b> Color:&nbsp; {{item.color}}</b> 
-                    </li>
-                    <li >
-                      <b> Brand:&nbsp; {{item.brand}}</b> 
-                     </li>
-                   <li item-fore-color> 
-                    <b>    Delivery Charges:&nbsp; ₹ {{item.deliveryCharges}}</b>
-                      </li>
-               </ul>
-             </li>  
-             <li class="list-group-item item-fore-color">
-                     <h4> Offer Price:&nbsp; ₹ {{item.offerPrice}}</h4> 
-             </li>
-             
-           <li class="list-group-item item-fore-color">
-                      Brand:&nbsp; {{item.brand}} 
-
-           </li>
-           <li class="list-group-item">
-            <b>  Delivery:&nbsp; By Courier</b> 
-           </li>  
-          <li class="list-group-item item-fore-color">
-          <b>  Fabric:&nbsp; Pure Cotton </b>
-          </li> 
-            
-       
-        </ul>
-        <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right"  >
-          <mat-icon>shopping_cart</mat-icon> 
-          Add to Cart 
-        </button >
-        </div>
-    
-      </div>
-      </div>
+              </li>
+              <li >
+                <b>  Delivery:&nbsp; By Courier</b> 
+              </li>  
+              <li class="item-fore-color">
+              <b>  Fabric:&nbsp; Pure Cotton </b>
+              </li> 
+                
+          
+           
+            <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right"  >
+              <mat-icon>shopping_cart</mat-icon> 
+              Add to Cart 
+            </button >
+            </div>
+        </td>
+      </tr>
+    </table>   
 </mat-grid-list>
 
 
-
 </div>
+</td>
+
+</tr>
+</table>
 <div *ngIf="displayError;"><h1>Oops Item sold. No quantity available now</h1></div>
 
 
