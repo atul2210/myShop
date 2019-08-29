@@ -5,14 +5,14 @@
   
 <div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
 
- <div class = "ui four cards justify-content-center">
-  <div *ngFor="let item of itemsarr;let i=index" style= "padding-top: 20px;">
+ <div style="background-color: dimgray" class = "ui four cards justify-content-center">
+  <div *ngFor="let item of itemsarr;let i=index" style= "padding: 10px;">
  
 
     <a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
 
-      <div class="image">
-        <img style="width:200px;height:200px;" [src]=item.image>
+      <div class="image" >
+        <img style="width:150px;height:150px;" [src]=item.image>
       </div>
       <div class="">
         <a class="header">{{item.itemName}}</a>

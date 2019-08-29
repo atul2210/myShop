@@ -71,7 +71,8 @@ this.imageItems = ['assets/Pics/free1.jpg',
 'assets/Pics/free3.jpg',
 'assets/Pics/free4.jpg',
 'assets/Pics/free5.jpg',
-'assets/Pics/free6.jpg'
+'assets/Pics/free6.jpg',
+'assets/Pics/free8.jpg'
 ];
 
 
