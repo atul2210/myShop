@@ -7,6 +7,7 @@
           [footerHeight]="50"
           [rowHeight]="250"
           [scrollbarV]="true"
+          [scrollbarH]="false"
           [rows]='rows'
           [limit]="3"
           (page)="onPage($event)">
@@ -164,19 +165,12 @@
           </ngx-datatable-column> -->
 
         </ngx-datatable>
-        
+        <br>
               <p class="text-center">You saved Rs : {{saveSum}}</p>
               <p class ="text-center">Paid Amount  Rs : {{OfferPriceSum}}</p>
-       
-       
       
             <a class="btn btn-success"  (click)= "placeOrder();" >Place Order</a>
             <a  class="btn btn-danger pull-right"(click)="cancel()">Back</a>
         
-     
-    
-      
-      
-     
          
       </div>

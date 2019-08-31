@@ -1,6 +1,6 @@
 
 .navbar{
-    background: rgb(204, 6, 161) !important;
+    background: orangered !important;
 }
 
 .dropdown{
@@ -14,7 +14,7 @@
     border-radius:0px 0px 5px 5px;
 }
 .dropdown-item:hover{
-    background:#c74879;
+    background:orangered;
     color:rgb(42, 22, 221);
 }
 .dropdown-menu a{
@@ -39,13 +39,13 @@ nav a {
     
     margin: auto;
     display: grid;
-     grid-template-columns: 30% 30% 40%;
+     grid-template-columns: auto auto auto;
     
     justify-items: stretch;
     align-items: stretch;
     box-shadow: 1px 1px blue;
     
-    padding: 10px;
+    padding: 5px;
 
     /* float: left;
     width: 550px;
