@@ -22,4 +22,11 @@
     height:50%;
   }
 
-  
+  img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top:3px;
+    margin-left:3px;
+    padding: 5px;
+    width: 150px;
+  }

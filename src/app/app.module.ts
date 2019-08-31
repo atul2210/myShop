@@ -49,6 +49,8 @@ import { ChangepasswordComponent } from './pages/changepassword/changepassword.c
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/about-us.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +72,9 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
     ChangepasswordComponent,
     ContactUsComponent,
     AboutUsComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    PaymentComponent,
+    ShippingPolicyComponent
    
     
     
@@ -106,6 +110,8 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
       {path:'ContactUs',component:ContactUsComponent},
       {path:'PrivacyPolicy',component:PrivacyPolicyComponent},
       {path:'AboutUs',component:AboutUsComponent},
+      {path:'Payment',component:PaymentComponent},
+      {path:'ShippingPolicy',component:ShippingPolicyComponent},
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),
