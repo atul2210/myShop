@@ -184,3 +184,9 @@ footer h4 {
   color: #BEBEBE;
 }
 
+.dropdown-menu
+{
+  min-width:80px;
+  margin-top: 1px;
+}
+

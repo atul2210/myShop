@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
@@ -51,6 +51,7 @@ import { AboutUsComponent } from './pages/about-us.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy.component';
+import { LogoutComponent } from './pages/logout/logout.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy
     AboutUsComponent,
     PrivacyPolicyComponent,
     PaymentComponent,
-    ShippingPolicyComponent
+    ShippingPolicyComponent,
+    LogoutComponent
    
     
     
@@ -104,7 +106,7 @@ import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy
       {path:'registration/:mobile',component:UserRegistrationComponent },
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
       {path:'forgetpassword',component:ForegetPasswordComponent},
-      
+      {path:'logout',component:LogoutComponent},
       {path:'changepassword',component:ChangepasswordComponent},
       {path:'Error/:message/:compo/:mobi',component:ErrorComponent },
       {path:'ContactUs',component:ContactUsComponent},
@@ -132,7 +134,7 @@ import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy
         BrowserAnimationsModule
     
   ],
-  providers: [ShoppingApiService,Globals,
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ShoppingApiService,Globals,
     ShoppingApiService,
     {
       provide:HTTP_INTERCEPTORS,

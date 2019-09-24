@@ -7,8 +7,17 @@
           <input type="text" style="line-height:1.5" placeholder="Search" class=" input:focus" name="search" [(ngModel)]="itemname" >
           <a style="width:30px;"  class="cur btn btn-danger" (click)="searchResult()" ><i class="fa fa-search pull-left"></i></a>
        
-            <a  style="width:80px;font-size:11px;  " class="cur mt-1 ml-1  btn btn-danger" (click)="RedirectToLogin()" >  Sign In  <i class="fa fa-sign-in pull-left"></i></a>
-        
+            <!-- <a  style="width:80px;font-size:11px;  " class="cur mt-1 ml-1  btn btn-danger" (click)="RedirectToLogin()" >  Sign In  <i class="fa fa-sign-in pull-left"></i></a> -->
+          
+              <button style="width:30px;height:25px;" class="cur btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a  class="cur btn btn-danger pull-right" style="width:85px;text-align:left;font-size:10px;" (click)="RedirectToLogin()">Sign In <i class="fa fa-sign-in "></i> </a></li>
+                <li><a [routerLink]="['/logout']" style="width:85px;text-align:left;font-size:10px;color: black; " class=" cur btn btn-danger pull-right">Sign Out <i class="fa fa-sign-in "></i> </a></li>
+                <!-- <li><a style="width:80px;font-size:11px;" class="cur mt-1 ml-1  btn btn-danger">New User <i class="fa fa-sign-in pull-left"></i> </a></li> -->
+              </ul>
+          
+         
         <a class= "text-danger cur  " style="width:70px;margin-top: -3px"  (click)="getCheckedInItems()" >
           <span  >
                   <i class="fa fa-shopping-cart"></i>
