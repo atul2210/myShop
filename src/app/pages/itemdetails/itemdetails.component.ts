@@ -105,7 +105,7 @@ displayError:boolean=false;
   {
       let sessionToken:string;
       sessionToken=localStorage.getItem("sessionToken");        
-      this.restProvider.addToCart(this.itemid,'1',this.colorname,this.price,this.offerprice,this.deliverycharges,this.coloId)
+      this.restProvider.addToCart(this.itemid,'1')
       
       .subscribe(
         data => 

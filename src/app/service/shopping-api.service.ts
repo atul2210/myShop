@@ -53,14 +53,14 @@ private subject = new Subject<itemNotify|null>()
   }
 
 
-addToCart(itemid:string,quantity:string,color:string,price:number,offerprice:number,deliverycharges:number,colorId:number): Observable<any>
+addToCart(itemid:string,quantity:string): Observable<any>
 {
   let querystring:string;
   let sessionToken:string;
 
   sessionToken=localStorage.getItem("sessionToken");
  
-  querystring = "?itemid=" + itemid+ "&quantity="+quantity+"&color=" +color + "&sessionId=" + sessionToken + "&price=" + price  + "&offerprice=" + offerprice  + "&deliverycharges=" + deliverycharges   + "&colorId=" + colorId;
+  querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + sessionToken ;
   this.uri=this.baseUrl+"/api/items/";
 
   return this.http.post(
