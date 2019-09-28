@@ -23,7 +23,7 @@ export class authguard implements CanActivate
         
         if(idToken)
         {
-            console.log("RouterGuard called");
+          
             //added on 15 jul 2018
             // this.router.navigate(['home']);
             return true;

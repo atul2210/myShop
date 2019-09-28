@@ -5,7 +5,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import {FormGroup,FormBuilder, Validators} from '@angular/forms';
 import {authguard} from '../../service/auth-guard'
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 import { stringify } from '@angular/core/src/render3/util';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   mobile:string="";
   loading:boolean=false;
   constructor( private route: ActivatedRoute,private loadingIndicatorService: LoadingIndicatorServiceService,
-            private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder) 
+            private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder,private location:Location) 
     
    {
     loadingIndicatorService
@@ -82,8 +82,8 @@ export class LoginComponent implements OnInit {
       }
 
     }
+    this.location.back(); // <-- go back to previous location
   
-  ;
 }
 
 openModalDialog()

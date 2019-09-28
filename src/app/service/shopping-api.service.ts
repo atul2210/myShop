@@ -56,11 +56,11 @@ private subject = new Subject<itemNotify|null>()
 addToCart(itemid:string,quantity:string): Observable<any>
 {
   let querystring:string;
-  let sessionToken:string;
+  let id_token:string;
 
-  sessionToken=localStorage.getItem("sessionToken");
+  id_token=localStorage.getItem("id_token");
  
-  querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + sessionToken ;
+  querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + id_token ;
   this.uri=this.baseUrl+"/api/items/";
 
   return this.http.post(
@@ -72,8 +72,8 @@ addToCart(itemid:string,quantity:string): Observable<any>
 getCheckedInItem(sessionId:string)//:Observable<any>
 {
   let querystring:string;
-  let sessionToken:string
- 
+  ////let sessionToken:string
+  
   this.uri=this.baseUrl+"/api/items/";
 
   const params = new HttpParams().set('userSession', sessionId);
@@ -83,14 +83,14 @@ getCheckedInItem(sessionId:string)//:Observable<any>
   
   .catch(this.handleError.bind(this) );
 
-
+  
 
 }
 
 public RemoveItem(itemid:string,quantity:string,sessionId:string,checkinid:string):Observable<any>
 {
   let querystring:string; 
-  let sessionToken:string;
+ 
   querystring = "?itemid=" + itemid+ "&returnedItemQty="+quantity + "&sessionId="+sessionId + "&checkedinId="+checkinid ;
   this.uri=this.baseUrl+"/api/items/";
   return this.http.post(
@@ -160,6 +160,8 @@ private setSession(authResult) {
 logout() {
   localStorage.removeItem("id_token");
   localStorage.removeItem("expires_at");
+  
+  
 }
 
 public isLoggedIn() {

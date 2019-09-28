@@ -78,6 +78,7 @@ ngOnDestroy()
 
   public getCheckedInItems():any
   {
+    
     this.router.navigateByUrl('/checkin');
   this.getcheck();
 
@@ -87,7 +88,8 @@ ngOnDestroy()
   {
 
     let userSessionid:string;  
-    userSessionid = localStorage.getItem("sessionToken");
+    userSessionid = localStorage.getItem("id_token");
+    if(userSessionid!==null){
     this.ShoppingApiService.getCheckedInItem(userSessionid)
     .subscribe(
       (data:checkedInItemsArray) => { 
@@ -95,6 +97,7 @@ ngOnDestroy()
        this.totalItem.totalCartItem = data.body.length;
         return this.cartItems;
       });
+    }
 
   }
 

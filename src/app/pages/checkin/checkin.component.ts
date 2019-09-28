@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service'
 import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
 import { Location } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-checkin',
@@ -67,18 +68,20 @@ export class CheckinComponent implements OnInit {
 GetCheckedInItems()
 {
   let userSessionid:string;  
-  userSessionid = localStorage.getItem("sessionToken");
-  this.ShoppingApiService.getCheckedInItem(userSessionid)
-  .subscribe(
-    (data:checkedInItemsArray) => { 
-     
-     this.cartItems= data.body;
-     this.rows =this.cartItems;
-     this.itemnotify.totalCartItem = this.rows.length;
-     this.getSum(this.rows);
-     return this.rows;
-    });
-
+  userSessionid = localStorage.getItem("id_token"); 
+  if(userSessionid!==null)
+  {
+      this.ShoppingApiService.getCheckedInItem(userSessionid)
+      .subscribe(
+        (data:checkedInItemsArray) => { 
+        
+        this.cartItems= data.body;
+        this.rows =this.cartItems;
+        this.itemnotify.totalCartItem = this.rows.length;
+        this.getSum(this.rows);
+        return this.rows;
+        });
+  }
 }
 
 public getSum(sum:any[]) {
@@ -98,9 +101,17 @@ document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
  public RemoveItems(itemid:string,quantity:string,checkinid:string)
   {
    
-        let userSessionid:string;  
-        userSessionid = localStorage.getItem("sessionToken");
-          this.ShoppingApiService.RemoveItem(itemid,quantity,userSessionid,checkinid)
+    const idToken= localStorage.getItem("id_token");
+      
+    if(idToken)
+    {
+      let header = new HttpHeaders();
+      header.set("Authorization","Bearer "+ idToken);
+    }
+    else
+      this.route.navigateByUrl('/login');
+
+          this.ShoppingApiService.RemoveItem(itemid,quantity,idToken,checkinid)
           .subscribe((res)=>
           {
             
@@ -125,7 +136,7 @@ private notify():void
   let localstorage:string = localStorage.getItem("id_token");
   let EmailId:string = localStorage.getItem("email");
 
-  let userSessionid = localStorage.getItem("sessionToken");
+  
   if(localstorage==null )
   {
     this.route.navigateByUrl('/login');
@@ -136,7 +147,7 @@ private notify():void
         
         if(EmailId!=='undefined')
         {
-          this.ShoppingApiService.paymentreceive(EmailId,userSessionid,this.rows)
+          this.ShoppingApiService.paymentreceive(EmailId,localstorage,this.rows)
           .subscribe((res:Response) =>
           {
           

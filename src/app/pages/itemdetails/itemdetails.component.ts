@@ -8,6 +8,7 @@ import {Iitems} from '../../pages/iitems';
 import { Router } from '@angular/router';
 import { CartItemServiceService } from '../../service/cart-item-service.service';
 import { itemNotify, Inotify } from './item-notify';
+import { HttpRequest, HttpHeaders } from '@angular/common/http'; 
 declare var jquery:any;
 declare var $ :any;
 
@@ -103,44 +104,32 @@ displayError:boolean=false;
   
   addToCart()
   {
-      let sessionToken:string;
-      sessionToken=localStorage.getItem("sessionToken");        
+      const idToken= localStorage.getItem("id_token");
+      
+      if(idToken)
+      {
+        let header = new HttpHeaders();
+        header.set("Authorization","Bearer "+ idToken);
+        
       this.restProvider.addToCart(this.itemid,'1')
       
       .subscribe(
         data => 
         { 
-          if(sessionToken==null && data!=null)
-          {
-            localStorage.setItem("sessionToken",data.sessionIdToken); 
-            
-          }
           this.inotify.totalCartItem = data.count; 
           this.notifyTotalItem(this.inotify);
           this.router.navigateByUrl('/checkin');
        });
-       
-       //this.notifyTotalItem(this.inotify);
+      }
+      else{
+        this.router.navigateByUrl('/login');
+      }
   }
 
     private getColor(colorName:string)
     {
       this.colorname=colorName;
     }
-
-
-    // private purchase()
-    // {
-    //   let sessionToken:string;
-    //   sessionToken = localStorage.getItem("sessionToken");
-    //   if(sessionToken==null || sessionToken=="")
-    //   {
-    //       this.router.navigateByUrl("/login")
-
-    //   }
-    //   //else transfer for payment gateway
-
-    // }
 
 private notifyTotalItem(totalItem:Inotify)
 { 
