@@ -27,10 +27,11 @@ export class HomepageComponent implements OnInit,OnDestroy {
 
   }
   private subscription: ISubscription;
+  private fullNameSubcription: ISubscription;
   private subs: ISubscription;
   itemReceivedAddToCard :any[];
   count:number;
-
+  fullName:string;
   cartItems:any;
   
 
@@ -52,7 +53,18 @@ export class HomepageComponent implements OnInit,OnDestroy {
          this.totalItem = ttlItems; 
          
         });
+        if(localStorage.getItem("fullName")===null)
+        {
 
+        this.fullNameSubcription = this.ShoppingApiService.getUserFullName()
+          .subscribe(fullname=>
+          {
+            this.fullName ="Hi "+fullname;
+            localStorage.setItem("fullName",this.fullName)
+          }
+        )
+        }
+        else this.fullName= localStorage.getItem("fullName");
 
         
   }

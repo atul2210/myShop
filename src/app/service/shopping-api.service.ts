@@ -16,6 +16,7 @@ import * as moment from "moment";
 import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
 import { rsetpassword } from '../model/resetpassword';
 import { environment } from '../../environments/environment';
+import { NotifyUserfullName } from '../pages/login/Notify-UserName';
 @Injectable()
 export class ShoppingApiService {
 uri:string;
@@ -25,6 +26,8 @@ private loggedIn = false;
 private json: any;
 
 private subject = new Subject<itemNotify|null>()
+
+private userFullNamesubject = new Subject<string|null>()
   constructor(private http: HttpClient,private responseData:responseData)
   { 
 
@@ -160,7 +163,8 @@ private setSession(authResult) {
 logout() {
   localStorage.removeItem("id_token");
   localStorage.removeItem("expires_at");
-  
+  localStorage.removeItem("fullName");
+  localStorage.removeItem("email");
   
 }
 
@@ -181,19 +185,14 @@ getExpiration() {
 
 
 public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
-
-
 {
-  let querystring:string;
-
-this.uri=this.baseUrl+"/api/items/"; 
-querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
+     let querystring:string;
+     this.uri=this.baseUrl+"/api/items/"; 
+     querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
      return this.http.get<Ipagedata>(
      this.uri+"AllItemsOnPaging/"+querystring, { observe: 'response'})
-     
      .catch(this.handleError.bind(this) );
-
-     }
+}
 
      public addUser(user:registration):Observable<any>
      {
@@ -245,11 +244,21 @@ public changeSelectedItem(totalItem:itemNotify|null)
 {
   this.subject.next(totalItem);
 }
-
-
 getItem():Observable<any>
 {
   return this.subject.asObservable();
+
+}
+
+public userFullName(fullName:string|null)
+{
+ 
+  return this.userFullNamesubject.next(fullName);
+
+}
+getUserFullName():Observable<any>
+{
+  return this.userFullNamesubject.asObservable();
 
 }
 
