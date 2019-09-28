@@ -11,8 +11,9 @@ export class LogoutComponent implements OnInit {
   constructor(private service:ShoppingApiService) { }
 
   ngOnInit() {
+    this.service.userFullName("");
     this.service.logout();
-    
+  
     
 
   }

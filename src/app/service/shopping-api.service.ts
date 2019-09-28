@@ -81,7 +81,7 @@ getCheckedInItem(sessionId:string)//:Observable<any>
 
   const params = new HttpParams().set('userSession', sessionId);
   return this.http.get<checkedInItemsArray[]>(
-  this.uri+"getcheckedinItem/", { observe: 'response', params})
+  this.uri+"getcheckedinItem", { observe: 'response', params})
   
   
   .catch(this.handleError.bind(this) );
