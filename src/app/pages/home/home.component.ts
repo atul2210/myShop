@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit  {
   data:string;  
 
   pageindex:number=0;
-  pagesize:number=50;
+  pagesize:number=8;
   pageArray:any[];
   count:number;
   dynamicHtml:string;

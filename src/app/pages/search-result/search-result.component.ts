@@ -11,7 +11,7 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class SearchResultComponent implements OnInit {
   pageindex:number=0;
-  pagesize:number=20;
+  pagesize:number=8;
   data:string;  
   imageItems:any[];
   pageArray:any[];

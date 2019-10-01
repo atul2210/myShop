@@ -190,3 +190,7 @@ footer h4 {
   margin-top: 1px;
 }
 
+.mobile-center{
+  float:none !important;
+  margin: 0 auto
+}

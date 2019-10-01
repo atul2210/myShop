@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   items:any[];
   public categoryItemArray: Array<any> = [];
   private pageindex:number;
-  private pagesize:number=5;
+  private pagesize:number=8;
   public categoryId:number;
   public subcategory:number;
   public totalcount;
