@@ -35,7 +35,7 @@
                   <h4>Available Quantity: &nbsp;{{item.availableQty}}</h4>
                 </li >
                 <li class="list-group-item item-fore-color">
-                  <s><h4>Total Price: &nbsp;{{item.price}}</h4>
+                  <s><h4>Total Price: &nbsp;{{item.price |currency :"₹":0}}</h4>
                   </s>
                             <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
                 </li>
@@ -49,12 +49,12 @@
                           <b> Brand:&nbsp; {{item.brand}}</b> 
                         </li>
                       <li item-fore-color> 
-                        <b>    Delivery Charges:&nbsp; ₹ {{item.deliveryCharges}}</b>
+                        <b>    Delivery Charges:&nbsp; {{item.deliveryCharges |currency :"₹":0}}</b>
                           </li>
                   </ul>
                 </li>  
                 <li class="list-group-item item-fore-color">
-                        <h4> Offer Price:&nbsp; ₹ {{item.offerPrice}}</h4> 
+                        <h4> Offer Price:&nbsp;  {{item.offerPrice|currency :"₹":0}}</h4> 
                 </li>
                 
               <li class="list-group-item item-fore-color">

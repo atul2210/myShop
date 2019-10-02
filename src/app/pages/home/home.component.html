@@ -25,6 +25,12 @@
         <div class="description">
          {{item.itemDescription}}
         </div>
+        <div class="meta">
+          <span class="date">Price : {{item.price |currency :"₹":0}}</span>
+        </div>
+        <div class="meta">
+          <span class="date">Offer Price : {{item.offerPrice |currency :"₹":0}}</span>
+        </div>
       </div>
       <div >
         
