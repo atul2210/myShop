@@ -2,7 +2,10 @@
       <app-sliders></app-sliders>
 
 
-  
+      <div *ngIf="loading" >  
+        <img src ="assets/loading/loading.gif" class = "header-shadow" > Loading ...
+      </div>
+
 <div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
 
  <div style="background-color: dimgray" class = "ui four cards justify-content-center">

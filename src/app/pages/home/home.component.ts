@@ -4,7 +4,7 @@ import {ShoppingApiService} from '../../service/shopping-api.service';
 import {responseData} from '../../model/pagedata'
 import {BrowserModule, DomSanitizer, SafeHtml} from '@angular/platform-browser'
 import {SearchServiceService} from '../../service/search-service.service';
-
+import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +15,16 @@ import {SearchServiceService} from '../../service/search-service.service';
 
 export class HomeComponent implements OnInit  {
   data:string;  
-
+  loading:boolean=false;
   pageindex:number=0;
   pagesize:number=8;
   pageArray:any[];
   count:number;
   dynamicHtml:string;
-  constructor(private responseData:responseData,private ShoppingApiService:ShoppingApiService,private service:SearchServiceService) {
+  constructor(private responseData:responseData,private ShoppingApiService:ShoppingApiService,private service:SearchServiceService,private loadingIndicatorService: LoadingIndicatorServiceService) {
+    loadingIndicatorService
+    .onLoadingChanged
+    .subscribe(isLoading => this.loading = isLoading);
 
 
   }

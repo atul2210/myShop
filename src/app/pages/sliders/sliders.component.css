@@ -23,10 +23,14 @@
   }
 
   img {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     margin-top:3px;
     margin-left:3px;
     padding: 5px;
     width: 150px;
+    /* border-color: darkred; */
   }
+  .borderless td, .borderless th {
+    border: none;
+}
