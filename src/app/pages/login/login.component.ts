@@ -66,20 +66,17 @@ export class LoginComponent implements OnInit {
 
     .subscribe(data=>
           {
-          console.log('data',data)
+          console.log('logindata',data)
           this.http.userFullName(data.fullname)
           this.router.navigateByUrl('/HomeComponent')
   })
     err => 
     {
-      
+     
       if(err.status!==200)
       {
-      
-        console.error('dfdfdfd',err.statusText)
         localStorage.setItem("id_token",'');
-        
-        this.err=err.statusText;
+        this.err=err.statusText; 
       }
 
     }

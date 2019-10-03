@@ -194,7 +194,7 @@ fetch(cb) {
   }
 
   onDetailToggle(event) {
-    console.log('Detail Toggled', event);
+   
   }
 
   cancel() {
