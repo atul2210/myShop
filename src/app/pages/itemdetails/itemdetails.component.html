@@ -1,7 +1,9 @@
 
 <!-- <div class="container" *ngFor="let item of itemDetail;"> -->
 
-
+  <div *ngIf="loading" >  
+    <img src ="assets/loading/loading.gif" class = "header-shadow" > Loading ...
+  </div>
 <div *ngIf="!displayError;">
 
   <mat-grid-list  rowHeight="2:0.5" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >

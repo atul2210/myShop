@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter, ɵConsole } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import {HomepageComponent} from '../../home/homepage/homepage.component';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { CartItemServiceService } from '../../service/cart-item-service.service';
 import { itemNotify, Inotify } from './item-notify';
 import { HttpRequest, HttpHeaders } from '@angular/common/http'; 
+import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -41,9 +42,12 @@ brand:string;
 availableQty:number;
 breakpoint: number;
 displayError:boolean=false;
-
+loading:boolean=false;
   constructor( public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
-    private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify){
+    private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService){
+      loadingIndicatorService
+      .onLoadingChanged
+      .subscribe(isLoading => this.loading = isLoading);
 
   }
   itemDetail:any[]; 
@@ -54,39 +58,40 @@ displayError:boolean=false;
     //const img2 = require('./assets/thumbnail2.jpg');
     
     //$('#74').ezPlus();
-
+   
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
 
     
     
     this.itemid = this.route.snapshot.params["itemid"];
+    
     this.restProvider.itemDetails(this.itemid)
     .subscribe(
-      data => { 
-      this.itemDetail= Array.of(data.body)
-      this.colorDetail =data.body.availableColor.split(";")
-      this.colorname=this.colorDetail[0]
-      this.price = data.body.price
-      this.offerprice = data.body.offerPrice
-      this.deliverycharges = data.body.deliveryCharges
-      this.coloId = data.body.colorId
-      this.sizeName = data.body.sizeName
-      this.category = data.body.categoryName
-      this.brand = data.body.brand
-      this.availableQty = data.body.availableQty
-      
-        if(this.availableQty==0) 
+      data => {
+        
+        if(data.body.availableQty>0) 
         {
-         
-          this.displayError=true;
-        }
-        else 
+          this.itemDetail= Array.of(data.body)
+          this.colorDetail =data.body.availableColor.split(";")
+          this.colorname=this.colorDetail[0]
+          this.price = data.body.price
+          this.offerprice = data.body.offerPrice
+          this.deliverycharges = data.body.deliveryCharges
+          this.coloId = data.body.colorId
+          this.sizeName = data.body.sizeName
+          this.category = data.body.categoryName
+          this.brand = data.body.brand
+          this.availableQty = data.body.availableQty
           this.displayError=false;
-         // alert(this.availableQty)
-      
+      }
+      else  
+      {
+        this.displayError=true;
+      }
     }
     
-  );
+  )
+ 
 
 
 
