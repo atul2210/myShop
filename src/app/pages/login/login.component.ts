@@ -66,9 +66,8 @@ export class LoginComponent implements OnInit {
 
     .subscribe(data=>
           {
-          console.log('logindata',data)
           this.http.userFullName(data.fullname)
-          this.router.navigateByUrl('/HomeComponent')
+          this.location.back();
   })
     err => 
     {
