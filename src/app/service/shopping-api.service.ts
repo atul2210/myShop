@@ -146,9 +146,9 @@ private setSession(authResult) {
   if(currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
       futureMonth = futureMonth.add(1, 'd');
   }
-  
+  var tokenExpire = currentDate.add(5,"days");
   localStorage.setItem('id_token', authResult.authToken);
-  localStorage.setItem("expires_at",futureMonth.toString()); 
+  localStorage.setItem("expires_at",tokenExpire.toString()); 
 
   
 
