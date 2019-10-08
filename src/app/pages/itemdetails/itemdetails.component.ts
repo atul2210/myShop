@@ -124,9 +124,23 @@ loading:boolean=false;
           this.inotify.totalCartItem = data.count; 
           this.notifyTotalItem(this.inotify);
           this.router.navigateByUrl('/checkin');
-       });
+       },
+       err=>
+       {
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
+       this.router.navigateByUrl('/login');
+
+       }
+       );
       }
       else{
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("email");
         this.router.navigateByUrl('/login');
       }
   }

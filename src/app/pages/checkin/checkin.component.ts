@@ -143,7 +143,7 @@ private notify():void
   }
     else
     {
-        alert("go to payment gateway");
+        console.log("Move to payment gateway");
         
         if(EmailId!=='undefined')
         {
