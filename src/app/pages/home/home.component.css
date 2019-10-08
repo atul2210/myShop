@@ -86,3 +86,8 @@
     position:fixed;
     top:400px
   }
+.wrapText
+{
+
+    word-wrap: break-word;
+}

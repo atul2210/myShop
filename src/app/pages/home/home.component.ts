@@ -87,6 +87,7 @@ public itemsarr: Array<any> = [];
   this.service.GetItems(this.pageindex,this.pagesize,(itemsarr)=>
   {
       this.count = itemsarr.count;
+      console.log('itemsarr',this.itemsarr)
        if(itemsarr.results.length<=this.count)
        {
          this.itemsarr = this.itemsarr.concat(itemsarr.results);
