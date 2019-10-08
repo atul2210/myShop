@@ -7,7 +7,7 @@
 </div> 
 	<div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" >
 
-		<div style="background-color: dimgray" class = "ui four cards justify-content-center"  >
+		<div style="background-color: orangered" class = "ui four cards justify-content-center"  >
 	  <div *ngFor="let item of categoryItemArray;let i=index" style= "padding: 5px;">
 	
 		<a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
@@ -18,11 +18,11 @@
 		  <div class="">
 			<a class="header">{{item.itemName}}</a>
 			<div class="meta">
-			  <span class="date">Color : {{item.color}}</span>
-			</div>
-			<div class="description">
-			 {{item.itemDescription}}
-			</div>
+				<span class="date">Color : {{item.color}}</span>
+			  </div>
+			  <div class="description" >
+			   Size : {{item.sizeName}}
+			  </div>
 			<div class="meta">
 				<span class="date">Price : {{item.price |currency :"₹":0}}</span>
 			  </div>

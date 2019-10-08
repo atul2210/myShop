@@ -8,7 +8,7 @@
 
 <div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
 
- <div style="background-color: dimgray" class = "ui four cards justify-content-center">
+ <div style="background-color: orangered" class = "ui four cards justify-content-center">
   <div *ngFor="let item of itemsarr;let i=index" style= "padding: 5px;">
  
 
@@ -22,7 +22,7 @@
         <div class="meta">
           <span class="date">Color : {{item.color}}</span>
         </div>
-        <div class="description" style ="width: 180px; word-wrap: break-word;">
+        <div class="description" >
          Size : {{item.sizeName}}
         </div>
         <div class="meta">
