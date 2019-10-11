@@ -33,24 +33,8 @@ export class HomeComponent implements OnInit  {
   ngOnInit() {
   
     this.onScrollDown();
-  //this.GetPageResult();
+ 
   }
-
-// public GetPageResult()
-// {
-//   this.pageindex = this.pageindex+1; 
-//   this.pagesize=15;  
-//   this.ShoppingApiService.GetHomePageItems(this.pagesize.toString(),this.pageindex.toString())
-//   .subscribe((res)=>
-//   {
-    
-//       this.responseData.Results = res.body.results
-//       this.responseData.Count= res.body.count
-//       this.dynamicHtml = this.GetDynamicDiv(this.responseData.Results);
-//     this.count= this.responseData.Count
-   
-//   })
-// }
 
 
 private  GetDynamicDiv(arr:any[])
@@ -87,6 +71,8 @@ public itemsarr: Array<any> = [];
   this.service.GetItems(this.pageindex,this.pagesize,(itemsarr)=>
   {
       this.count = itemsarr.count;
+     
+      itemsarr.results[2].image1 = 'data:image/jpeg;base64,' +  itemsarr.results[2].image1;
        if(itemsarr.results.length<=this.count)
        {
          this.itemsarr = this.itemsarr.concat(itemsarr.results);
