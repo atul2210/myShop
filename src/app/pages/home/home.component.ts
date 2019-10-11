@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit  {
 
 
   ngOnInit() {
-  
+    this.itemsarr=[];
     this.onScrollDown();
  
   }
@@ -71,12 +71,19 @@ public itemsarr: Array<any> = [];
   this.service.GetItems(this.pageindex,this.pagesize,(itemsarr)=>
   {
       this.count = itemsarr.count;
-     
-      itemsarr.results[2].image1 = 'data:image/jpeg;base64,' +  itemsarr.results[2].image1;
-       if(itemsarr.results.length<=this.count)
+      // alert(itemsarr.count);
+       
+   
+    
+    if(this.itemsarr.length<this.count)
        {
+        for(let i =0;i<itemsarr.count;i++ )
+        {
+          if( itemsarr.results[i].image1!=='undefined')
+          itemsarr.results[i].image1 = 'data:image/jpeg;base64,' +  itemsarr.results[i].image1;
+        }
          this.itemsarr = this.itemsarr.concat(itemsarr.results);
-        
+        console.log(this.itemsarr.length);
       }    
   });
 }
