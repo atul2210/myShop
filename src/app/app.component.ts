@@ -49,7 +49,13 @@ public ngOnInit()
     this.restProvider.AllItems(this.subcategory, this.pageindex,this.pagesize,(categoryItemArray)=>
     {
     this.totalcount = categoryItemArray.count;
-        
+        for(let i=0;i<this.totalcount;i++)
+        {
+          if( categoryItemArray.results[i].image1!=='undefined')
+          categoryItemArray.results[i].image1 = 'data:image/jpeg;base64,' +  categoryItemArray.results[i].image1;
+
+
+        }
       //  if(categoryItemArray.results.length<=this.totalcount)
       //   {
            this.categoryItemArray = this.categoryItemArray.concat(categoryItemArray.results);

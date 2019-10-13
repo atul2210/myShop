@@ -84,11 +84,16 @@ export class SearchResultComponent implements OnInit {
   {
 
     this.count = items.count;
-    if(items.results.length<=this.count)
+    if(this.items.length<this.count)
     {
+     for(let i =0;i<items.count;i++ )
+     {
+       if( items.results[i].image1!=='undefined')
+       items.results[i].image1 = 'data:image/jpeg;base64,' +  items.results[i].image1;
+     }
       this.items = this.items.concat(items.results);
-     // this.router.navigateByUrl('/search/'+searchitem, {skipLocationChange: true});
-    }
+     console.log('search',this.items.length);
+   } 
           
   });
 }
