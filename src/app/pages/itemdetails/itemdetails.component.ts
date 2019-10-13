@@ -24,7 +24,7 @@ export class ItemdetailsComponent implements OnInit {
 addedItemCount:number;  
 //itemDetail:any[];
 
-
+image1:any;
 colorDetail:any[];
 color:string;
 quantity:number=1;
@@ -68,9 +68,10 @@ loading:boolean=false;
     this.restProvider.itemDetails(this.itemid)
     .subscribe(
       data => {
-        
+        console.log(data);
         if(data.body.availableQty>0) 
         {
+          data.body.image1= 'data:image/jpeg;base64,' + data.body.image1;
           this.itemDetail= Array.of(data.body)
           this.colorDetail =data.body.availableColor.split(";")
           this.colorname=this.colorDetail[0]
