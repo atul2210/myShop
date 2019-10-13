@@ -76,7 +76,18 @@ GetCheckedInItems()
         (data:checkedInItemsArray) => { 
         
         this.cartItems= data.body;
+       
+        for(let i =0;i<this.cartItems.length;i++ )
+        {
+         
+          if( this.cartItems[i].image1!=='undefined')
+        
+          this.cartItems[i].image1 = 'data:image/jpeg;base64,' +  this.cartItems[i].image1;
+        }
+        
         this.rows =this.cartItems;
+        
+       
         this.itemnotify.totalCartItem = this.rows.length;
         this.getSum(this.rows);
         return this.rows;

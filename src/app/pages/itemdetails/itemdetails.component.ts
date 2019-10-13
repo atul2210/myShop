@@ -68,7 +68,7 @@ loading:boolean=false;
     this.restProvider.itemDetails(this.itemid)
     .subscribe(
       data => {
-        console.log(data);
+       
         if(data.body.availableQty>0) 
         {
           data.body.image1= 'data:image/jpeg;base64,' + data.body.image1;
