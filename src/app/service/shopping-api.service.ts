@@ -121,6 +121,10 @@ private handleError(error: HttpErrorResponse) {
 
 public Login(userId:string,password:string):Observable<any>
 {
+  localStorage.removeItem('id_token');
+  localStorage.removeItem("expires_at"); 
+  localStorage.removeItem("email");
+  localStorage.removeItem("fullName");
   let encodedval = btoa(userId+":"+password);
   this.uri=this.baseUrl+"/api/token/";
   let headers = new HttpHeaders().set('Content-Type', 'application/json')

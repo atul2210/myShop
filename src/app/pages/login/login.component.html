@@ -16,7 +16,7 @@
  
  <div class="form-group"  >
     
-      <input class="form-control" type="email" placeholder="Email id" formControlName="username" class="form-control" >
+      <input  type="email" placeholder="Email id" formControlName="username" class="form-control" >
       <span class="help-block" *ngIf="(loginForm.get('username').touched ||
                                        loginForm.get('username').dirty) &&
                                        loginForm.get('username').errors">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <!-- <label for="pwd">Password:</label> -->
-      <input class="form-control" type="password" placeholder="Password" formControlName="password"  class="form-control">
+      <input  type="password" placeholder="Password" formControlName="password"  class="form-control">
       <span class="help-block " *ngIf="(loginForm.get('password').touched ||
       loginForm.get('password').dirty) &&
       loginForm.get('password').errors">
