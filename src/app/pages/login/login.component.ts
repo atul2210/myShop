@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
      
 
     }
-    alert('fdfdf');
+   
     this.isOk=true;
     this.err="Invalid User Id or Password";
     // <-- go back to previous location
