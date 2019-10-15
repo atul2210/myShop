@@ -65,21 +65,25 @@ export class LoginComponent implements OnInit {
     this.http.Login(userid,password)
 
     .subscribe(data=>
-          {
+          { 
+            this.isOk=false;
           this.http.userFullName(data.fullname)
+          this.err="";
           this.location.back();
   })
     err => 
     {
      
-      if(err.status!==200)
-      {
+      this.isOk=true;
         localStorage.setItem("id_token",'');
         this.err=err.statusText; 
-      }
+     
 
     }
-    this.location.back(); // <-- go back to previous location
+    alert('fdfdf');
+    this.isOk=true;
+    this.err="Invalid User Id or Password";
+    // <-- go back to previous location
   
 }
 

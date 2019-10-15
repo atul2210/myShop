@@ -68,13 +68,13 @@ loading:boolean=false;
     this.restProvider.itemDetails(this.itemid)
     .subscribe(
       data => {
-       
+      
         if(data.body.availableQty>0) 
         {
           data.body.image1= 'data:image/jpeg;base64,' + data.body.image1;
           this.itemDetail= Array.of(data.body)
-          this.colorDetail =data.body.availableColor.split(";")
-          this.colorname=this.colorDetail[0]
+        // //   ///this.colorDetail =data.body.availableColor.split(";")
+        // //  // this.colorname=this.colorDetail[0]
           this.price = data.body.price
           this.offerprice = data.body.offerPrice
           this.deliverycharges = data.body.deliveryCharges
