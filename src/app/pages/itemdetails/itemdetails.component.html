@@ -13,14 +13,14 @@
               <div class="card ">
                 <ngx-image-zoom
                 [thumbImage]=item.image1
-              
-                [enableLens] = true
+                [fullImage]= item.image1
+                [enableLens] = false
                 [zoomMode] =hover
                 [enableScrollZoom] =true
                 [enableLens]=true
-                [magnification] =2
+                [magnification] =0.5
                 [circularLens] = true	
-                
+                [enableScrollZoom]=true
             ></ngx-image-zoom>
 
           </div>
