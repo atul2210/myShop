@@ -200,6 +200,10 @@ public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
 
      public addUser(user:registration):Observable<any>
      {
+      localStorage.removeItem('id_token');
+      localStorage.removeItem("expires_at"); 
+      localStorage.removeItem("email");
+      localStorage.removeItem("fullName");
       this.uri=this.baseUrl+"/api/user/NewUser/";
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
@@ -212,8 +216,13 @@ public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
             "lastName": user.lastName,
             "mobile": user.mobile,
             "ulternateMobile": user.ulternateMobile,
+            "address":user.address,
+            "city":user.city,
+            "state":user.mystate,
             "pin":user.pin,
             "enterOPT":user.otp
+           
+
           },
           {
               headers:headers
@@ -308,13 +317,13 @@ public async ResetPassword(email:string)
 //       }
 //   } 
   
-  public paymentreceive(EmailId:string,session:string,rows: checkedInItemsArray[])
+  public paymentreceive(session:string)
   {
     
-      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?emailId="+EmailId+"&UserSession="+session;
+      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?UserSession="+session;
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
-      return this.http.post(this.uri,rows ,
+      return this.http.post(this.uri,
           {
               headers:headers
           });
@@ -338,6 +347,22 @@ public getimages()
 
 }
 
+
+GetAddress(sessionId:string)//:Observable<any>
+{
+  
+  this.uri=this.baseUrl+"/api/User/";
+
+  const params = new HttpParams().set('usersession', sessionId);
+  return this.http.get<checkedInItemsArray[]>(
+  this.uri+"Address", { observe: 'response', params})
+  
+  
+  .catch(this.handleError.bind(this) );
+
+  
+
+}
 
 }
 

@@ -52,6 +52,8 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { PaymentComponent } from './pages/payment/payment.component';
 import { ShippingPolicyComponent } from './pages/shipping-policy/shipping-policy.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { PlaceOrderComponent } from './pages/place-order/place-order.component';
+import {SingletonService} from './service/singleton.service'
  @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +78,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
     PrivacyPolicyComponent,
     PaymentComponent,
     ShippingPolicyComponent,
-    LogoutComponent
+    LogoutComponent,
+    PlaceOrderComponent
    
     
     
@@ -114,6 +117,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
       {path:'AboutUs',component:AboutUsComponent},
       {path:'Payment',component:PaymentComponent},
       {path:'ShippingPolicy',component:ShippingPolicyComponent},
+      {path:'PlaceOrder/',component:PlaceOrderComponent},
+
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),
@@ -135,7 +140,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
     
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ShoppingApiService,Globals,
-    ShoppingApiService,
+    ShoppingApiService,SingletonService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:serviceintercepter,

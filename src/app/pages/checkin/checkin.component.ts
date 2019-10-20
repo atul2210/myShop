@@ -155,28 +155,28 @@ private notify():void
     else
     {
         console.log("Move to payment gateway");
-        
-        if(EmailId!=='undefined')
-        {
-          this.ShoppingApiService.paymentreceive(EmailId,localstorage,this.rows)
-          .subscribe((res:Response) =>
-          {
+        this.route.navigateByUrl("/PlaceOrder/");
+        // if(EmailId!=='undefined')
+        // {
+        //   this.ShoppingApiService.paymentreceive(EmailId,localstorage,this.rows)
+        //   .subscribe((res:Response) =>
+        //   {
           
-            //if status code is unauthorized.. need to redirect login page with error message
-          },
-          err => 
-          {
-            if(err.status!==200)
-            {
-              localStorage.removeItem("id_token");
-              this.route.navigateByUrl('/login')
-            }
+        //     //if status code is unauthorized.. need to redirect login page with error message
+        //   },
+        //   err => 
+        //   {
+        //     if(err.status!==200)
+        //     {
+        //       localStorage.removeItem("id_token");
+        //       this.route.navigateByUrl('/login')
+        //     }
 
-          }
+        //   }
        
         
-        );
-        }
+        //);
+       // }
     }
 
 
