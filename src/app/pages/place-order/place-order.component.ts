@@ -69,7 +69,7 @@ export class PlaceOrderComponent implements OnInit {
 
   Order()
   {
-    let regis:registration;
+    let regis= new registration();
     if(this.currentsession!=='undefined')
     {
       //alert(this.myform.controls["userMiddleName"].value);
@@ -79,7 +79,7 @@ export class PlaceOrderComponent implements OnInit {
       regis.city= this.myform.controls["city"].value;
       regis.pin= this.myform.controls["pin"].value;
       regis.firstName= this.myform.controls["username"].value;
-      regis.state= this.myform.controls["state"].value;
+      regis.state= this.myform.controls["mystate"].value;
      
 
 
