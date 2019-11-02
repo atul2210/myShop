@@ -17,6 +17,9 @@ import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
 import { rsetpassword } from '../model/resetpassword';
 import { environment } from '../../environments/environment';
 import { NotifyUserfullName } from '../pages/login/Notify-UserName';
+
+
+
 @Injectable()
 export class ShoppingApiService {
 uri:string;
@@ -317,13 +320,13 @@ public async ResetPassword(email:string)
 //       }
 //   } 
   
-  public paymentreceive(session:string)
+  public paymentreceive(session:string,registration:registration)
   {
     
       this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?UserSession="+session;
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
-      return this.http.post(this.uri,
+      return this.http.post(this.uri,registration,
           {
               headers:headers
           });
@@ -356,12 +359,7 @@ GetAddress(sessionId:string)//:Observable<any>
   const params = new HttpParams().set('usersession', sessionId);
   return this.http.get<checkedInItemsArray[]>(
   this.uri+"Address", { observe: 'response', params})
-  
-  
   .catch(this.handleError.bind(this) );
-
-  
-
 }
 
 }

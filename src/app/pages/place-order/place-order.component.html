@@ -10,6 +10,55 @@ role="form"  >
     
   </div>
  
+  <div class="form-group mt-5"
+  [ngClass]="{
+   'has-danger': username.invalid && (username.dirty || username.touched),
+   'has-success': username.valid && (username.dirty || username.touched)
+}">
+    <label class="fontClass">First Name</label>
+    <input type="username" #focusonAddress
+          class="form-control form-control-sm"
+          formControlName="username"
+          required>
+    <div class="form-control-feedback"
+        *ngIf="username.errors && (username.dirty || username.touched)">
+    <p style="color: red;" *ngIf="username.errors.required">Name is required</p>
+
+    </div>
+
+</div>
+
+<div class="form-group ">
+  <label class="fontClass">Middle Name</label>
+  <input type="text" class="form-control form-control-sm" formControlName="userMiddleName"> 
+</div>
+
+
+<div class="form-group "
+[ngClass]="{
+ 'has-danger': userLastName.invalid && (userLastName.dirty || userLastName.touched),
+ 'has-success': userLastName.valid && (userLastName.dirty || userLastName.touched)
+}">
+  <label class="fontClass">Last Name</label>
+  <input type="userLastName"
+        class="form-control form-control-sm"
+        formControlName="userLastName"
+        required>
+  <div class="form-control-feedback"
+      *ngIf="userLastName.errors && (userLastName.dirty || userLastName.touched)">
+  <p style="color: red;" *ngIf="userLastName.errors.required">Last Name is required</p>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
   <div class="">
         <div class="form-group"
             [ngClass]="{
@@ -17,7 +66,7 @@ role="form"  >
             'has-success': address.valid && (address.dirty || address.touched)
           }">
      
-      <textarea rows="3" class="form-control" formControlName="address" required></textarea>
+      <textarea rows="3"   class="form-control" formControlName="address" required ></textarea>
             <div class="form-control-feedback"
                 *ngIf="address.errors && (address.dirty || address.touched)">
             <p style="color: red;" *ngIf="address.errors.required">Address is required</p>
@@ -75,8 +124,8 @@ role="form"  >
     <select class="form-control form-control-sm"
             formControlName="mystate">
     
-      <option *ngFor="let lang of states"
-              [value]="lang">{{lang}}
+      <option *ngFor="let lang of state"
+              [value]="lang" [selected]="lang">{{lang}} 
       </option>
     </select>
 
@@ -89,8 +138,8 @@ role="form"  >
 
 
   <div class="">
-    <button type="button" class="btn btn-success">Edit Address</button>
-    <button type="submit" class="btn btn-success mb-2 pull-right" (click)="save()"   >Submit</button>
+    <button type="button" (click)="EditAddress();" class="btn btn-success">Edit Address</button>
+    <button type="submit" (click)="Order();" class="btn btn-success mb-2 pull-right" (click)="save()"   >Submit</button>
   </div>
 
 
