@@ -125,7 +125,7 @@ role="form"  >
             formControlName="mystate">
     
       <option *ngFor="let lang of state"
-              [value]="lang" [selected] = "true == true">{{lang}} 
+              [value]="lang" [selected]="lang">{{lang}} 
       </option>
     </select>
 
@@ -139,7 +139,7 @@ role="form"  >
 
   <div class="">
     <button type="button" (click)="EditAddress();" class="btn btn-success">Edit Address</button>
-    <button type="submit" (click)="Order();" class="btn btn-success mb-2 pull-right" (click)="save()"   >Submit</button>
+    <button type="submit" (click)="Order();" class="btn btn-success mb-2 pull-right" >Submit</button>
   </div>
 
 
