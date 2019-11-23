@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse,HttpResponse,HttpParams } from '@angular/common/http';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import 'rxjs/add/operator/map';
+//////////import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs/observable';
+////////import { Observable } from 'rxjs/observable';
 import {allItems} from '../model/allitems'
 import { catchError,retry } from 'rxjs/operators';
-import { observableToBeFn } from 'rxjs/testing/TestScheduler';
+///////import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 import {tokenParams} from '../pages/login/token'
-import { BehaviorSubject, Subject } from 'rxjs/Rx';
+import { BehaviorSubject, Subject } from 'rxjs';
 import {responseData,Ipagedata} from '../model/pagedata';
 import {registration} from '../model/registration'
 import { Inotify,itemNotify } from '../pages/itemdetails/item-notify';
@@ -31,7 +32,7 @@ private json: any;
 private subject = new Subject<itemNotify|null>()
 
 private userFullNamesubject = new Subject<string|null>()
-  constructor(private http: HttpClient,private responseData:responseData)
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: HttpClient,private responseData:responseData)
   { 
 
   }
@@ -64,7 +65,7 @@ addToCart(itemid:string,quantity:string): Observable<any>
   let querystring:string;
   let id_token:string;
 
-  id_token=localStorage.getItem("id_token");
+  id_token=this.localStorage.getItem("id_token");
  
   querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + id_token ;
   this.uri=this.baseUrl+"/api/items/";
@@ -116,7 +117,7 @@ private handleError(error: HttpErrorResponse) {
         `body was: ${error.error}`);
     }
     // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(error.error
+    return throwError(error.error
       );
   };
 
@@ -124,10 +125,10 @@ private handleError(error: HttpErrorResponse) {
 
 public Login(userId:string,password:string):Observable<any>
 {
-  localStorage.removeItem('id_token');
-  localStorage.removeItem("expires_at"); 
-  localStorage.removeItem("email");
-  localStorage.removeItem("fullName");
+  this.localStorage.removeItem('id_token');
+  this.localStorage.removeItem("expires_at"); 
+  this.localStorage.removeItem("email");
+  this.localStorage.removeItem("fullName");
   let encodedval = btoa(userId+":"+password);
   this.uri=this.baseUrl+"/api/token/";
   let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -135,7 +136,7 @@ public Login(userId:string,password:string):Observable<any>
   
    return this.http.get(this.uri,{headers:headers})
    .do((res) =>{
-    localStorage.setItem("email",userId);
+    this.localStorage.setItem("email",userId);
     this.setSession(res); 
    }) 
    .shareReplay()
@@ -154,8 +155,8 @@ private setSession(authResult) {
       futureMonth = futureMonth.add(1, 'd');
   }
   var tokenExpire = currentDate.add(5,"days");
-  localStorage.setItem('id_token', authResult.authToken);
-  localStorage.setItem("expires_at",tokenExpire.toString()); 
+  this.localStorage.setItem('id_token', authResult.authToken);
+  this.localStorage.setItem("expires_at",tokenExpire.toString()); 
 
   
 
@@ -168,10 +169,10 @@ private setSession(authResult) {
 }      
 
 logout() {
-  localStorage.removeItem("id_token");
-  localStorage.removeItem("expires_at");
-  localStorage.removeItem("fullName");
-  localStorage.removeItem("email");
+  this.localStorage.removeItem("id_token");
+  this.localStorage.removeItem("expires_at");
+  this.localStorage.removeItem("fullName");
+  this.localStorage.removeItem("email");
   
 }
 
@@ -184,7 +185,7 @@ isLoggedOut() {
 }
 
 getExpiration() {
-  const expiration = localStorage.getItem("expires_at");
+  const expiration = this.localStorage.getItem("expires_at");
   const expiresAt = JSON.parse(expiration);
   return moment(expiresAt);
 }   
@@ -203,10 +204,10 @@ public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
 
      public addUser(user:registration):Observable<any>
      {
-      localStorage.removeItem('id_token');
-      localStorage.removeItem("expires_at"); 
-      localStorage.removeItem("email");
-      localStorage.removeItem("fullName");
+      this.localStorage.removeItem('id_token');
+      this.localStorage.removeItem("expires_at"); 
+      this.localStorage.removeItem("email");
+      this.localStorage.removeItem("fullName");
       this.uri=this.baseUrl+"/api/user/NewUser/";
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
@@ -236,7 +237,7 @@ public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
       .do((res) =>
       {
        
-        localStorage.setItem("email",user.myemail);
+        this.localStorage.setItem("email",user.myemail);
       });
 
 
@@ -253,7 +254,7 @@ private handError(errorResponse:HttpErrorResponse)
   {
     console.log("server side error",errorResponse);
   }
-  return new ErrorObservable(errorResponse);
+  return throwError(errorResponse);
 }
 
 public changeSelectedItem(totalItem:itemNotify|null)
@@ -283,7 +284,7 @@ public async getOTP(mobile:string) //:Observable<optResponse>
 {
   
   this.uri=this.baseUrl+"/api/sms/Otpsender?mobileNumber="+mobile;
-   return await this.http.get<optResponse>(this.uri, { observe: 'response'})
+   return await this.http.get<opt>(this.uri, { observe: 'response'})
    .do((res) =>{
    
    }) 
@@ -367,11 +368,15 @@ GetAddress(sessionId:string)//:Observable<any>
 
 
 
-export class optResponse
+export class opt
 {
+ constructor(@Inject(LOCAL_STORAGE) private localStorage: any) {}
+
+
   status:string;
   message:string;
 }
+
 
 
 

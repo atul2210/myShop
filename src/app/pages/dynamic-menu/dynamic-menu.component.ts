@@ -1,6 +1,7 @@
-import { Component, OnInit,OnDestroy,Input } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Component, OnInit,OnDestroy,Input , Inject} from '@angular/core';
 import {MenuServiceService} from '../../service/menu/menu-service.service'
-import { ISubscription } from 'rxjs/Subscription';
+import { SubscriptionLike as ISubscription } from 'rxjs';
 import { SearchResultComponent } from '../search-result/search-result.component';
 import { SearchServiceService } from '../../service/search-service.service';
 import { Router,NavigationEnd } from '@angular/router';
@@ -25,7 +26,7 @@ export class DynamicMenuComponent implements OnInit,OnDestroy {
     return new DOMParser().parseFromString(input, "text/html").documentElement.textContent;
 }
 
-  constructor(private router:Router,private http:SearchServiceService,private service:MenuServiceService,private search : SearchResultComponent) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private router:Router,private http:SearchServiceService,private service:MenuServiceService,private search : SearchResultComponent) { }
 
   ngOnInit() {
 ///    this.GetMenuItems();

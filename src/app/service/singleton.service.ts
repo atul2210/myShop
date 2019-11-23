@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 export class SingletonService {
 
-  constructor() { 
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, ) { 
 
   }
 
-  session:string = localStorage.getItem("id_token");
+  session:string = this.localStorage.getItem("id_token");
 }

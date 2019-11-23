@@ -1,4 +1,5 @@
-import { Component, OnInit,AfterViewInit,ElementRef } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Component, OnInit,AfterViewInit,ElementRef , Inject} from '@angular/core';
 import {ReactiveFormsModule,FormsModule,NgControl,  FormGroup,FormControl,ValidationErrors,Validator, Validators} from '@angular/forms'
 import {Router,ActivatedRoute} from '@angular/router'
 import {registration} from '../../model/registration'
@@ -32,7 +33,7 @@ export class UserRegistrationComponent implements OnInit {
   ulternatemobile:FormControl;
   pin:FormControl;
   otp:FormControl;
-  constructor(private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService) { }
   submitted:boolean;
   
   ngOnInit() {

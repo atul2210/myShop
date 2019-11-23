@@ -1,7 +1,8 @@
+import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy , CommonModule} from '@angular/common';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
@@ -85,8 +86,11 @@ import {SingletonService} from './service/singleton.service'
     
    
   ],
-  imports: [
-    BrowserModule,FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,NgxDatatableModule,
+  imports:[
+ CommonModule,
+NgtUniversalModule,
+ 
+    FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,NgxDatatableModule,
     RouterModule.forRoot(    [
        {path:'',redirectTo:'HomeComponent',pathMatch:'full'},
       {path:'login',component:LoginComponent},
@@ -174,8 +178,5 @@ import {SingletonService} from './service/singleton.service'
     
   
   ],
-    
-  
-  bootstrap: [HomepageComponent]
 })
 export class AppModule { }

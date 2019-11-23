@@ -1,3 +1,4 @@
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
 import { Component, OnInit,Inject,Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import { itemNotify } from '../itemdetails/item-notify';
@@ -49,7 +50,7 @@ export class CheckinComponent implements OnInit {
   timeout: any;
   OfferPriceSum:number=0;
   saveSum:number=0;
-  constructor(@Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, @Inject(DOCUMENT) private document: any, private ShoppingApiService:ShoppingApiService,private itemnotify:itemNotify,
   private route:Router,private loadingIndicatorService: LoadingIndicatorServiceService,private location: Location ) { 
 
     loadingIndicatorService
@@ -68,7 +69,7 @@ export class CheckinComponent implements OnInit {
 GetCheckedInItems()
 {
   let userSessionid:string;  
-  userSessionid = localStorage.getItem("id_token"); 
+  userSessionid = this.localStorage.getItem("id_token"); 
   if(userSessionid!==null)
   {
       this.ShoppingApiService.getCheckedInItem(userSessionid)
@@ -112,7 +113,7 @@ document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
  public RemoveItems(itemid:string,quantity:string,checkinid:string)
   {
    
-    const idToken= localStorage.getItem("id_token");
+    const idToken= this.localStorage.getItem("id_token");
       
     if(idToken)
     {
@@ -144,8 +145,8 @@ private notify():void
 
  placeOrder()
 {
-  let localstorage:string = localStorage.getItem("id_token");
-  let EmailId:string = localStorage.getItem("email");
+  let localstorage:string = this.localStorage.getItem("id_token");
+  let EmailId:string = this.localStorage.getItem("email");
 
   
   if(localstorage==null )

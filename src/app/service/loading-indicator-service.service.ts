@@ -12,12 +12,12 @@ import {
   HttpRequest
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
+
+
+
+
 
 
 @Injectable()

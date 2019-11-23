@@ -1,9 +1,10 @@
-import { Component, OnInit,Input,Output,EventEmitter, ɵConsole } from '@angular/core';
+import { LOCAL_STORAGE , WINDOW} from '@ng-toolkit/universal';
+import { Component, OnInit,Input,Output,EventEmitter, ɵConsole , Inject} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import {HomepageComponent} from '../../home/homepage/homepage.component';
 import {Globals} from '../../model/global';
-import { ColdObservable } from 'rxjs/testing/ColdObservable';
+import { observable } from 'rxjs';
 import {Iitems} from '../../pages/iitems';
 import { Router } from '@angular/router';
 import { CartItemServiceService } from '../../service/cart-item-service.service';
@@ -43,7 +44,7 @@ availableQty:number;
 breakpoint: number;
 displayError:boolean=false;
 loading:boolean=false;
-  constructor( public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
+  constructor(@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any,  public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
     private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService){
       loadingIndicatorService
       .onLoadingChanged
@@ -59,7 +60,7 @@ loading:boolean=false;
     
     //$('#74').ezPlus();
    
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (this.window.innerWidth <= 400) ? 1 : 2;
 
     
     
@@ -110,7 +111,7 @@ loading:boolean=false;
   
   addToCart()
   {
-      const idToken= localStorage.getItem("id_token");
+      const idToken= this.localStorage.getItem("id_token");
       
       if(idToken)
       {
@@ -128,20 +129,20 @@ loading:boolean=false;
        },
        err=>
        {
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
-        localStorage.removeItem("fullName");
-        localStorage.removeItem("email");
+        this.localStorage.removeItem("id_token");
+        this.localStorage.removeItem("expires_at");
+        this.localStorage.removeItem("fullName");
+        this.localStorage.removeItem("email");
        this.router.navigateByUrl('/login');
 
        }
        );
       }
       else{
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
-        localStorage.removeItem("fullName");
-        localStorage.removeItem("email");
+        this.localStorage.removeItem("id_token");
+        this.localStorage.removeItem("expires_at");
+        this.localStorage.removeItem("fullName");
+        this.localStorage.removeItem("email");
         this.router.navigateByUrl('/login');
       }
   }

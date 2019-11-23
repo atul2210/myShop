@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse,HttpResponse,HttpParams } from '@angular/common/http';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import 'rxjs/add/operator/map';
+///////import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs/observable';
+//import { Observable } from 'rxjs/observable';
 import { catchError,retry } from 'rxjs/operators';
-import { observableToBeFn } from 'rxjs/testing/TestScheduler';
-import { BehaviorSubject, Subject } from 'rxjs/Rx';
+////////import { observableToBeFn } from 'rxjs/testing/TestScheduler';
+import { BehaviorSubject, Subject } from 'rxjs';
 import * as moment from "moment";
 import { responseData } from '../../model/pagedata';
 import { environment } from '../../../environments/environment';
@@ -57,7 +57,7 @@ getItem():Observable<any>
         `body was: ${error.error}`);
     }
     // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(
+    return throwError(
       'Something bad happened; please try again later.');
   };
 

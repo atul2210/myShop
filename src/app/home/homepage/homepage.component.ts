@@ -1,9 +1,10 @@
-import { Component, OnInit,EventEmitter,OnDestroy } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Component, OnInit,EventEmitter,OnDestroy , Inject} from '@angular/core';
 import {Globals} from '../../model/global';
 import {ShoppingApiService} from '../../service/shopping-api.service'
 import { CartItemServiceService } from '../../service/cart-item-service.service';
 import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
-import { ISubscription } from "rxjs/Subscription";
+import { SubscriptionLike as ISubscription } from "rxjs";
 import {SearchResultComponent} from '../../../app/pages/search-result/search-result.component'
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service';
 import {MenuServiceService} from '../../service/menu/menu-service.service';
@@ -20,7 +21,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
   itemname:string;
   menuitems:string[];
   loading:boolean=false;
-  constructor(private router:Router, private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private router:Router, private search : SearchResultComponent,private globals: Globals,private ShoppingApiService:ShoppingApiService,
   private CartItemServiceService:CartItemServiceService,public totalItem:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private service:MenuServiceService ) 
   
   { 
@@ -53,18 +54,18 @@ export class HomepageComponent implements OnInit,OnDestroy {
          this.totalItem = ttlItems; 
          
         });
-        if(localStorage.getItem("fullName")===null)
+        if(this.localStorage.getItem("fullName")===null)
         {
 
         this.fullNameSubcription = this.ShoppingApiService.getUserFullName()
           .subscribe(fullname=>
           {
             this.fullName ="Hi "+fullname;
-            localStorage.setItem("fullName",this.fullName)
+            this.localStorage.setItem("fullName",this.fullName)
           }
         )
         }
-        else this.fullName= localStorage.getItem("fullName");
+        else this.fullName= this.localStorage.getItem("fullName");
 
         
   }
@@ -100,7 +101,7 @@ ngOnDestroy()
   {
 
     let userSessionid:string;  
-    userSessionid = localStorage.getItem("id_token");
+    userSessionid = this.localStorage.getItem("id_token");
     if(userSessionid!==null){
     this.ShoppingApiService.getCheckedInItem(userSessionid)
     .subscribe(

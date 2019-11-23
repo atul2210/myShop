@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse,HttpResponse,HttpParams } from '@angular/common/http';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import 'rxjs/add/operator/map';
+/////import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs/observable';
+//////////import { Observable } from 'rxjs/observable';
 import { Ipagedata } from '../model/pagedata';
 import { tap, skipWhile } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -50,7 +50,7 @@ private handleError(error: HttpErrorResponse) {
       `body was: ${error.error}`);
   }
   // return an ErrorObservable with a user-facing error message
-  return new ErrorObservable(
+  return throwError(
     'Something bad happened; please try again later.');
   }
 

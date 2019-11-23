@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Component, OnInit, ViewChild, ElementRef , Inject} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import { Router } from '@angular/router';
@@ -24,7 +25,7 @@ export class PlaceOrderComponent implements OnInit {
   state:string[];
   @ViewChild('focusonAddress')
   focusonAddress:ElementRef;
-  constructor(private singleton:SingletonService,private route:Router,private active:ActivatedRoute,private service:ShoppingApiService) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private singleton:SingletonService,private route:Router,private active:ActivatedRoute,private service:ShoppingApiService) { }
   
   get currentsession():string
   {
@@ -40,7 +41,7 @@ export class PlaceOrderComponent implements OnInit {
     let userform:FormGroup;
     this.createFormControls();
     this.createForm();
-    this.GetAddress(localStorage.getItem("id_token"));
+    this.GetAddress(this.localStorage.getItem("id_token"));
   
 
   }
@@ -94,7 +95,7 @@ export class PlaceOrderComponent implements OnInit {
       {
         if(err.status!==200)
         {
-          localStorage.removeItem("id_token");
+          this.localStorage.removeItem("id_token");
           this.route.navigateByUrl('/login');
         }
 

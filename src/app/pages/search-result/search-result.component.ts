@@ -3,7 +3,7 @@ import {SearchServiceService} from '../../service/search-service.service';
 import { Router, ActivatedRoute,NavigationEnd } from '@angular/router';
 import { Ipagedata,responseData } from '../../model/pagedata';
 import {MenuServiceService} from '../../service/menu/menu-service.service';
-import { ISubscription } from 'rxjs/Subscription';
+import { SubscriptionLike as ISubscription } from 'rxjs';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',

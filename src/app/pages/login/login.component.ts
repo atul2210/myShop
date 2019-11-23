@@ -1,4 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Component, OnInit,Input , Inject} from '@angular/core';
 import {tokenParams} from './token'
 import {ShoppingApiService} from '../../service/shopping-api.service'
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
   isOk=false;
   mobile:string="";
   loading:boolean=false;
-  constructor( private route: ActivatedRoute,private loadingIndicatorService: LoadingIndicatorServiceService,
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any,  private route: ActivatedRoute,private loadingIndicatorService: LoadingIndicatorServiceService,
             private router: Router,private authguard:authguard,  private http:ShoppingApiService, private fb:FormBuilder,private location:Location) 
     
    {
@@ -75,7 +76,7 @@ export class LoginComponent implements OnInit {
     {
      
       this.isOk=true;
-        localStorage.setItem("id_token",'');
+        this.localStorage.setItem("id_token",'');
         this.err=err.statusText; 
      
 

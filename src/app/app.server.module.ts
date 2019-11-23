@@ -1,0 +1,23 @@
+import { HomepageComponent } from './home/homepage/homepage.component';
+import { AppModule } from './app.module';
+import {NgModule} from '@angular/core';
+import {ServerModule, ServerTransferStateModule} from '@angular/platform-server';
+import {ModuleMapLoaderModule} from '@nguniversal/module-map-ngfactory-loader';
+import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+@NgModule({
+ bootstrap: [HomepageComponent],
+
+    imports:[
+ BrowserModule.withServerTransition({appId: 'app-homepage'}),
+ 
+ AppModule,
+ 
+        ServerModule,
+        NoopAnimationsModule,
+        ModuleMapLoaderModule,
+        ServerTransferStateModule, // comment
+    ]
+})
+export class AppServerModule {}

@@ -1,12 +1,13 @@
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
 
 
 import { HttpInterceptor,HttpXsrfTokenExtractor,HttpRequest,HttpHandler,HttpEvent } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {Observable} from 'rxjs/observable'
 @Injectable()
 export class HttpXsrfInterceptor implements HttpInterceptor {
 
-  constructor(private tokenExtractor: HttpXsrfTokenExtractor) {
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private tokenExtractor: HttpXsrfTokenExtractor) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
