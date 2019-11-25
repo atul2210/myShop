@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 export class pagedata
 {
     ItemName :string;
@@ -23,6 +24,7 @@ export class pagedata
 
 }
 
+@Injectable()
 export class responseData{
     Count: number;
     Results: Array<pagedata>;

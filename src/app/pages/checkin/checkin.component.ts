@@ -3,10 +3,10 @@ import { Component, OnInit,Inject,Injectable, ViewChild, ViewEncapsulation } fro
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import { itemNotify } from '../itemdetails/item-notify';
 import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
+
 import {LoadingIndicatorServiceService} from '../../service/loading-indicator-service.service'
 import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
-import { Location } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
