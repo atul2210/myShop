@@ -32,13 +32,16 @@ import {LoadingIndicatorInterceptor,LoadingIndicatorServiceService} from '../../
 import {MenuServiceService} from './service/menu/menu-service.service';
 import {SearchServiceService} from "./service/search-service.service"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatMenuModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatCardModule,MatGridListModule,
-        MatDividerModule, 
-        MatListModule,MatFormFieldModule,MatInputModule  } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { DynamicMenuComponent } from './pages/dynamic-menu/dynamic-menu.component'
  import { FlexLayoutModule } from "@angular/flex-layout";
 import {SlidersComponent} from './pages/sliders/sliders.component';
