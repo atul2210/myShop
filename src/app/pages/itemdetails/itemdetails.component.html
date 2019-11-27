@@ -1,0 +1,96 @@
+
+<!-- <div class="container" *ngFor="let item of itemDetail;"> -->
+
+  <div *ngIf="loading" >  
+    <img src ="assets/loading/loading.gif" class = "header-shadow" > Loading ...
+  </div>
+<div *ngIf="!displayError;">
+
+  <mat-grid-list  rowHeight="2:0.5" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >
+      <div class="row">
+          <div class="col-md-6">
+     
+              <div class="card ">
+                <ngx-image-zoom
+                [thumbImage]=item.image1
+                [fullImage]= item.image1
+                [enableLens] = false
+                [zoomMode] =hover
+                [enableScrollZoom] =true
+                [enableLens]=true
+                [magnification] =2
+                [circularLens] = true	
+                [enableScrollZoom]=true
+            ></ngx-image-zoom>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card ">
+                <li style="background-color: blueviolet" class="list-group-item" >
+                  <h2 style="color: white" >{{item.itemDescription}}</h2>  
+                </li  >
+                <li class=" list-group-item item-fore-color">
+                Size:&nbsp; {{item.sizeName}}
+                </li>
+                <li class="list-group-item" style= "-webkit-text-fill-color:crimson "  >
+                  <h4>Available Quantity: &nbsp;{{item.availableQty}}</h4>
+                </li >
+                <li class="list-group-item item-fore-color">
+                  <s><h4>Total Price: &nbsp;{{item.price |currency :"₹":0}}</h4>
+                  </s>
+                            <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
+                </li>
+                          <!-- <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" > -->
+                <li class="list-group-item"> 
+                  <ul style="-webkit-text-fill-color: indigo"  >
+                      <li item-fore-color style="" >
+                          <b> Color:&nbsp; {{item.color}}</b> 
+                        </li>
+                        <li >
+                          <b> Brand:&nbsp; {{item.brand}}</b> 
+                        </li>
+                      <li item-fore-color> 
+                        <b>    Delivery Charges:&nbsp; {{item.deliveryCharges |currency :"₹":0}}</b>
+                          </li>
+                  </ul>
+                </li>  
+                <li class="list-group-item item-fore-color">
+                        <h4> Offer Price:&nbsp;  {{item.offerPrice|currency :"₹":0}}</h4> 
+                </li>
+                
+              <li class="list-group-item item-fore-color">
+                          Brand:&nbsp; {{item.brand}} 
+
+              </li>
+              <li class="list-group-item item-fore-color" >
+                <b>  Delivery:&nbsp; By Courier</b> 
+              </li>  
+              <!-- <li class="list-group-item item-fore-color">
+              <b>  Fabric:&nbsp; Pure Cotton </b>
+              </li>  -->
+                
+          
+           
+            <button  mat-raised-button color="warn" (click)="addToCart();" class="float-right m-2"  >
+              <mat-icon>shopping_cart</mat-icon> 
+              Add to Cart 
+            </button >
+            </div>
+          </div>
+        </div>
+      
+</mat-grid-list>
+</div>
+
+
+
+<div *ngIf="displayError;"><h1>Oops Item sold. No quantity available now</h1></div>
+
+
+<!-- 
+<script>
+    
+    $('#74').ezPlus();
+    
+</script> -->

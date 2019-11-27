@@ -1,0 +1,378 @@
+import { Injectable } from '@angular/core';
+import { HttpClient,HttpHeaders,HttpErrorResponse,HttpResponse,HttpParams } from '@angular/common/http';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/observable';
+import {allItems} from '../model/allitems'
+import { catchError,retry } from 'rxjs/operators';
+import { observableToBeFn } from 'rxjs/testing/TestScheduler';
+import {tokenParams} from '../pages/login/token'
+import { BehaviorSubject, Subject } from 'rxjs/Rx';
+import {responseData,Ipagedata} from '../model/pagedata';
+import {registration} from '../model/registration'
+import { Inotify,itemNotify } from '../pages/itemdetails/item-notify';
+import * as moment from "moment";
+import {checkedInItems,checkedInItemsArray} from '../model/checkedInItems';
+import { rsetpassword } from '../model/resetpassword';
+import { environment } from '../../environments/environment';
+import { NotifyUserfullName } from '../pages/login/Notify-UserName';
+
+
+
+@Injectable()
+export class ShoppingApiService {
+uri:string;
+baseUrl = environment.baseUrl;
+public addToCardResponse :any[];
+private loggedIn = false;
+private json: any;
+
+private subject = new Subject<itemNotify|null>()
+
+private userFullNamesubject = new Subject<string|null>()
+  constructor(private http: HttpClient,private responseData:responseData)
+  { 
+
+  }
+  public redirectUrl: string;
+  AllItems(category:string,index:string): Observable<any> 
+  {
+    this.uri=this.baseUrl+"/api/items/";
+    const params = new HttpParams().set('categoryId', category).set("pageIndex",index);
+     return this.http.get(
+     this.uri+"AllItems/", { observe: 'response', params})
+     
+     .catch(this.handleError.bind(this) );
+ 
+     
+  }
+
+
+  itemDetails(itemId:string): Observable<any> 
+  {
+    this.uri=this.baseUrl+"/api/items/";
+    const params = new HttpParams().set('itemId', itemId);
+     return this.http.get(
+     this.uri+"itemDetail/", { observe: 'response', params})
+     .catch(this.handleError.bind(this) );
+  }
+
+
+addToCart(itemid:string,quantity:string): Observable<any>
+{
+  let querystring:string;
+  let id_token:string;
+
+  id_token=localStorage.getItem("id_token");
+ 
+  querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + id_token ;
+  this.uri=this.baseUrl+"/api/items/";
+
+  return this.http.post(
+  this.uri+"addCart"+querystring,{ observe: 'response'})
+   .catch(this.handleError.bind(this) );
+
+}
+
+getCheckedInItem(sessionId:string)//:Observable<any>
+{
+  let querystring:string;
+  ////let sessionToken:string
+  
+  this.uri=this.baseUrl+"/api/items/";
+
+  const params = new HttpParams().set('userSession', sessionId);
+  return this.http.get<checkedInItemsArray[]>(
+  this.uri+"getcheckedinItem", { observe: 'response', params})
+  
+  
+  .catch(this.handleError.bind(this) );
+
+  
+
+}
+
+public RemoveItem(itemid:string,quantity:string,sessionId:string,checkinid:string):Observable<any>
+{
+  let querystring:string; 
+ 
+  querystring = "?itemid=" + itemid+ "&returnedItemQty="+quantity + "&sessionId="+sessionId + "&checkedinId="+checkinid ;
+  this.uri=this.baseUrl+"/api/items/";
+  return this.http.post(
+  this.uri+"RemoveItems"+querystring,{ observe: 'response'})
+   .catch(this.handleError.bind(this) );
+}
+
+private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an ErrorObservable with a user-facing error message
+    return new ErrorObservable(error.error
+      );
+  };
+
+
+
+public Login(userId:string,password:string):Observable<any>
+{
+  localStorage.removeItem('id_token');
+  localStorage.removeItem("expires_at"); 
+  localStorage.removeItem("email");
+  localStorage.removeItem("fullName");
+  let encodedval = btoa(userId+":"+password);
+  this.uri=this.baseUrl+"/api/token/";
+  let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                               .set('authorization', encodedval);
+  
+   return this.http.get(this.uri,{headers:headers})
+   .do((res) =>{
+    localStorage.setItem("email",userId);
+    this.setSession(res); 
+   }) 
+   .shareReplay()
+   .catch(this.handleError);
+
+
+};
+
+
+private setSession(authResult) {
+  var currentDate = moment(authResult.expiration);
+  var futureMonth = moment(currentDate).add(1, 'M');
+  var futureMonthEnd = moment(futureMonth).endOf('month');
+  
+  if(currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
+      futureMonth = futureMonth.add(1, 'd');
+  }
+  var tokenExpire = currentDate.add(5,"days");
+  localStorage.setItem('id_token', authResult.authToken);
+  localStorage.setItem("expires_at",tokenExpire.toString()); 
+
+  
+
+
+  
+ ///// const expiresAt = moment().add(authResult.expiration,'minute');
+  
+  ///localStorage.setItem('id_token', authResult.authToken);
+  ///localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+}      
+
+logout() {
+  localStorage.removeItem("id_token");
+  localStorage.removeItem("expires_at");
+  localStorage.removeItem("fullName");
+  localStorage.removeItem("email");
+  
+}
+
+public isLoggedIn() {
+  return moment().isBefore(this.getExpiration());
+}
+
+isLoggedOut() {
+  return !this.isLoggedIn();
+}
+
+getExpiration() {
+  const expiration = localStorage.getItem("expires_at");
+  const expiresAt = JSON.parse(expiration);
+  return moment(expiresAt);
+}   
+
+
+
+public GetHomePageItems(pagesize:string,pageindex:string):Observable<any>
+{
+     let querystring:string;
+     this.uri=this.baseUrl+"/api/items/"; 
+     querystring = "?Page="+pageindex+ "&Count="+ pagesize +"&IsPagingSpecified=true&IsSortingSpecified=true" ;
+     return this.http.get<Ipagedata>(
+     this.uri+"AllItemsOnPaging/"+querystring, { observe: 'response'})
+     .catch(this.handleError.bind(this) );
+}
+
+     public addUser(user:registration):Observable<any>
+     {
+      localStorage.removeItem('id_token');
+      localStorage.removeItem("expires_at"); 
+      localStorage.removeItem("email");
+      localStorage.removeItem("fullName");
+      this.uri=this.baseUrl+"/api/user/NewUser/";
+      var headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/form-data');
+      return this.http.post<registration>(this.uri,
+          {
+            "emailId": user.myemail,
+            "password": user.password,
+            "firstName": user.firstName,
+            "middleName": user.middleName,
+            "lastName": user.lastName,
+            "mobile": user.mobile,
+            "ulternateMobile": user.ulternateMobile,
+            "address":user.address,
+            "city":user.city,
+            "state":user.mystate,
+            "pin":user.pin,
+            "enterOPT":user.otp
+           
+
+          },
+          {
+              headers:headers
+          }
+
+      )
+      .catch(this.handError)
+      .do((res) =>
+      {
+       
+        localStorage.setItem("email",user.myemail);
+      });
+
+
+     }
+     
+
+private handError(errorResponse:HttpErrorResponse)
+{
+  if(errorResponse.error instanceof ErrorEvent)
+  {
+    console.log("client side error",errorResponse.error.message);
+  }
+  else
+  {
+    console.log("server side error",errorResponse);
+  }
+  return new ErrorObservable(errorResponse);
+}
+
+public changeSelectedItem(totalItem:itemNotify|null)
+{
+  this.subject.next(totalItem);
+}
+getItem():Observable<any>
+{
+  return this.subject.asObservable();
+
+}
+
+public userFullName(fullName:string|null)
+{
+ 
+  return this.userFullNamesubject.next(fullName);
+
+}
+getUserFullName():Observable<any>
+{
+  return this.userFullNamesubject.asObservable();
+
+}
+
+
+public async getOTP(mobile:string) //:Observable<optResponse>
+{
+  
+  this.uri=this.baseUrl+"/api/sms/Otpsender?mobileNumber="+mobile;
+   return await this.http.get<optResponse>(this.uri, { observe: 'response'})
+   .do((res) =>{
+   
+   }) 
+  // .shareReplay()
+   .catch(this.handleError.bind(this) )
+   .toPromise()
+};
+
+
+
+public async ResetPassword(email:string)
+{
+  
+  this.uri=this.baseUrl+"/api/sms/ResetPassword?email="+email;
+   return await this.http.get<rsetpassword>(this.uri, { observe: 'response'})
+   .do((res) =>{
+   // this.setOTP(res)
+   }) 
+  // .shareReplay()
+   .catch(this.handleError.bind(this) )
+   .toPromise()
+};
+
+
+// private setOTP(resp) {
+//     debugger;
+//     if(resp.body.status==5){  //need to change to 5
+    
+//     localStorage.setItem('OTP', resp.body.result);
+//     }
+//       else
+//       {
+//         localStorage.removeItem('OTP');
+//       }
+//   } 
+  
+  public paymentreceive(session:string,registration:registration)
+  {
+    
+      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?UserSession="+session;
+      var headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/form-data');
+      return this.http.post(this.uri,registration,
+          {
+              headers:headers
+          });
+        
+
+  }
+
+public  changepassword(email:string,password:string,confirmpassword:string)
+{
+  this.uri=this.baseUrl+"/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword;
+  return  this.http.get(this.uri, { observe: 'response'})
+  .catch(this.handleError.bind(this) );
+
+}
+public getimages()
+{
+  this.uri=this.baseUrl+"/api/File/images";
+  return  this.http.get(this.uri, { observe: 'response'})
+ 
+  .catch(this.handleError.bind(this) );
+
+}
+
+
+GetAddress(sessionId:string)//:Observable<any>
+{
+  
+  this.uri=this.baseUrl+"/api/User/";
+
+  const params = new HttpParams().set('usersession', sessionId);
+  return this.http.get<checkedInItemsArray[]>(
+  this.uri+"Address", { observe: 'response', params})
+  .catch(this.handleError.bind(this) );
+}
+
+}
+
+
+
+
+export class optResponse
+{
+  status:string;
+  message:string;
+}
+
+
+
+

@@ -1,0 +1,176 @@
+<div class="container">
+        <ngx-datatable 
+          #myTable
+          class="material expandable" style="height:350px"
+          [columnMode]="'force'"
+          [headerHeight]="30"
+          [footerHeight]="50"
+          [rowHeight]="250"
+          [scrollbarV]="true"
+          [scrollbarH]="false"
+          [rows]='rows'
+          [limit]="3"
+          (page)="onPage($event)">
+        
+          <!-- Row Detail Template -->
+          <!-- <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+              <div style="padding-left:35px;">
+                <div>Item Id : {{row.itemId}}</div>
+                <div>Delivery Charges : {{row.deliveryCharges}}</div>
+                <div> <img [src]="row['imageUrl']" height="50" width="50" > </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-row-detail> -->
+  
+          <!-- Column Templates -->
+           <!-- <ngx-datatable-column
+            [width]="50"
+            [resizeable]="false"
+            [sortable]="false"
+            [draggable]="false"
+            [canAutoResize]="false">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <a
+                href="javascript:void(0)"
+                [class.datatable-icon-right]="!expanded"
+                [class.datatable-icon-down]="expanded"
+                title="Expand/Collapse Row"
+                (click)="toggleExpandRow(row)">
+              </a>
+            </ng-template>
+          </ngx-datatable-column> -->
+         
+          <ngx-datatable-column width="100">
+                <ng-template ngx-datatable-header-template>
+                        <span>Cart Items </span>
+                 </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <div class="container">
+                <div class="row">
+                  <div class ="col-md-12">
+                   <h4 style ="color:blue"> 
+                      <i [innerHTML]="row['itemname']"></i> </h4>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">
+                      <img [src]="row['image1']" height="50" width="50" ><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">    
+                        <h4 style ="color:blueviolet">   Price : <i [innerHTML]="row['price']"></i></h4>
+                </div>
+                </div>
+                <div class="row">
+                    <div class ="col-md-12">        
+                      <h4 style ="color:blue"> Offer Price : <i [innerHTML]="row['offerprice']"></i></h4>
+                  </div>
+                </div>  
+                
+                <div class="row">
+                    <div class ="col-md-12">    
+                      <h4 style ="color:blueviolet">  Saved : <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col-md-12">
+                          <h4 style ="color:blue">    Color : <i [innerHTML]="row['colorname']"></i></h4>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col-md-12">
+                          <h4 style ="color:blueviolet"> Quantity : <i [innerHTML]="row['quantity']"></i></h4>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class ="col-md-12">
+                           <button class ="btn btn-success" style="width:80px" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
+                              <i class="fa fa-trash">  Delete</i> 
+                           </button>
+                       </div>
+                    </div>
+              </div>     
+            </ng-template>
+          </ngx-datatable-column>
+
+          <!-- <ngx-datatable-column width="50">
+            <ng-template ngx-datatable-header-template>
+              <span>&nbsp;</span>    
+             </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+         <img [src]="row['imageUrl']" height="50" width="50" > 
+        </ng-template>
+      </ngx-datatable-column>
+
+          <ngx-datatable-column width="80">
+            <ng-template ngx-datatable-header-template>
+                    <span>Price</span>
+             </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <i [innerHTML]="row['price']"></i>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column width="80">
+        <ng-template ngx-datatable-header-template>
+                <span>Offer Price</span>
+         </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <i [innerHTML]="row['offerprice']"></i>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column width="80">
+    <ng-template ngx-datatable-header-template>
+            <span>Saved</span>
+     </ng-template>
+<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i>
+</ng-template>
+</ngx-datatable-column>
+
+
+      
+          <ngx-datatable-column width="50">
+                <ng-template ngx-datatable-header-template>
+                        <span>Color</span>
+                 </ng-template>
+            
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <i [innerHTML]="row['colorname']"></i> 
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column width="30" >
+                <ng-template ngx-datatable-header-template>
+                        <span>Quantity</span>
+                 </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <i [innerHTML]="row['quantity']"></i>
+                </ng-template>
+
+
+          </ngx-datatable-column>
+        <ngx-datatable-column width="30">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <button class ="btn btn-success" style="width:80px" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
+                  <i class="fa fa-trash">  Delete</i> 
+                </button>
+              </ng-template>
+
+
+          </ngx-datatable-column> -->
+
+        </ngx-datatable>
+        <br>
+              <p class="text-center">You saved Rs : {{saveSum}}</p>
+              <p class ="text-center">Paid Amount  Rs : {{OfferPriceSum}}</p>
+      
+            <a class="btn btn-success"  (click)= "placeOrder();" >Place Order</a>
+            <a  class="btn btn-danger pull-right"(click)="cancel()">Back</a>
+        
+         
+      </div>

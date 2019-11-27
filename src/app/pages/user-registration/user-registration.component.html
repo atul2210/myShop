@@ -1,0 +1,227 @@
+
+<form  class="container was-validated" role="form"  [formGroup]="myform" 
+role="form"  >
+
+      <div class = "box box-body">
+  <!-- <fieldset formGroupName="name"> -->
+    <div class="box-header with-border">
+      <h3 class="box-title">New User</h3>
+    </div>
+
+      <div class="form-group"
+      [ngClass]="{
+     'has-danger': mobile.invalid && (mobile.dirty || mobile.touched),
+     'has-success': mobile.valid && (mobile.dirty || mobile.touched)
+   }">
+   <label>Mobile Number</label>
+   <input type="text" class="form-control form-control-sm" formControlName="mobile"  value=[mobileNum]  required>
+   <div class="was-validated"
+        *ngIf="mobile.errors && (mobile.dirty || mobile.touched ) ">
+     <p *ngIf="mobile.errors.required">Mobile number is required</p>
+     
+   </div>
+     <!-- <pre>Valid? {{ myform.controls.name.controls.mobile.valid }}</pre>
+     <pre>Dirty? {{ myform.controls.name.controls.mobile.dirty }}</pre>
+     <pre>pres? {{ myform.controls.name.controls.mobile.pristine }}</pre> -->
+ </div>
+
+ <div class="form-group"
+ [ngClass]="{
+'has-danger': otp.invalid && (otp.dirty || otp.touched),
+'has-success': otp.valid && (otp.dirty || otp.touched)
+}">
+<label>OTP</label>
+<input type="text" class="form-control form-control-sm" formControlName="otp"  value=[otp]  required>
+<div class="was-validated"
+   *ngIf="otp.errors && (otp.dirty || otp.touched ) ">
+<p *ngIf="otp.errors.required">OTP is required</p>
+
+</div>
+
+<!-- <div *ngIf="!isOtpOK";else [innerHTML] = "'' |safe:'script'"
+(change)="validateOTP();"> -->
+<!-- <div  *ngIf="!isOtpOK" >
+
+OTP is Invalid. Please re-enter wwwOTP"
+
+</div> -->
+
+
+</div>
+
+
+
+
+    <div class="form-group"
+         [ngClass]="{
+        'has-danger': firstName.invalid && (firstName.dirty || firstName.touched || firstName.pristine),
+        'has-success': firstName.valid && (firstName.dirty || firstName.touched)
+      }">
+      <label>First Name</label>
+      <input type="text"
+             class="form-control form-control-sm "
+             formControlName="firstName"
+             required>
+      <div class="form-control-feedback"
+           *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+        <p *ngIf="firstName.errors.required">First Name is required</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Middle Name</label>
+      <input type="text" class="form-control form-control-sm" formControlName="middleName"> 
+    </div>
+
+
+
+    <div class="form-group"
+         [ngClass]="{
+        'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
+        'has-success': lastName.valid && (lastName.dirty || lastName.touched)
+      }">
+      <label>Last Name</label>
+      <input type="text"
+             class="form-control form-control-sm"
+             formControlName="lastName"
+             required>
+      <div class="form-control-feedback"
+           *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+        <p *ngIf="lastName.errors.required">Last Name is required</p>
+      </div>
+    </div>
+  
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': myemail.invalid && (myemail.dirty || myemail.touched),
+        'has-success': myemail.valid && (myemail.dirty || myemail.touched)
+   }">
+
+   <label>Email</label>
+    <input type="email" 
+           class="form-control form-control-sm"
+           formControlName="myemail"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="myemail.errors && (myemail.dirty || myemail.touched)">
+      <p *ngIf="myemail.errors.required">Email is required</p>
+      <p *ngIf="myemail.errors.pattern">The email address must contain at least the @ character</p>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': password.invalid && (password.dirty || password.touched|| password.pristine),
+        'has-success': password.valid && (password.dirty || password.touched)
+   }">
+    <label>Password</label>
+    <input type="password"
+           class="form-control form-control-sm"
+           formControlName="password"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="password.errors && (password.dirty || password.touched)">
+      <p *ngIf="password.errors.required">Password is required</p>
+      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+    </div>
+  </div>
+
+  <!--
+    <pre>{{ password.errors | json }}</pre>
+  -->
+  <div class="form-group">
+    <label>Ulternate Mobile</label>
+    <input type="text" class="form-control" formControlName="ulternatemobile"> 
+  </div>
+
+  <div class="form-group"
+  [ngClass]="{
+   'has-danger': address.invalid && (address.dirty || address.touched),
+   'has-success': address.valid && (address.dirty || address.touched)
+}">
+<label>Address</label>
+<textarea rows="3" class="form-control" formControlName="address" required></textarea>
+<div class="form-control-feedback"
+    *ngIf="address.errors && (address.dirty || address.touched)">
+ <p *ngIf="address.errors.required">Address is required</p>
+ <!-- <p *ngIf="address.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p> -->
+</div>
+</div>
+
+<div class="form-group"
+  [ngClass]="{
+   'has-danger': city.invalid && (city.dirty || city.touched),
+   'has-success': city.valid && (city.dirty || city.touched)
+}">
+    <label>City</label>
+    <input type="city"
+          class="form-control form-control-sm"
+          formControlName="city"
+          required>
+    <div class="form-control-feedback"
+        *ngIf="city.errors && (city.dirty || city.touched)">
+    <p *ngIf="city.errors.required">City is required</p>
+
+    </div>
+
+</div>
+
+<div class="form-group"
+  [ngClass]="{
+   'has-danger': pin.invalid && (pin.dirty || pin.touched),
+   'has-success': pin.valid && (pin.dirty || pin.touched)
+}">
+    <label>Pin</label>
+    <input type="pin"
+          class="form-control form-control-sm"
+          formControlName="pin"
+          required>
+    <div class="form-control-feedback"
+        *ngIf="pin.errors && (pin.dirty || pin.touched)">
+    <p *ngIf="pin.errors.required">Pin is required</p>
+
+    </div>
+
+</div>
+
+
+
+
+
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': mystate.invalid && (mystate.dirty || mystate.touched),
+        'has-success': mystate.valid && (mystate.dirty || mystate.touched)
+      }">
+    <label>State</label>
+    <select class="form-control form-control-sm"
+            formControlName="mystate">
+      <!-- <option value="">Please select a State</option> -->
+      <option *ngFor="let lang of states"
+              [value]="lang">{{lang}}
+      </option>
+    </select>
+
+    <div class="form-control-feedback"
+    *ngIf="mystate.errors && (mystate.dirty || mystate.touched)">
+<p *ngIf="mystate.errors.required">State is required</p>
+
+</div>
+  </div>
+
+  <!-- <pre>{{myform.value | json}}</pre> -->
+<!-- </fieldset> -->
+  <div class="box-footer">
+      <button type="submit" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-primary mb-2 pull-right" (click)="save()"   >Submit</button>
+    </div>
+
+ 
+</div>
+</form>
+
+

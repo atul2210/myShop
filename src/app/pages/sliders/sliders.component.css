@@ -1,0 +1,36 @@
+/* @import './slider.component.css'; */
+
+.slide-item {
+    display: inline-block;
+    height: 100%;
+    opacity: 0.5;
+    transition: opacity 1s, transform 1s;
+}
+ .slide {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 300px 100px;
+    background-position: center;
+    margin: 0 5px;
+}
+
+.center {
+    display: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height:50%;
+  }
+
+  img {
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    margin-top:3px;
+    margin-left:3px;
+    padding: 5px;
+    width: 150px;
+    /* border-color: darkred; */
+  }
+  .borderless td, .borderless th {
+    border: none;
+}

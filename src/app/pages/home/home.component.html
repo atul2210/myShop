@@ -1,0 +1,47 @@
+
+      <app-sliders></app-sliders>
+
+
+      <div *ngIf="loading" >  
+        <img src ="assets/loading/loading.gif" class = "header-shadow" > Loading ...
+      </div>
+
+<div  infiniteScroll (scrolled)="onScrollDown()" [scrollWindow]="true" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
+
+ <div style="background-color: orangered" class = "ui four cards justify-content-center">
+  <div *ngFor="let item of itemsarr;let i=index" style= "padding: 5px;">
+ 
+
+    <a target='_blank' [routerLink]="['/itemDetail/',item.itemid]" class ="red card">
+
+      <div class="image" >
+        <img style="width:150px;height:150px;" [src]=item.image1>
+      </div>
+      <div class="">
+        <a class="header">{{item.itemName}}</a>
+        <div class="meta">
+          <span class="date">Color : {{item.color}}</span>
+        </div>
+        <div class="description" >
+         Size : {{item.sizeName}}
+        </div>
+        <div class="meta">
+          <span class="date">Price : {{item.price |currency :"₹":0}}</span>
+        </div>
+        <div class="meta">
+          <span class="date">Offer Price : {{item.offerPrice |currency :"₹":0}}</span>
+        </div>
+      </div>
+      <div >
+        
+          <i class="user icon"></i>
+          Brand : {{item.brand}}
+       
+      </div>
+
+
+</a>
+            </div>
+        </div>
+     </div>
+ 

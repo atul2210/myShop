@@ -1,0 +1,59 @@
+/* #hover {
+    display: none;
+    position: relative;
+    top: -25px;
+}
+
+#image:hover {
+    opacity: .7;
+}
+
+#image:hover + #hover {
+    display: block;
+} */
+
+
+.rounded {
+    border-radius: 20px;
+    background: lightgreen;
+    width:250px; 
+  }
+
+  .rounded:hover {
+    
+    background: rgb(238, 144, 207) 
+}
+
+.example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  h1
+  {
+      
+  }
+  h1::first-letter {
+    /* font-size: 200%; */
+    color: #8A2BE2;
+  }
+
+
+
+  .item-fore-color
+  {
+    background-color: rgb(239, 241, 235);
+    color: blue;
+
+  }
+
+  .li-text-color
+  {
+    color: red;
+
+  }
+
+  ::ng-deep .ngxImageZoomContainer > img{
+    max-height: 350px!important;
+    max-width: 350px!important;
+    }

@@ -1,0 +1,84 @@
+
+  <app-dynamic-menu></app-dynamic-menu>
+  <div style="background-color: black">
+
+    <span class="d-none">men women kids vidhim shopping kurti legging kids frocks online shopping 
+      cheap rate www.vidhim.com all types of cheap range items.
+      </span>
+
+
+<div class="mt-0">
+
+    <a [routerLink]="['']" class="ml-1" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></a>
+    <div class="mobile-center d-inline">
+          <input type="text"  style="line-height:1.5" placeholder="Search" class=" input:focus " name="search" [(ngModel)]="itemname" >
+          <a style="width:30px;"  class="cur btn btn-danger" (click)="searchResult()" ><i class="fa fa-search pull-left"></i></a>
+      
+          
+         
+       
+  </div>
+<div class="pull-right mr-2 d-inline">
+    <label for="fullname" class="badge text-primary" >{{fullName}}</label>
+         
+          
+    <button style="width:30px;height:25px;" class="cur btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a  class="cur btn btn-danger mr-2" style="width:85px;text-align:left;font-size:10px;" (click)="RedirectToLogin()">Sign In <i class="fa fa-sign-in "></i> </a></li>
+      <li><a [routerLink]="['/logout']" style="width:85px;text-align:left;font-size:10px;color: black; " class=" cur btn btn-danger mr-2">Sign Out <i class="fa fa-sign-in "></i> </a></li>
+     
+    </ul>
+  <a class= "text-danger cur  " style="width:70px;margin-top: -3px"  (click)="getCheckedInItems()" >
+    <span  >
+            <i class="fa fa-shopping-cart"></i>
+            <span class="label label-danger rounded-circle"> {{totalItem.totalCartItem}}</span>
+    </span>
+  </a>
+</div>
+
+
+</div>
+
+<div class="mt-5"  >
+  <router-outlet  ></router-outlet>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="footer">
+ 
+    <img src ="assets\ICO\logo.jpg"/>
+
+      <div class="text-center">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+          <a href="#"><i class="fa fa-skype"></i></a>
+     </div>
+<h4 class="green" >Shopping Help</h4>
+<div class="col-md-6 col-sm-6 col-xs-12">
+
+    <ul class="links">
+        <li type="square" class="first"><a class="pl-2"  [routerLink]="['ContactUs']" > <i class="fa fa-phone"></i>&nbsp;Contact Us</a></li>
+        <li type="square"><a class="pl-2"  [routerLink]="['AboutUs']" > <i class="fa fa-info"></i>&nbsp; AboutUs</a></li>
+        <li type="square"><a class="pl-2"  [routerLink]="['PrivacyPolicy']" > <i class="fa fa-info"></i>&nbsp;Privacy Policy</a></li>
+        <li type="square" ><a class="pl-2"  [routerLink]="['Payment']" > <i class="fa fa-link"></i>&nbsp;Payment Policy</a></li>
+        <li type="square"><a class="pl-2"  [routerLink]="['ShippingPolicy']" > <i class="fa fa-truck"></i>&nbsp;Shipping Policy</a></li>
+
+    </ul>
+</div>
+
+      <div class="footer-bottom">
+          <div class="col-sm-8 col-xs-12 coppyright">
+            Copyright's <i class="fa fa-copyright"></i> 2019 vidhim.com . All rights reserved.</div>
+      </div>
+      
+  </footer>
+ 
+</div>
+
+
+ 

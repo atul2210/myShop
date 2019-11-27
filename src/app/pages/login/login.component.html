@@ -1,0 +1,106 @@
+
+<!-- <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" > -->
+<div class="container text-center">  
+  <form [formGroup]="loginForm" >
+
+   
+      <div *ngIf="loading" >  
+        <img src ="assets/loading/loading.gif" class = "header-shadow" > 000Loading ...
+      </div>
+
+<div class="row">
+<div class="col-md-12 col-sm-12 col-xs-12  box-header with-border" style="position:relative;top:10px;"
+ [ngClass]="{'has-error':(loginForm.get('username').touched || loginForm.get('username').dirty)}">
+  
+
+ 
+ <div class="form-group"  >
+    
+      <input  type="email" placeholder="Email id" formControlName="username" class="form-control" >
+      <span class="help-block" *ngIf="(loginForm.get('username').touched ||
+                                       loginForm.get('username').dirty) &&
+                                       loginForm.get('username').errors">
+              <span class="alert-danger form-control " *ngIf="loginForm.get('username').errors.required">Please enter email id</span>                        
+      </span>
+  
+    </div>
+    <div class="form-group">
+      <!-- <label for="pwd">Password:</label> -->
+      <input  type="password" placeholder="Password" formControlName="password"  class="form-control">
+      <span class="help-block " *ngIf="(loginForm.get('password').touched ||
+      loginForm.get('password').dirty) &&
+      loginForm.get('password').errors">
+<span class="alert-danger form-control" *ngIf="loginForm.get('password').errors.required">Please enter password</span>                        
+</span>
+    
+    
+    </div>
+    <div *ngIf="isOk">
+      <div style = "margin-left :40px;" class="text-danger font-weight-bold" >{{err}}</div>
+    </div>
+    <div class="row">
+   
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <button class="btn btn-success pull-left" (click)="forgetpassword()" style="width:125px" >Forget Password</button>
+        <button class="btn btn-success pull-right" style="width:125px" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" >Submit</button>
+    </div>
+    </div>
+     <div class="row" style="margin-top: 25px;"> 
+    <div class="col-md-12 col-sm-12 col-xs-12">  
+        <button class="btn btn-success pull-left " style="width:125px"  (click)= "openModalDialog()" >Sign In</button>
+        <button class="btn btn-success pull-right" style="width:125px"  (click)="changepassword()" >Change Password</button>
+   </div>
+   
+   </div>   
+</div>
+</div>
+
+
+<!-- <div class="backdrop" [ngStyle]="{'display':display}"></div> -->
+
+<!-- modal -->
+
+
+
+
+<div class="modal form-group "   tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content" style="background-color:burlywood" >
+      <!-- modal-header -->
+      <div class="modal-header"style="background-color:blue" >
+        <button type="button" class="close" aria-label="Continue" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
+        <!-- <h4 class="modal-title">Login</h4> -->
+      </div>
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        
+            <div class="form-group">
+                <input type="text"  formControlName="mobileNumber" required placeholder="Mobile Number" >
+                <span  *ngIf="(loginForm.get('mobileNumber').touched ||
+                loginForm.get('mobileNumber').dirty) &&
+                loginForm.get('mobileNumber').errors">
+                <span class="alert-danger" *ngIf="loginForm.get('mobileNumber').errors.required">Please Enter Valid Mobile Number</span>                        
+                </span>
+            
+              </div>
+            <div>
+              Once you click on continue button, you will receive OTP in your mobile.   
+            </div>  
+      </div>
+
+      <!-- modal-footer -->
+      <div *ngIf="isOk">
+        <div style = "margin-left :40px;" class="text-danger font-weight-bold" >{{err}}</div>
+      </div>
+      <div class="modal-footer" style="background-color:rgb(137, 202, 73)" >
+        <button type="button" class="btn btn-success buttonmargin" style="text-transform:none" (click)="closeModalDialog()" >Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+</div>

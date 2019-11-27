@@ -1,0 +1,26 @@
+
+<div class="container"  >
+ 
+<table class = "table  borderless"  >
+ <tr>
+   <td>   
+      <img class="img-fluid" style="width:200px;height:200px ;"  src="assets/ICO/logo.jpg"/>
+  </td>
+
+      <!-- <ngx-slider [init]="slider"></ngx-slider> -->
+  <td> 
+      <ngb-carousel >
+          <ng-container *ngFor = "let item of imageItems;let i = index;">
+        <ng-template   ngbSlide [id]=i >
+          
+          <img [src]="item|safe:'url'" class="mx-auto d-block" style="width:200px;height:200px ;" /> 
+       
+        </ng-template>
+        </ng-container>
+        </ngb-carousel>
+</td>
+</tr>
+
+</table>
+</div>
+ 
